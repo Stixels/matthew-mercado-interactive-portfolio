@@ -1,20 +1,26 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Matthew Mercado — Interactive Portfolio
 
-# Run and deploy your AI Studio app
+A Next.js site that presents work as a secured “intelligence system” experience: boot flow, hub navigation, and project views.
 
-This contains everything you need to run your app locally.
+## Local development
 
-View your app in AI Studio: https://ai.studio/apps/6244326a-1da8-4c1a-bc1a-1b2d2a06b687
+**Prerequisites:** Node.js 20+
 
-## Run Locally
+1. Install dependencies: `npm install`
+2. Start the dev server: `npm run dev` (Next.js 16 uses [Turbopack](https://nextjs.org/docs/app/api-reference/turbopack) by default for `dev` and `build`)
 
-**Prerequisites:**  Node.js
+Open [http://localhost:3000](http://localhost:3000).
 
+## Scripts
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+| Command        | Description              |
+| -------------- | ------------------------ |
+| `npm run dev`  | Development server       |
+| `npm run build`| Production build         |
+| `npm run start`| Run production build     |
+| `npm run lint` | ESLint                   |
+| `npm run clean`| Remove `.next` output    |
+
+## Stack
+
+Next.js, React, Tailwind CSS, Motion, Zustand.

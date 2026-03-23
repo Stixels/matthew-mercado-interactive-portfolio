@@ -1,7 +1,7 @@
 node_modules/
 .next/
+*.tsbuildinfo
 coverage/
 .DS_Store
 *.log
 .env*
-!.env.example

@@ -1,100 +1,276 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'motion/react';
+import { useRouter } from 'next/navigation';
 import { useSystemStore } from '@/store/systemStore';
-import { Lock, Unlock, Terminal, Cpu, Database, Network, User, ShieldAlert, BrainCircuit } from 'lucide-react';
+import ResetPuzzleProgressModal from '@/components/ResetPuzzleProgressModal';
+import { Lock, Unlock, Terminal, Cpu, Database, Network, User, ShieldAlert, BrainCircuit, ChevronRight, Activity, RotateCcw } from 'lucide-react';
 
 const PROJECTS = [
-  { id: 'core', title: 'Escape Director Client', icon: Cpu, level: 0, puzzleType: null },
-  { id: 'data', title: 'Telemetry Service', icon: Database, level: 1, puzzleType: 'auth' },
-  { id: 'terminal', title: 'System Logs Analyzer', icon: Terminal, level: 2, puzzleType: 'network' },
-  { id: 'security', title: 'Security Audit Tool', icon: ShieldAlert, level: 3, puzzleType: 'frequency' },
-  { id: 'ai', title: 'AI Core Logic', icon: BrainCircuit, level: 4, puzzleType: 'matrix' },
-  { id: 'contact', title: 'Creator Identity', icon: User, level: 0, puzzleType: null },
+  {
+    id: 'core',
+    title: 'Escape Director',
+    subtitle: 'SAAS PLATFORM',
+    icon: Cpu,
+    level: 0,
+    puzzleType: null,
+    tag: 'ACTIVE',
+  },
+  {
+    id: 'data',
+    title: 'Escape This Frederick',
+    subtitle: 'WEB ENGINEERING',
+    icon: Database,
+    level: 1,
+    puzzleType: 'auth',
+    tag: 'DEPLOYED',
+  },
+  {
+    id: 'terminal',
+    title: 'Level Up VR',
+    subtitle: 'DESIGN & FRONTEND',
+    icon: Terminal,
+    level: 2,
+    puzzleType: 'network',
+    tag: 'DEPLOYED',
+  },
+  {
+    id: 'security',
+    title: 'Hardware & Puzzles',
+    subtitle: 'PHYSICAL SYSTEMS',
+    icon: ShieldAlert,
+    level: 3,
+    puzzleType: 'frequency',
+    tag: 'RESTRICTED',
+  },
+  {
+    id: 'ai',
+    title: 'Interactive Portfolio',
+    subtitle: 'CREATIVE DEVELOPMENT',
+    icon: BrainCircuit,
+    level: 4,
+    puzzleType: 'matrix',
+    tag: 'EXPERIMENTAL',
+  },
+  {
+    id: 'contact',
+    title: 'Matthew Mercado',
+    subtitle: 'ENTITY RECORD',
+    icon: User,
+    level: 0,
+    puzzleType: null,
+    tag: 'VERIFIED',
+  },
 ];
 
+const LEVEL_COLORS: Record<string, string> = {
+  ACTIVE:       'neon-blue',
+  DEPLOYED:     'neon-purple',
+  DEGRADED:     'neon-amber',
+  OFFLINE:      'neon-green',
+  RESTRICTED:   'error-red',
+  EXPERIMENTAL: 'neon-blue',
+  VERIFIED:     'neon-green',
+};
+
 export default function SystemHub() {
-  const { accessLevel, unlockedModules, openProject, openPuzzle } = useSystemStore();
+  const router = useRouter();
+  const [resetModalOpen, setResetModalOpen] = useState(false);
+  const { accessLevel, unlockedModules, resetPuzzleProgress } = useSystemStore();
+
+  const puzzleCount = PROJECTS.filter((p) => p.puzzleType).length;
+  const hasPuzzleProgress = unlockedModules.length > 0 || accessLevel > 0;
+
+  const openResetModal = () => {
+    if (!hasPuzzleProgress) return;
+    setResetModalOpen(true);
+  };
+  const maxLevel = 4;
 
   return (
-    <div className="min-h-screen bg-background p-6 md:p-12 font-sans relative">
-      <header className="flex justify-between items-center mb-16 border-b border-white/10 pb-6">
-        <div>
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-2">
-            PROJECT_DB
-          </h1>
-          <p className="text-sm font-mono text-neon-blue glow-text-blue">
-            STATUS: INFILTRATED | THREAT LEVEL: LOW
-          </p>
+    <div className="min-h-screen bg-background circuit-grid p-6 md:p-12 relative">
+      <ResetPuzzleProgressModal
+        open={resetModalOpen}
+        onClose={() => setResetModalOpen(false)}
+        onConfirm={resetPuzzleProgress}
+      />
+
+      {/* Header */}
+      <header className="max-w-6xl mx-auto mb-12 md:mb-16">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 sm:gap-6 pb-6 border-b border-white/[0.06]">
+          <div>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-2 h-2 rounded-full bg-neon-green" />
+              <span className="text-xs font-mono text-neon-green/70 tracking-[0.2em] uppercase">
+                System Online
+              </span>
+            </div>
+            <h1
+              className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight text-white mb-1"
+              style={{ fontFamily: 'var(--font-orbitron)' }}
+            >
+              PROJECT_DB
+            </h1>
+            <p className="text-[10px] sm:text-xs font-mono text-neon-blue/60 tracking-widest uppercase glow-text-blue">
+              STATUS: INFILTRATED&nbsp;&nbsp;░&nbsp;&nbsp;THREAT LEVEL: LOW
+            </p>
+          </div>
+
+          {/* Access Level Gauge */}
+          <div className="shrink-0 sm:text-right flex sm:flex-col items-center sm:items-end gap-4 sm:gap-0">
+            <div>
+              <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest mb-1">Access Level</p>
+              <div
+                className="text-3xl sm:text-4xl md:text-5xl font-bold text-neon-purple leading-none mb-2"
+                style={{ fontFamily: 'var(--font-orbitron)', textShadow: '0 0 20px rgba(157,78,221,0.5)' }}
+              >
+                0{accessLevel}
+              </div>
+            </div>
+            <div className="flex gap-1 sm:justify-end mt-0 sm:mt-1">
+              {Array.from({ length: maxLevel }).map((_, i) => (
+                <div
+                  key={i}
+                  className={`h-1 w-6 sm:w-8 rounded-full transition-all duration-700 ${
+                    i < accessLevel
+                      ? 'bg-neon-purple shadow-[0_0_8px_rgba(157,78,221,0.8)]'
+                      : 'bg-white/10'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
-        <div className="text-right">
-          <p className="text-xs font-mono text-gray-400 uppercase">Access Level</p>
-          <p className="text-2xl md:text-4xl font-bold text-neon-purple">
-            0{accessLevel}
-          </p>
+
+        {/* Status strip */}
+        <div className="flex items-center gap-4 sm:gap-6 mt-4 text-[10px] font-mono text-zinc-600 overflow-x-auto pb-1">
+          <span className="flex items-center gap-1.5">
+            <Activity size={10} className="text-neon-green/50" />
+            <span>ENTRIES: {PROJECTS.length}</span>
+          </span>
+          <span>░</span>
+          <span>UNLOCKED: {unlockedModules.length} / {puzzleCount}</span>
+          <span>░</span>
+          <button
+            type="button"
+            onClick={openResetModal}
+            disabled={!hasPuzzleProgress}
+            className="flex items-center gap-1.5 shrink-0 text-neon-amber/50 hover:text-neon-amber disabled:opacity-25 disabled:pointer-events-none disabled:hover:text-neon-amber/50 transition-colors uppercase tracking-widest"
+            title="Clear saved puzzle unlocks"
+          >
+            <RotateCcw size={10} />
+            Reset puzzles
+          </button>
+          <span>░</span>
+          <span>SESSION: ACTIVE</span>
+          <span>░</span>
+          <span className="text-neon-blue/40">ENCRYPTION: AES-256-GCM</span>
         </div>
       </header>
 
-      <main className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+      {/* Project Grid */}
+      <main className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
         {PROJECTS.map((proj, index) => {
-          // A project is locked if it has a puzzleType AND hasn't been unlocked yet
           const isLocked = proj.puzzleType !== null && !unlockedModules.includes(proj.id);
           const Icon = proj.icon;
+          const accentColor = isLocked ? 'error-red' : LEVEL_COLORS[proj.tag] || 'neon-blue';
 
           return (
             <motion.button
               key={proj.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              onClick={() => {
-                if (isLocked) {
-                  openPuzzle(proj.id);
-                } else {
-                  openProject(proj.id);
-                }
-              }}
+              transition={{ delay: index * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              onClick={() => isLocked ? router.push('/puzzles/' + proj.id) : router.push('/projects/' + proj.id)}
               className={`
-                relative p-8 text-left rounded-2xl transition-all duration-500
+                relative p-6 md:p-8 text-left rounded-2xl transition-colors duration-300
                 glass-panel group overflow-hidden
-                ${isLocked ? 'hover:border-error-red/50' : 'hover:scale-[1.02] cursor-pointer glass-panel-active'}
+                ${isLocked
+                  ? 'hover:border-error-red/15'
+                  : 'glass-panel-active hover:border-neon-blue/20'
+                }
               `}
             >
-              {/* Background gradient effect on hover */}
-              <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 ${isLocked ? 'bg-error-red' : 'bg-neon-blue'}`} />
-
-              <div className="flex justify-between items-start mb-6 relative z-10">
-                <div className={`p-4 rounded-xl ${isLocked ? 'bg-gray-800/50 text-gray-400' : 'bg-neon-blue/10 text-neon-blue'}`}>
-                  <Icon size={32} />
-                </div>
-                {isLocked ? (
-                  <div className="flex items-center text-error-red bg-error-red/10 px-3 py-1 rounded-full text-xs font-mono">
-                    <Lock size={14} className="mr-2" />
-                    ENCRYPTED
-                  </div>
-                ) : (
-                  <div className="flex items-center text-neon-green bg-neon-green/10 px-3 py-1 rounded-full text-xs font-mono">
-                    <Unlock size={14} className="mr-2" />
-                    ACCESSIBLE
-                  </div>
-                )}
-              </div>
-              
-              <h3 className={`text-2xl font-bold mb-2 relative z-10 ${isLocked ? 'text-gray-400' : 'text-white'}`}>
-                {proj.title}
-              </h3>
-              <p className="text-sm font-mono text-gray-500 uppercase relative z-10">
-                Security Level: {proj.level}
-              </p>
-
+              {/* Warning stripes for locked */}
               {isLocked && (
-                <div className="mt-6 pt-4 border-t border-white/5 relative z-10">
-                  <p className="text-xs font-mono text-error-red flex items-center">
-                    <Terminal size={12} className="mr-2" />
-                    Click to initiate decryption sequence
-                  </p>
-                </div>
+                <div className="absolute inset-0 warning-stripes rounded-2xl opacity-60 pointer-events-none" />
               )}
+
+              {/* Corner brackets — top-left only for cleaner look */}
+              <span className={`absolute top-3 left-3 w-3 h-3 border-t border-l transition-colors duration-300 ${isLocked ? 'border-error-red/25' : 'border-neon-blue/30 group-hover:border-neon-blue/60'}`} />
+              <span className={`absolute bottom-3 right-3 w-3 h-3 border-b border-r transition-colors duration-300 ${isLocked ? 'border-error-red/25' : 'border-neon-blue/30 group-hover:border-neon-blue/60'}`} />
+
+              {/* Hover glow overlay */}
+              <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none ${isLocked ? 'bg-error-red/[0.02]' : 'bg-neon-blue/[0.02]'}`} />
+
+              {/* Project ID ghost number */}
+              <div
+                className="absolute right-6 top-4 text-7xl font-bold text-white/[0.03] select-none pointer-events-none leading-none"
+                style={{ fontFamily: 'var(--font-orbitron)' }}
+              >
+                {String(index + 1).padStart(2, '0')}
+              </div>
+
+              <div className="relative z-10">
+                {/* Top row */}
+                <div className="flex justify-between items-start mb-5">
+                  <div className={`p-3 rounded-xl border transition-all duration-500 ${
+                    isLocked
+                      ? 'bg-white/3 border-white/5 text-zinc-600'
+                      : `bg-${accentColor}/8 border-${accentColor}/20 text-${accentColor}`
+                  }`}>
+                    <Icon size={28} />
+                  </div>
+
+                  <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-mono border tracking-widest ${
+                    isLocked
+                      ? 'text-error-red bg-error-red/8 border-error-red/20'
+                      : 'text-neon-green bg-neon-green/8 border-neon-green/20'
+                  }`}>
+                    {isLocked ? <Lock size={9} /> : <Unlock size={9} />}
+                    <span>{isLocked ? 'ENCRYPTED' : 'ACCESSIBLE'}</span>
+                  </div>
+                </div>
+
+                {/* Title and subtitle */}
+                <div className="mb-4">
+                  <p className="text-[10px] font-mono text-zinc-600 tracking-[0.2em] uppercase mb-1">
+                    {proj.subtitle}
+                  </p>
+                  <h3 className={`text-xl md:text-2xl font-bold tracking-tight transition-colors duration-300 ${
+                    isLocked ? 'text-zinc-500' : 'text-white'
+                  }`}>
+                    {proj.title}
+                  </h3>
+                </div>
+
+                {/* Footer */}
+                <div className="flex items-center justify-between pt-4 border-t border-white/[0.04]">
+                  <div className="flex items-center gap-2">
+                    <span className={`text-[10px] font-mono ${
+                      isLocked ? 'text-error-red/50' : `text-${accentColor}/60`
+                    }`}>
+                      SEC-LVL-{String(proj.level).padStart(2, '0')}
+                    </span>
+                    <span className="text-white/10">•</span>
+                    <span className={`text-[10px] font-mono ${
+                      isLocked ? 'text-error-red/50' : `text-${accentColor}/60`
+                    }`}>
+                      {proj.tag}
+                    </span>
+                  </div>
+
+                  {isLocked ? (
+                    <span className="flex items-center gap-1 text-[10px] font-mono text-error-red/60">
+                      <Terminal size={10} />
+                      DECRYPT
+                    </span>
+                  ) : (
+                    <ChevronRight size={14} className="text-neon-blue/40 group-hover:text-neon-blue/80 group-hover:translate-x-0.5 transition-all duration-300" />
+                  )}
+                </div>
+              </div>
             </motion.button>
           );
         })}

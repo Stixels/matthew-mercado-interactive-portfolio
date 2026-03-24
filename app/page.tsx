@@ -1,20 +1,15 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import BootSequence from '@/components/BootSequence';
+import type { Metadata } from 'next';
+import HomeGate from '@/components/HomeGate';
+import { buildMetadata } from '@/config/site';
+
+export const metadata: Metadata = buildMetadata({
+  title: 'Interactive Developer Portfolio',
+  description:
+    'Explore an interactive portfolio from Matthew Mercado featuring product case studies, immersive UI work, conversion-driven websites, and hardware-linked systems.',
+  path: '/',
+  keywords: ['developer portfolio', 'interactive web design', 'full-stack case studies'],
+});
 
 export default function Home() {
-  const router = useRouter();
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    if (sessionStorage.getItem('booted') === 'true') {
-      router.replace('/hub');
-    } else {
-      setReady(true);
-    }
-  }, [router]);
-
-  if (!ready) return <div className="h-screen bg-background" />;
-  return <BootSequence />;
+  return <HomeGate />;
 }

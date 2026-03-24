@@ -5,11 +5,70 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useRouter } from 'next/navigation';
 
 const BOOT_MESSAGES = [
-  { text: '[  0.042s]  Starting development environment...', delay: 300 },
-  { text: '[  1.284s]  npm ci: 847 packages — 0 vulnerabilities  [OK]', delay: 1000 },
-  { text: '[  2.847s]  tsc: 63 source files checked — 0 errors  [OK]', delay: 1750 },
-  { text: '[  3.219s]  next.js 15: /app compiled in 371ms  [OK]', delay: 2450 },
+  { text: '[  0.031s]  POST — 16 384 MB memory verified — all sectors nominal  [OK]', delay: 250 },
+  { text: '[  0.712s]  npm ci — 834 packages resolved — 0 vulnerabilities  [OK]', delay: 900 },
+  { text: '[  1.491s]  tsc — strict — 72 source files — 0 type errors  [OK]', delay: 1600 },
+  { text: '[  2.083s]  next.js 16 + turbopack — /app compiled in 312ms  [OK]', delay: 2200 },
+  { text: '[  2.394s]  zustand — state graph hydrated — persistence layer active  [OK]', delay: 2750 },
+  { text: '[  2.651s]  module index — 6 records — 4 encrypted — 2 public  [OK]', delay: 3150 },
 ];
+
+// Virtual filesystem — mirrors the real app route structure
+const VIRTUAL_FS: Record<string, string[]> = {
+  '~': [
+    'drwxr-xr-x  projects/   [6 entries — 4 encrypted]',
+    'drwxr-xr-x  puzzles/    [4 decryption sequences]',
+    'drwxr-xr-x  about/      [1 entry — public]',
+    '-rw-r--r--  README.md   [you are reading this now]',
+  ],
+  '~/projects': [
+    'drwxr-xr-x  core/       Escape Director          [ACTIVE — public]',
+    'drwxr-xr-x  data/       Escape This Frederick    [DEPLOYED — locked]',
+    'drwxr-xr-x  terminal/   Level Up VR              [DEPLOYED — locked]',
+    'drwxr-xr-x  security/   Hardware Systems         [RESTRICTED — locked]',
+    'drwxr-xr-x  ai/         Portfolio Experience     [EXPERIMENTAL — locked]',
+    'drwxr-xr-x  contact/    About Matthew            [VERIFIED — public]',
+  ],
+  '~/projects/core': [
+    '-rw-r--r--  case-study.md   SaaS platform for escape room operators',
+    '-rw-r--r--  stack.txt       Next.js  Express  PostgreSQL  Stripe  BetterAuth',
+  ],
+  '~/projects/data': [
+    '-r--------  case-study.md   [LOCKED — solve ~/puzzles/auth/ to decrypt]',
+  ],
+  '~/projects/terminal': [
+    '-r--------  case-study.md   [LOCKED — solve ~/puzzles/network/ to decrypt]',
+  ],
+  '~/projects/security': [
+    '-r--------  case-study.md   [LOCKED — solve ~/puzzles/frequency/ to decrypt]',
+  ],
+  '~/projects/ai': [
+    '-r--------  case-study.md   [LOCKED — solve ~/puzzles/matrix/ to decrypt]',
+  ],
+  '~/projects/contact': [
+    '-rw-r--r--  profile.md      About & contact — public',
+  ],
+  '~/puzzles': [
+    '-rw-r--r--  auth/        [unlocks: projects/data/]',
+    '-rw-r--r--  network/     [unlocks: projects/terminal/]',
+    '-rw-r--r--  frequency/   [unlocks: projects/security/]',
+    '-rw-r--r--  matrix/      [unlocks: projects/ai/]',
+  ],
+  '~/about': [
+    '-rw-r--r--  README.md    full-stack engineer profile — public',
+  ],
+};
+
+function resolvePath(cwd: string, arg: string): string {
+  const trimmed = arg.replace(/\/$/, '');
+  if (!trimmed || trimmed === '~') return '~';
+  if (trimmed === '..') {
+    const lastSlash = cwd.lastIndexOf('/');
+    return lastSlash <= 1 ? '~' : cwd.slice(0, lastSlash);
+  }
+  if (trimmed.startsWith('~/')) return trimmed;
+  return cwd === '~' ? `~/${trimmed}` : `${cwd}/${trimmed}`;
+}
 
 const FIRST_NAME = 'MATTHEW'.split('');
 const LAST_NAME  = 'MERCADO'.split('');
@@ -51,6 +110,7 @@ export default function BootSequence() {
   const [inputValue, setInputValue]     = useState('');
   const [bootProgress, setBootProgress] = useState(0);
   const [showCursor, setShowCursor]     = useState(false);
+  const [cwd, setCwd]                   = useState('~');
   const router    = useRouter();
   const logEndRef = useRef<HTMLDivElement>(null);
 
@@ -107,51 +167,73 @@ export default function BootSequence() {
     addLog(`> ${cmd}`, 'input');
 
     if (cmd === 'enter' || cmd === 'start' || cmd === 'open' || cmd === 'explore') {
-      addLog('Launching portfolio interface...', 'system');
-      addLog('Mounting project modules... done', 'system');
+      addLog('Authenticating session...', 'system');
+      setTimeout(() => addLog('Decrypting public modules — access confirmed', 'system'), 500);
+      setTimeout(() => addLog('Launching portfolio interface...', 'system'), 1000);
       setTimeout(() => {
         sessionStorage.setItem('booted', 'true');
         router.push('/hub');
-      }, 1600);
+      }, 2000);
     } else if (cmd === 'help') {
-      addLog('Available commands:', 'info');
-      addLog('  explore  —  Open the portfolio', 'info');
-      addLog('  whoami   —  About this developer', 'info');
-      addLog('  ls       —  List portfolio sections', 'info');
-      addLog('  skills   —  View tech stack', 'info');
-      addLog('  status   —  Current availability', 'info');
-      addLog('  clear    —  Clear terminal output', 'info');
-      addLog('  help     —  Show this message', 'info');
+      addLog('  explore  —  enter the portfolio', 'info');
+      addLog('Type "more" for additional commands.', 'info');
+    } else if (cmd === 'more') {
+      addLog('All available commands:', 'info');
+      addLog('  explore      —  Enter the portfolio', 'info');
+      addLog('  ls           —  List current directory', 'info');
+      addLog('  cd <dir>     —  Change directory  (try: cd projects)', 'info');
+      addLog('  whoami       —  About this developer', 'info');
+      addLog('  skills       —  View tech stack', 'info');
+      addLog('  status       —  Current availability', 'info');
+      addLog('  clear        —  Clear terminal output', 'info');
     } else if (cmd === 'whoami') {
-      addLog('Resolving identity...', 'system');
-      setTimeout(() => addLog('Matthew Mercado  •  Software Engineer & Web Developer', 'info'), 400);
-      setTimeout(() => addLog('Specializes in full-stack web apps and interactive interfaces', 'info'), 800);
-      setTimeout(() => addLog('Type "explore" to view the full portfolio.', 'info'), 1200);
+      addLog('Resolving identity record...', 'system');
+      setTimeout(() => addLog('Matthew Mercado  •  Full-Stack Engineer & Creative Developer', 'info'), 400);
+      setTimeout(() => addLog('Builds SaaS platforms, immersive UIs, and hardware-linked systems', 'info'), 800);
+      setTimeout(() => addLog('Currently: Founder @ Escape Director  •  Open to new opportunities', 'info'), 1200);
+      setTimeout(() => addLog('Type "explore" to enter the system.', 'info'), 1600);
     } else if (cmd === 'ls') {
-      addLog('Listing portfolio root...', 'system');
-      setTimeout(() => addLog('drwxr-xr-x  projects/   [6 entries]', 'info'), 350);
-      setTimeout(() => addLog('drwxr-xr-x  skills/     [TypeScript, React, Next.js ...]', 'info'), 550);
-      setTimeout(() => addLog('drwxr-xr-x  contact/    [1 entry]', 'info'), 750);
-      setTimeout(() => addLog('-rw-r--r--  README.md   [currently reading this]', 'info'), 950);
-      setTimeout(() => addLog('Type "explore" to enter the system.', 'info'), 1300);
+      const entries = VIRTUAL_FS[cwd] ?? [];
+      addLog(`${cwd}:`, 'system');
+      entries.forEach((entry, i) => {
+        setTimeout(() => addLog(entry, 'info'), i * 130 + 250);
+      });
+    } else if (cmd.startsWith('cd')) {
+      const arg = cmd.slice(2).trim();
+      const target = resolvePath(cwd, arg || '~');
+      if (target in VIRTUAL_FS) {
+        setCwd(target);
+      } else {
+        addLog(`cd: no such directory: ${arg}`, 'warn');
+        addLog(`Try "ls" to see what is available here.`, 'info');
+      }
     } else if (cmd === 'skills') {
-      addLog('Loading tech stack...', 'system');
-      setTimeout(() => addLog('LANGUAGES:   TypeScript  JavaScript  HTML/CSS', 'info'), 350);
-      setTimeout(() => addLog('FRAMEWORKS:  React  Next.js  Node.js  Tailwind CSS', 'info'), 700);
-      setTimeout(() => addLog('TOOLS:       Git  PostgreSQL  Prisma  Vercel  Docker', 'info'), 1050);
-      setTimeout(() => addLog('INTERESTS:   Web performance  UI/UX  Creative coding', 'info'), 1400);
+      addLog('Loading capability manifest...', 'system');
+      setTimeout(() => addLog('── PRIMARY  (shipped projects, daily use) ──────────────', 'info'), 250);
+      setTimeout(() => addLog('LANGUAGES:   TypeScript  JavaScript  Python  Java', 'info'), 550);
+      setTimeout(() => addLog('FRAMEWORKS:  Next.js 16  React 19  Express  FastAPI  Spring Boot', 'info'), 850);
+      setTimeout(() => addLog('STYLING:     Tailwind CSS v4  MUI', 'info'), 1150);
+      setTimeout(() => addLog('DATABASE:    PostgreSQL  MongoDB  Redis  Prisma', 'info'), 1450);
+      setTimeout(() => addLog('PLATFORM:    Railway  Vercel  Stripe  BetterAuth', 'info'), 1750);
+      setTimeout(() => addLog('HARDWARE:    Arduino  Raspberry Pi', 'info'), 2050);
+      setTimeout(() => addLog('── FAMILIAR  (worked with, used in projects) ───────────', 'info'), 2350);
+      setTimeout(() => addLog('LANGUAGES:   C++  C#  Ruby  PHP  HTML/CSS  SQL', 'info'), 2650);
+      setTimeout(() => addLog('TOOLING:     Git  Vitest  Playwright  Selenium  Redux  Zustand', 'info'), 2950);
+      setTimeout(() => addLog('INFRA:       AWS S3  Heroku  Linux  Vite  Docker', 'info'), 3250);
+      setTimeout(() => addLog('PRACTICE:    SEO  UX/UI  Responsive Design', 'info'), 3550);
     } else if (cmd === 'status') {
-      addLog('Fetching current status...', 'system');
-      setTimeout(() => addLog('AVAILABILITY:  OPEN  •  Actively seeking opportunities', 'info'), 350);
-      setTimeout(() => addLog('STACK:         Full-stack  •  TypeScript / React / Next.js', 'info'), 750);
-      setTimeout(() => addLog('PROJECTS:      6 in portfolio  •  2 currently active', 'info'), 1150);
+      addLog('Querying system status...', 'system');
+      setTimeout(() => addLog('AVAILABILITY:   OPEN — actively seeking new opportunities', 'info'), 350);
+      setTimeout(() => addLog('STACK:          Full-stack  •  TypeScript / React / Next.js 16', 'info'), 750);
+      setTimeout(() => addLog('ACTIVE BUILDS:  Escape Director (SaaS)  •  This portfolio', 'info'), 1150);
+      setTimeout(() => addLog('CASE STUDIES:   6 in system  •  4 require puzzle completion', 'info'), 1550);
     } else if (cmd === 'clear' || cmd === 'cls') {
       setLogs([]);
     } else if (cmd === 'login') {
       addLog('Guest access is already active. Try "explore" instead.', 'info');
     } else {
       addLog(`Command not found: ${cmd}`, 'warn');
-      addLog('Type "help" for available commands.', 'info');
+      addLog('Type "help" to get started or "more" for all commands.', 'info');
     }
   };
 
@@ -370,14 +452,14 @@ export default function BootSequence() {
               style={{ color: 'rgba(255,184,0,0.55)', fontFamily: 'var(--font-terminal)' }}
             >
               <span style={{ color: 'var(--color-neon-amber)' }}>▶</span> guest@m-mercado
-              <span className="text-zinc-600">:~$</span>
+              <span className="text-zinc-600">:{cwd}$</span>
             </span>
             <input
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               className="bg-transparent border-none outline-none flex-1 text-neon-green placeholder-neon-green/20 text-sm font-mono"
-              placeholder="type 'help' to list commands"
+              placeholder="type 'explore' or 'help'"
               autoFocus
               autoComplete="off"
               spellCheck="false"

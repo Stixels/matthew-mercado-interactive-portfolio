@@ -1,68 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { motion } from 'motion/react';
 import { useRouter } from 'next/navigation';
 import { useSystemStore } from '@/store/systemStore';
-import ResetPuzzleProgressModal from '@/components/ResetPuzzleProgressModal';
-import { Lock, Unlock, Terminal, Cpu, Database, Network, User, ShieldAlert, BrainCircuit, ChevronRight, Activity, RotateCcw } from 'lucide-react';
-
-const PROJECTS = [
-  {
-    id: 'core',
-    title: 'Escape Director',
-    subtitle: 'SAAS PLATFORM',
-    icon: Cpu,
-    level: 0,
-    puzzleType: null,
-    tag: 'ACTIVE',
-  },
-  {
-    id: 'data',
-    title: 'Escape This Frederick',
-    subtitle: 'WEB ENGINEERING',
-    icon: Database,
-    level: 1,
-    puzzleType: 'auth',
-    tag: 'DEPLOYED',
-  },
-  {
-    id: 'terminal',
-    title: 'Level Up VR',
-    subtitle: 'DESIGN & FRONTEND',
-    icon: Terminal,
-    level: 2,
-    puzzleType: 'network',
-    tag: 'DEPLOYED',
-  },
-  {
-    id: 'security',
-    title: 'Hardware & Puzzles',
-    subtitle: 'PHYSICAL SYSTEMS',
-    icon: ShieldAlert,
-    level: 3,
-    puzzleType: 'frequency',
-    tag: 'RESTRICTED',
-  },
-  {
-    id: 'ai',
-    title: 'Interactive Portfolio',
-    subtitle: 'CREATIVE DEVELOPMENT',
-    icon: BrainCircuit,
-    level: 4,
-    puzzleType: 'matrix',
-    tag: 'EXPERIMENTAL',
-  },
-  {
-    id: 'contact',
-    title: 'Matthew Mercado',
-    subtitle: 'ENTITY RECORD',
-    icon: User,
-    level: 0,
-    puzzleType: null,
-    tag: 'VERIFIED',
-  },
-];
+import ResetProgressDialog from '@/components/ui/ResetProgressDialog';
+import RebootDialog from '@/components/ui/RebootDialog';
+import { portfolioProjects } from '@/content/portfolio';
+import { Lock, Unlock, Terminal, ChevronRight, Activity, RotateCcw, Power } from 'lucide-react';
 
 const LEVEL_COLORS: Record<string, string> = {
   ACTIVE:       'neon-blue',
@@ -77,23 +22,37 @@ const LEVEL_COLORS: Record<string, string> = {
 export default function SystemHub() {
   const router = useRouter();
   const [resetModalOpen, setResetModalOpen] = useState(false);
+  const [rebootDialogOpen, setRebootDialogOpen] = useState(false);
   const { accessLevel, unlockedModules, resetPuzzleProgress } = useSystemStore();
 
-  const puzzleCount = PROJECTS.filter((p) => p.puzzleType).length;
+  const puzzleCount = portfolioProjects.filter((p) => p.puzzleType).length;
   const hasPuzzleProgress = unlockedModules.length > 0 || accessLevel > 0;
 
   const openResetModal = () => {
     if (!hasPuzzleProgress) return;
     setResetModalOpen(true);
   };
+
+  const handleReboot = useCallback(() => {
+    sessionStorage.removeItem('booted');
+    router.push('/');
+  }, [router]);
+
+  const openRebootDialog = () => setRebootDialogOpen(true);
+
   const maxLevel = 4;
 
   return (
-    <div className="min-h-screen bg-background circuit-grid p-6 md:p-12 relative">
-      <ResetPuzzleProgressModal
+    <div className="min-h-screen bg-background circuit-grid pt-[64px] px-6 pb-6 md:px-12 md:pb-12 relative">
+      <ResetProgressDialog
         open={resetModalOpen}
         onClose={() => setResetModalOpen(false)}
         onConfirm={resetPuzzleProgress}
+      />
+      <RebootDialog
+        open={rebootDialogOpen}
+        onClose={() => setRebootDialogOpen(false)}
+        onConfirm={handleReboot}
       />
 
       {/* Header */}
@@ -110,10 +69,10 @@ export default function SystemHub() {
               className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight text-white mb-1"
               style={{ fontFamily: 'var(--font-orbitron)' }}
             >
-              PROJECT_DB
+              PROJECTS
             </h1>
             <p className="text-[10px] sm:text-xs font-mono text-neon-blue/60 tracking-widest uppercase glow-text-blue">
-              STATUS: INFILTRATED&nbsp;&nbsp;░&nbsp;&nbsp;THREAT LEVEL: LOW
+              PORTFOLIO HUB&nbsp;&nbsp;░&nbsp;&nbsp;SELECTED WORK
             </p>
           </div>
 
@@ -147,7 +106,7 @@ export default function SystemHub() {
         <div className="flex items-center gap-4 sm:gap-6 mt-4 text-[10px] font-mono text-zinc-600 overflow-x-auto pb-1">
           <span className="flex items-center gap-1.5">
             <Activity size={10} className="text-neon-green/50" />
-            <span>ENTRIES: {PROJECTS.length}</span>
+            <span>ENTRIES: {portfolioProjects.length}</span>
           </span>
           <span>░</span>
           <span>UNLOCKED: {unlockedModules.length} / {puzzleCount}</span>
@@ -163,7 +122,15 @@ export default function SystemHub() {
             Reset puzzles
           </button>
           <span>░</span>
-          <span>SESSION: ACTIVE</span>
+          <button
+            type="button"
+            onClick={openRebootDialog}
+            className="flex items-center gap-1.5 shrink-0 text-neon-blue/40 hover:text-neon-blue transition-colors uppercase tracking-widest"
+            title="Return to boot sequence"
+          >
+            <Power size={10} />
+            Reboot
+          </button>
           <span>░</span>
           <span className="text-neon-blue/40">ENCRYPTION: AES-256-GCM</span>
         </div>
@@ -171,7 +138,7 @@ export default function SystemHub() {
 
       {/* Project Grid */}
       <main className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-        {PROJECTS.map((proj, index) => {
+        {portfolioProjects.map((proj, index) => {
           const isLocked = proj.puzzleType !== null && !unlockedModules.includes(proj.id);
           const Icon = proj.icon;
           const accentColor = isLocked ? 'error-red' : LEVEL_COLORS[proj.tag] || 'neon-blue';
@@ -236,12 +203,12 @@ export default function SystemHub() {
                 {/* Title and subtitle */}
                 <div className="mb-4">
                   <p className="text-[10px] font-mono text-zinc-600 tracking-[0.2em] uppercase mb-1">
-                    {proj.subtitle}
+                    {proj.hubSubtitle}
                   </p>
                   <h3 className={`text-xl md:text-2xl font-bold tracking-tight transition-colors duration-300 ${
                     isLocked ? 'text-zinc-500' : 'text-white'
                   }`}>
-                    {proj.title}
+                    {proj.hubTitle ?? proj.title}
                   </h3>
                 </div>
 

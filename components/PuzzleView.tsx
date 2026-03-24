@@ -4,8 +4,9 @@ import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'motion/react';
 import { useRouter } from 'next/navigation';
+import { getPuzzleByProjectId } from '@/content/portfolio';
 import { useSystemStore } from '@/store/systemStore';
-import { ArrowLeft, CheckCircle, RotateCcw } from 'lucide-react';
+import { CheckCircle, RotateCcw } from 'lucide-react';
 
 const AmbientParticles = dynamic(() => import('./AmbientParticles'), {
   ssr: false,
@@ -771,15 +772,6 @@ function HexMemory({ onSuccess }: { onSuccess: () => void }) {
   );
 }
 
-// ─── Shared puzzle frame ────────────────────────────────────────────────────────
-
-const PUZZLE_META: Record<string, { label: string; color: string; hex: string; description: string }> = {
-  auth:      { label: 'ESCAPE THIS FREDERICK', color: 'neon-blue',   hex: '#4CC9F0', description: 'MATCH THE CIPHER CODE' },
-  network:   { label: 'LEVEL UP VR',           color: 'neon-purple', hex: '#9D4EDD', description: 'ROUTE THE SIGNAL' },
-  frequency: { label: 'HARDWARE & PUZZLES',    color: 'error-red',   hex: '#FF4D6D', description: 'CALIBRATE FREQUENCIES' },
-  matrix:    { label: 'INTERACTIVE PORTFOLIO', color: 'neon-blue',   hex: '#4CC9F0', description: 'MEMORISE & REPEAT' },
-};
-
 // ─── Main PuzzleView ────────────────────────────────────────────────────────────
 
 export default function PuzzleView({ projectId }: { projectId: string }) {
@@ -787,12 +779,7 @@ export default function PuzzleView({ projectId }: { projectId: string }) {
   const router = useRouter();
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const activePuzzle =
-    projectId === 'data'     ? 'auth'
-    : projectId === 'terminal' ? 'network'
-    : projectId === 'security' ? 'frequency'
-    : projectId === 'ai'       ? 'matrix'
-    : null;
+  const activePuzzle = getPuzzleByProjectId(projectId);
 
   const handleSuccess = useCallback(() => {
     setIsSuccess(true);
@@ -815,23 +802,14 @@ export default function PuzzleView({ projectId }: { projectId: string }) {
     );
   }
 
-  const meta = PUZZLE_META[activePuzzle];
+  const meta = activePuzzle;
 
   return (
-    <div className="min-h-screen bg-background circuit-grid flex flex-col items-center justify-center relative overflow-hidden p-6 md:p-12">
+    <div className="min-h-screen bg-background circuit-grid flex flex-col items-center justify-center relative overflow-hidden pt-[64px] px-6 pb-6 md:px-12 md:pb-12">
       {/* Ambient colour wash */}
       <div className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(ellipse at center, ${meta.hex}08 0%, transparent 70%)` }} />
 
-      <AmbientParticles colorHex={meta.hex} instanceKey={activePuzzle} />
-
-      {/* Abort */}
-      <button
-        onClick={() => router.push('/hub')}
-        className="absolute top-6 left-6 md:top-10 md:left-10 flex items-center gap-2 text-zinc-500 hover:text-white transition-colors font-mono text-xs uppercase tracking-widest z-50"
-      >
-        <ArrowLeft size={14} />
-        Abort Sequence
-      </button>
+      <AmbientParticles colorHex={meta.hex} instanceKey={activePuzzle.id} />
 
       {/* Success overlay */}
       <AnimatePresence>
@@ -860,7 +838,7 @@ export default function PuzzleView({ projectId }: { projectId: string }) {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.4 }}
         className="glass-panel rounded-2xl p-5 sm:p-8 md:p-10 w-full text-center relative overflow-hidden z-10"
-        style={{ maxWidth: activePuzzle === 'network' ? 500 : 420 }}
+        style={{ maxWidth: activePuzzle.id === 'network' ? 500 : 420 }}
       >
         {/* Top accent line */}
         <div className="absolute top-0 left-0 right-0 h-[2px]"
@@ -888,10 +866,10 @@ export default function PuzzleView({ projectId }: { projectId: string }) {
 
         {/* Puzzle content */}
         <div className={isSuccess ? 'opacity-20 pointer-events-none' : ''}>
-          {activePuzzle === 'auth'      && <CipherDials     onSuccess={handleSuccess} />}
-          {activePuzzle === 'network'   && <PipeRouter      onSuccess={handleSuccess} />}
-          {activePuzzle === 'frequency' && <FrequencyFaders onSuccess={handleSuccess} />}
-          {activePuzzle === 'matrix'    && <HexMemory       onSuccess={handleSuccess} />}
+          {activePuzzle.id === 'auth' && <CipherDials onSuccess={handleSuccess} />}
+          {activePuzzle.id === 'network' && <PipeRouter onSuccess={handleSuccess} />}
+          {activePuzzle.id === 'frequency' && <FrequencyFaders onSuccess={handleSuccess} />}
+          {activePuzzle.id === 'matrix' && <HexMemory onSuccess={handleSuccess} />}
         </div>
       </motion.div>
     </div>

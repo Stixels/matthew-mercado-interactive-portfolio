@@ -1,6 +1,8 @@
 import type {Metadata} from 'next';
 import { Orbitron, JetBrains_Mono, Share_Tech_Mono, Chakra_Petch } from 'next/font/google';
 import './globals.css';
+import { getBaseUrl, siteConfig } from '@/config/site';
+import NavBar from '@/components/NavBar';
 
 const chakra = Chakra_Petch({
   subsets: ['latin'],
@@ -25,9 +27,48 @@ const orbitron = Orbitron({
   variable: '--font-orbitron',
 });
 
+const baseUrl = getBaseUrl();
+
 export const metadata: Metadata = {
-  title: 'The Locked System | Interactive Portfolio',
-  description: 'An interactive developer portfolio presented as a secured intelligence system.',
+  metadataBase: baseUrl,
+  applicationName: siteConfig.portfolioName,
+  title: {
+    default: siteConfig.defaultTitle,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: [...siteConfig.keywords],
+  authors: [{ name: siteConfig.name, url: baseUrl.origin }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  category: 'technology',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: siteConfig.defaultTitle,
+    description: siteConfig.description,
+    url: '/',
+    siteName: siteConfig.portfolioName,
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.defaultTitle,
+    description: siteConfig.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
@@ -42,6 +83,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         <div className="scanlines" />
         <div className="crt-vignette" />
         <div className="scan-beam" />
+        <NavBar />
         {children}
       </body>
     </html>

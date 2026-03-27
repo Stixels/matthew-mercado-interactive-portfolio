@@ -22,7 +22,7 @@ import type { PortfolioProject } from './types';
 
 export const portfolioProjects: PortfolioProject[] = [
   {
-    id: 'core',
+    id: 'escape-director',
     title: 'Escape Director',
     seoTitle: 'Escape Director',
     seoDescription:
@@ -40,6 +40,7 @@ export const portfolioProjects: PortfolioProject[] = [
       'A SaaS gamemaster dashboard and analytics platform for escape room operators - the most intuitive tool in the industry. Manages 6,000+ rooms globally with 99.99% uptime and an offline-first architecture built for the realities of venue Wi-Fi.',
     color: 'neon-blue',
     seoKeywords: ['SaaS dashboard', 'escape room analytics', 'offline-first PWA'],
+    screenshots: ['/screenshots/staging-escapedirector-com.png', '/screenshots/ed-dashboard.webp', '/screenshots/ed-room-statistics.webp'],
     sections: [
       {
         icon: Monitor,
@@ -68,7 +69,7 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
-    id: 'data',
+    id: 'escape-this-frederick',
     title: 'Escape This Frederick',
     seoTitle: 'Escape This Frederick',
     seoDescription:
@@ -86,6 +87,7 @@ export const portfolioProjects: PortfolioProject[] = [
       "A complete digital overhaul of Maryland's highest-rated escape room. Rebuilt from a 52 Lighthouse score to 97, doubled the conversion rate from 2.5% to 5%, and secured the #1 local SEO position statewide.",
     color: 'neon-purple',
     seoKeywords: ['local SEO', 'conversion optimization', 'booking flow'],
+    screenshots: ['/screenshots/escapethisfrederick-com.png'],
     sections: [
       {
         icon: Zap,
@@ -114,7 +116,7 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
-    id: 'terminal',
+    id: 'level-up-vr',
     title: 'Level Up VR',
     seoTitle: 'Level Up VR',
     seoDescription:
@@ -132,6 +134,7 @@ export const portfolioProjects: PortfolioProject[] = [
       'Designed and built from scratch - a fully custom web presence for a location-based VR venue that claimed the #1 local SEO rank for VR in Frederick on day one, outperforming established competitors.',
     color: 'neon-green',
     seoKeywords: ['motion design', 'marketing website', 'VR venue website'],
+    screenshots: ['/screenshots/lvlupvr-home.png', '/screenshots/lvlupvr-games-carousels.png'],
     sections: [
       {
         icon: Layers,
@@ -155,7 +158,7 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
-    id: 'security',
+    id: 'hardware',
     title: 'Hardware & Puzzle Engineering',
     hubTitle: 'Hardware Systems',
     seoTitle: 'Hardware and Puzzle Engineering',
@@ -202,7 +205,7 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
-    id: 'ai',
+    id: 'portfolio',
     title: 'Interactive Portfolio',
     hubTitle: 'Portfolio Experience',
     seoTitle: 'Interactive Portfolio Experience',
@@ -263,6 +266,7 @@ export const portfolioProjects: PortfolioProject[] = [
       'Full-stack engineer with a focus on frontend craft, UI/UX design, and immersive digital experiences. Builds products that run live escape rooms, move real conversion metrics, and wire up the physical puzzles inside the rooms.',
     color: 'neon-green',
     seoKeywords: ['about Matthew Mercado', 'contact Matthew Mercado'],
+    screenshots: ['/matthew-headshot.png'],
   },
 ];
 

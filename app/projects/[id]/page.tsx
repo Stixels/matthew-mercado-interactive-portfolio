@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   }
 
   return buildMetadata({
-    title: project.id === 'contact' ? project.seoTitle : `${project.seoTitle} Case Study`,
+    title: project.id === 'contact' ? project.seoTitle : `${project.seoTitle} — Case Study`,
     description: project.seoDescription,
     path: `/projects/${project.id}`,
     keywords: [...project.stack, ...(project.seoKeywords ?? []), project.title],

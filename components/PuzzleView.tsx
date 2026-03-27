@@ -785,10 +785,10 @@ export default function PuzzleView({ projectId }: { projectId: string }) {
     setIsSuccess(true);
     setTimeout(() => {
       unlockModule(projectId);
-      if (projectId === 'data')     setAccessLevel(1);
-      if (projectId === 'terminal') setAccessLevel(2);
-      if (projectId === 'security') setAccessLevel(3);
-      if (projectId === 'ai')       setAccessLevel(4);
+      if (projectId === 'escape-this-frederick') setAccessLevel(1);
+      if (projectId === 'level-up-vr')           setAccessLevel(2);
+      if (projectId === 'hardware')              setAccessLevel(3);
+      if (projectId === 'portfolio')             setAccessLevel(4);
       router.push('/projects/' + projectId);
     }, 2000);
   }, [projectId, unlockModule, setAccessLevel, router]);
@@ -834,15 +834,15 @@ export default function PuzzleView({ projectId }: { projectId: string }) {
 
       {/* Puzzle card */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.92 }}
+        initial={{ opacity: 0, scale: 0.93 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4 }}
-        className="glass-panel rounded-2xl p-5 sm:p-8 md:p-10 w-full text-center relative overflow-hidden z-10"
-        style={{ maxWidth: activePuzzle.id === 'network' ? 500 : 420 }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="glass-panel rounded-xl p-5 sm:p-8 md:p-10 w-full text-center relative overflow-hidden z-10"
+        style={{ maxWidth: activePuzzle.id === 'network' ? 520 : 440 }}
       >
         {/* Top accent line */}
         <div className="absolute top-0 left-0 right-0 h-[2px]"
-             style={{ background: `linear-gradient(to right, transparent, ${meta.hex}, transparent)`, opacity: 0.7 }} />
+             style={{ background: `linear-gradient(to right, transparent, ${meta.hex}80, transparent)` }} />
 
         {/* Corner brackets */}
         {(['top-3 left-3 border-t-2 border-l-2',
@@ -850,7 +850,7 @@ export default function PuzzleView({ projectId }: { projectId: string }) {
            'bottom-3 left-3 border-b-2 border-l-2',
            'bottom-3 right-3 border-b-2 border-r-2'] as const
         ).map((cls, k) => (
-          <span key={k} className={`absolute w-4 h-4 ${cls}`} style={{ borderColor: `${meta.hex}50` }} />
+          <span key={k} className={`absolute w-4 h-4 ${cls}`} style={{ borderColor: `${meta.hex}45` }} />
         ))}
 
         {/* Header */}

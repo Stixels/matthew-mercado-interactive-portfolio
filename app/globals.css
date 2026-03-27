@@ -34,8 +34,8 @@ body {
     to bottom,
     transparent 0px,
     transparent 3px,
-    rgba(0, 0, 0, 0.08) 3px,
-    rgba(0, 0, 0, 0.08) 4px
+    rgba(0, 0, 0, 0.04) 3px,
+    rgba(0, 0, 0, 0.04) 4px
   );
   pointer-events: none;
   z-index: 50;
@@ -237,6 +237,58 @@ body {
   8% { opacity: 0.6; }
   92% { opacity: 0.6; }
   100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* ─── Terminal Window Chrome ───────────────────────────────── */
+
+.terminal-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  height: 36px;
+  background: rgba(10, 13, 22, 0.8);
+  border-bottom: 1px solid rgba(76, 201, 240, 0.07);
+  flex-shrink: 0;
+}
+
+.terminal-titlebar-dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.terminal-titlebar-dots span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+/* ─── Page Sweep Animation ─────────────────────────────────── */
+
+@keyframes pageSweep {
+  0%   { transform: translateY(-2px); opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+.page-sweep {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(76, 201, 240, 0.12) 30%,
+    rgba(76, 201, 240, 0.22) 50%,
+    rgba(76, 201, 240, 0.12) 70%,
+    transparent 100%
+  );
+  animation: pageSweep 4s linear infinite;
+  animation-delay: 2s;
+  pointer-events: none;
 }
 
 /* ─── Scrollbar ────────────────────────────────────────────── */

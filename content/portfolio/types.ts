@@ -1,6 +1,6 @@
 import type { LucideIcon } from 'lucide-react';
 
-export type ProjectId = 'core' | 'data' | 'terminal' | 'security' | 'ai' | 'contact';
+export type ProjectId = 'escape-director' | 'escape-this-frederick' | 'level-up-vr' | 'hardware' | 'portfolio' | 'contact';
 export type PuzzleId = 'auth' | 'network' | 'frequency' | 'matrix';
 
 export type ProjectSection = {
@@ -31,6 +31,7 @@ export type PortfolioProject = {
   color: PortfolioColor;
   sections?: ProjectSection[];
   seoKeywords?: string[];
+  screenshots?: string[];
 };
 
 export type PortfolioPuzzle = {

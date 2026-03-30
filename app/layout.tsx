@@ -1,30 +1,24 @@
-import type {Metadata} from 'next';
-import { Orbitron, JetBrains_Mono, Share_Tech_Mono, Chakra_Petch } from 'next/font/google';
-import './globals.css';
-import { getBaseUrl, siteConfig } from '@/config/site';
-import NavBar from '@/components/NavBar';
+import type { Metadata } from "next";
+import { Orbitron, JetBrains_Mono, Chakra_Petch } from "next/font/google";
+import "./globals.css";
+import { getBaseUrl, siteConfig } from "@/config/site";
+import NavBar from "@/components/NavBar";
 
 const chakra = Chakra_Petch({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-chakra',
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-chakra",
 });
 
 const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
-});
-
-const shareTech = Share_Tech_Mono({
-  subsets: ['latin'],
-  weight: '400',
-  variable: '--font-share-tech',
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
 });
 
 const orbitron = Orbitron({
-  subsets: ['latin'],
-  weight: ['400', '700', '900'],
-  variable: '--font-orbitron',
+  subsets: ["latin"],
+  weight: ["400", "700", "900"],
+  variable: "--font-orbitron",
 });
 
 const baseUrl = getBaseUrl();
@@ -41,20 +35,20 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.name, url: baseUrl.origin }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
-  category: 'technology',
+  category: "technology",
   alternates: {
-    canonical: '/',
+    canonical: "/",
   },
   openGraph: {
     title: siteConfig.defaultTitle,
     description: siteConfig.description,
-    url: '/',
+    url: "/",
     siteName: siteConfig.portfolioName,
-    locale: 'en_US',
-    type: 'website',
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: siteConfig.defaultTitle,
     description: siteConfig.description,
   },
@@ -64,24 +58,31 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-      'max-video-preview': -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
     },
   },
 };
 
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="en"
-      className={`${chakra.variable} ${jetbrainsMono.variable} ${shareTech.variable} ${orbitron.variable}`}
+      className={`${chakra.variable} ${jetbrainsMono.variable} ${orbitron.variable}`}
       suppressHydrationWarning
     >
-      <body suppressHydrationWarning className="bg-background text-zinc-300 antialiased">
+      <body
+        suppressHydrationWarning
+        className="bg-background text-zinc-300 antialiased"
+      >
         <div className="noise" />
         <div className="scanlines" />
-        <div className="crt-vignette" />
+        <div className="ambient-vignette" />
         <div className="scan-beam" />
         <NavBar />
         {children}

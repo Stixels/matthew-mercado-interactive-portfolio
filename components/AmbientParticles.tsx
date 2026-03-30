@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
 /* eslint-disable react-hooks/purity -- client-only (see dynamic ssr:false in PuzzleView); random drift is intentional */
 /**
  * Loaded with `dynamic(..., { ssr: false })` so this never runs on the server:
  * decorative motion uses Math.random without SSR/client mismatch.
  */
-import { motion } from 'motion/react';
+import { motion } from "motion/react";
 
 export default function AmbientParticles({
   colorHex,
@@ -33,7 +33,7 @@ export default function AmbientParticles({
             duration: Math.random() * 4 + 4,
             repeat: Infinity,
             delay: Math.random() * 3,
-            ease: 'linear',
+            ease: "linear",
           }}
         />
       ))}

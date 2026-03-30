@@ -13,13 +13,13 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Scripts
 
-| Command        | Description              |
-| -------------- | ------------------------ |
-| `npm run dev`  | Development server       |
-| `npm run build`| Production build         |
-| `npm run start`| Run production build     |
-| `npm run lint` | ESLint                   |
-| `npm run clean`| Remove `.next` output    |
+| Command         | Description           |
+| --------------- | --------------------- |
+| `npm run dev`   | Development server    |
+| `npm run build` | Production build      |
+| `npm run start` | Run production build  |
+| `npm run lint`  | ESLint                |
+| `npm run clean` | Remove `.next` output |
 
 ## Stack
 

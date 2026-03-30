@@ -1,23 +1,29 @@
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import PuzzleView from '@/components/PuzzleView';
-import { getProjectById, getPuzzleByProjectId, puzzleProjectIds } from '@/content/portfolio';
-import { buildMetadata } from '@/config/site';
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import PuzzleView from "@/components/PuzzleView";
+import {
+  getProjectById,
+  getPuzzleByProjectId,
+  puzzleProjectIds,
+} from "@/content/portfolio";
+import { buildMetadata } from "@/config/site";
 
 type PuzzlePageProps = {
   params: Promise<{ id: string }>;
 };
 
-export async function generateMetadata({ params }: PuzzlePageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PuzzlePageProps): Promise<Metadata> {
   const { id } = await params;
   const project = getProjectById(id);
   const puzzle = getPuzzleByProjectId(id);
 
   if (!project || !puzzle) {
     return buildMetadata({
-      title: 'Challenge Not Found',
-      description: 'The requested portfolio challenge could not be found.',
-      path: '/hub',
+      title: "Challenge Not Found",
+      description: "The requested portfolio challenge could not be found.",
+      path: "/hub",
       index: false,
     });
   }
@@ -26,7 +32,7 @@ export async function generateMetadata({ params }: PuzzlePageProps): Promise<Met
     title: `Unlock ${project.seoTitle}`,
     description: `Interactive portfolio challenge that unlocks the ${project.seoTitle} case study in Matthew Mercado's portfolio.`,
     path: `/puzzles/${project.id}`,
-    keywords: ['interactive challenge', 'portfolio puzzle', project.title],
+    keywords: ["interactive challenge", "portfolio puzzle", project.title],
     index: false,
   });
 }

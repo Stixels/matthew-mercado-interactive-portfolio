@@ -1,5 +1,5 @@
-import type { MetadataRoute } from 'next';
-import { getBaseUrl } from '@/config/site';
+import type { MetadataRoute } from "next";
+import { getBaseUrl } from "@/config/site";
 
 export default function robots(): MetadataRoute.Robots {
   const baseUrl = getBaseUrl();
@@ -7,9 +7,9 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        userAgent: '*',
-        allow: '/',
-        disallow: '/puzzles/',
+        userAgent: "*",
+        allow: "/",
+        disallow: "/puzzles/",
       },
     ],
     sitemap: `${baseUrl.origin}/sitemap.xml`,

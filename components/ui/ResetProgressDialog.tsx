@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { AlertTriangle, X } from 'lucide-react';
+import { useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { AlertTriangle, X } from "lucide-react";
 
 type Props = {
   open: boolean;
@@ -10,7 +10,11 @@ type Props = {
   onConfirm: () => void;
 };
 
-export default function ResetProgressDialog({ open, onClose, onConfirm }: Props) {
+export default function ResetProgressDialog({
+  open,
+  onClose,
+  onConfirm,
+}: Props) {
   const handleConfirm = useCallback(() => {
     onConfirm();
     onClose();
@@ -19,13 +23,13 @@ export default function ResetProgressDialog({ open, onClose, onConfirm }: Props)
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === "Escape") onClose();
     };
-    document.addEventListener('keydown', onKey);
+    document.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     return () => {
-      document.removeEventListener('keydown', onKey);
+      document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
     };
   }, [open, onClose]);
@@ -53,7 +57,7 @@ export default function ResetProgressDialog({ open, onClose, onConfirm }: Props)
             className="absolute inset-0 backdrop-blur-md"
             style={{
               background:
-                'radial-gradient(ellipse at center, rgba(255,77,109,0.07) 0%, rgba(0,0,0,0.84) 65%)',
+                "radial-gradient(ellipse at center, rgba(255,77,109,0.07) 0%, rgba(0,0,0,0.84) 65%)",
             }}
             onClick={onClose}
           />
@@ -63,11 +67,11 @@ export default function ResetProgressDialog({ open, onClose, onConfirm }: Props)
             initial={{ opacity: 0, scale: 0.93, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 8 }}
-            transition={{ type: 'spring', stiffness: 420, damping: 32 }}
+            transition={{ type: "spring", stiffness: 420, damping: 32 }}
             className="relative z-10 w-full max-w-sm glass-panel rounded-2xl overflow-hidden"
             style={{
               boxShadow:
-                '0 0 0 1px rgba(255,77,109,0.14), 0 24px 64px rgba(0,0,0,0.65), 0 0 48px rgba(255,77,109,0.07)',
+                "0 0 0 1px rgba(255,77,109,0.14), 0 24px 64px rgba(0,0,0,0.65), 0 0 48px rgba(255,77,109,0.07)",
             }}
           >
             {/* Error-red top accent — signals destructive action */}
@@ -75,23 +79,23 @@ export default function ResetProgressDialog({ open, onClose, onConfirm }: Props)
               className="absolute top-0 left-0 right-0 h-[2px]"
               style={{
                 background:
-                  'linear-gradient(to right, transparent, rgba(255,77,109,0.85), transparent)',
+                  "linear-gradient(to right, transparent, rgba(255,77,109,0.85), transparent)",
               }}
             />
 
             {/* Corner brackets */}
             {(
               [
-                'top-3 left-3 border-t-2 border-l-2',
-                'top-3 right-3 border-t-2 border-r-2',
-                'bottom-3 left-3 border-b-2 border-l-2',
-                'bottom-3 right-3 border-b-2 border-r-2',
+                "top-3 left-3 border-t-2 border-l-2",
+                "top-3 right-3 border-t-2 border-r-2",
+                "bottom-3 left-3 border-b-2 border-l-2",
+                "bottom-3 right-3 border-b-2 border-r-2",
               ] as const
             ).map((cls, k) => (
               <span
                 key={k}
                 className={`absolute w-3.5 h-3.5 pointer-events-none ${cls}`}
-                style={{ borderColor: 'rgba(255,77,109,0.28)' }}
+                style={{ borderColor: "rgba(255,77,109,0.28)" }}
               />
             ))}
 
@@ -115,14 +119,16 @@ export default function ResetProgressDialog({ open, onClose, onConfirm }: Props)
               <div className="relative mb-5">
                 <div
                   className="absolute inset-0 pulse-ring rounded-xl"
-                  style={{ background: 'rgba(255,77,109,0.12)' }}
+                  style={{ background: "rgba(255,77,109,0.12)" }}
                 />
                 <div className="relative p-3.5 rounded-xl border bg-error-red/8 border-error-red/25">
                   <AlertTriangle
                     size={26}
                     className="text-error-red"
                     strokeWidth={1.5}
-                    style={{ filter: 'drop-shadow(0 0 8px rgba(255,77,109,0.5))' }}
+                    style={{
+                      filter: "drop-shadow(0 0 8px rgba(255,77,109,0.5))",
+                    }}
                   />
                 </div>
               </div>
@@ -130,7 +136,7 @@ export default function ResetProgressDialog({ open, onClose, onConfirm }: Props)
               <h2
                 id="reset-dialog-title"
                 className="text-base sm:text-lg font-bold text-white tracking-tight mb-2"
-                style={{ fontFamily: 'var(--font-orbitron)' }}
+                style={{ fontFamily: "var(--font-orbitron)" }}
               >
                 RESET PUZZLE STATE
               </h2>
@@ -138,9 +144,9 @@ export default function ResetProgressDialog({ open, onClose, onConfirm }: Props)
                 id="reset-dialog-desc"
                 className="text-[11px] font-mono text-zinc-500 leading-relaxed tracking-wide max-w-xs"
               >
-                Encrypted modules will lock again. Access level returns to{' '}
-                <span className="text-neon-purple/80">00</span>. This only clears saved
-                progress in this browser.
+                Encrypted modules will lock again. Access level returns to{" "}
+                <span className="text-neon-purple/80">00</span>. This only
+                clears saved progress in this browser.
               </p>
 
               <div className="w-full mt-6 border-t border-white/[0.05]" />
@@ -157,7 +163,7 @@ export default function ResetProgressDialog({ open, onClose, onConfirm }: Props)
                   type="button"
                   onClick={handleConfirm}
                   className="flex-1 px-4 py-2.5 rounded-lg text-[10px] font-mono uppercase tracking-[0.2em] border border-error-red/40 bg-error-red/10 text-error-red hover:bg-error-red/20 hover:border-error-red/60 transition-all duration-200"
-                  style={{ boxShadow: '0 0 20px rgba(255,77,109,0.1)' }}
+                  style={{ boxShadow: "0 0 20px rgba(255,77,109,0.1)" }}
                 >
                   Confirm Reset
                 </button>

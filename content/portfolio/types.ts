@@ -1,16 +1,26 @@
-import type { LucideIcon } from 'lucide-react';
+import type { LucideIcon } from "lucide-react";
 
-export type ProjectId = 'escape-director' | 'escape-this-frederick' | 'level-up-vr' | 'hardware' | 'portfolio' | 'contact';
-export type PuzzleId = 'auth' | 'network' | 'frequency' | 'matrix';
+export type ProjectId =
+  | "escape-director"
+  | "escape-this-frederick"
+  | "level-up-vr"
+  | "hardware"
+  | "portfolio"
+  | "contact";
+export type PuzzleId = "auth" | "network" | "frequency" | "matrix";
 
 export type ProjectSection = {
   icon: LucideIcon;
   title: string;
   content: string;
-  span?: 'full';
+  span?: "full";
 };
 
-export type PortfolioColor = 'neon-blue' | 'neon-purple' | 'neon-green' | 'error-red';
+export type PortfolioColor =
+  | "neon-blue"
+  | "neon-purple"
+  | "neon-green"
+  | "error-red";
 
 export type PortfolioProject = {
   id: ProjectId;
@@ -22,8 +32,8 @@ export type PortfolioProject = {
   icon: LucideIcon;
   level: number;
   puzzleType: PuzzleId | null;
-  tag: 'ACTIVE' | 'DEPLOYED' | 'RESTRICTED' | 'EXPERIMENTAL' | 'VERIFIED';
-  status: 'ACTIVE' | 'DEPLOYED' | 'RESTRICTED' | 'EXPERIMENTAL' | 'VERIFIED';
+  tag: "ACTIVE" | "DEPLOYED" | "RESTRICTED" | "EXPERIMENTAL" | "VERIFIED";
+  status: "ACTIVE" | "DEPLOYED" | "RESTRICTED" | "EXPERIMENTAL" | "VERIFIED";
   role: string;
   timeline: string;
   stack: string[];

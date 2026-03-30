@@ -5,7 +5,17 @@ export type {
   ProjectId,
   ProjectSection,
   PuzzleId,
-} from './types';
+} from "./types";
 
-export { getProjectById, portfolioProjects, projectIds, projectsById } from './projects';
-export { getPuzzleByProjectId, puzzleByProjectId, puzzleProjectIds, puzzleProjects } from './puzzles';
+export {
+  getProjectById,
+  portfolioProjects,
+  projectIds,
+  projectsById,
+} from "./projects";
+export {
+  getPuzzleByProjectId,
+  puzzleByProjectId,
+  puzzleProjectIds,
+  puzzleProjects,
+} from "./puzzles";

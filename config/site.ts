@@ -1,23 +1,25 @@
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
 
 export const siteConfig = {
-  name: 'Matthew Mercado',
-  portfolioName: 'Matthew Mercado Portfolio',
-  defaultTitle: 'Matthew Mercado | Full-Stack Engineer Portfolio',
+  name: "Matthew Mercado",
+  portfolioName: "Matthew Mercado Portfolio",
+  defaultTitle: "Matthew Mercado | Software Engineer Portfolio",
   description:
-    'Interactive portfolio and case studies from Matthew Mercado, a full-stack engineer focused on product design, conversion-driven web experiences, escape room software, and hardware-integrated systems.',
+    "Interactive portfolio and case studies from Matthew Mercado, a software engineer focused on product design, conversion-driven web experiences, escape room software, and hardware-integrated systems.",
   keywords: [
-    'Matthew Mercado',
-    'Matthew Mercado portfolio',
-    'full-stack engineer',
-    'frontend engineer',
-    'product designer',
-    'interactive portfolio',
-    'Next.js portfolio',
-    'case studies',
-    'escape room software',
-    'hardware systems',
-    'creative developer',
+    "Matthew Mercado",
+    "Matthew Mercado portfolio",
+    "software engineer",
+    "frontend engineer",
+    "full-stack engineer",
+    "backend engineer",
+    "product designer",
+    "interactive portfolio",
+    "Next.js portfolio",
+    "case studies",
+    "escape room software",
+    "hardware systems",
+    "developer",
   ],
 } as const;
 
@@ -29,16 +31,18 @@ export function getBaseUrl() {
     process.env.VERCEL_URL;
 
   if (!candidate) {
-    return new URL('http://localhost:3000');
+    return new URL("http://localhost:3000");
   }
 
-  return new URL(candidate.startsWith('http') ? candidate : `https://${candidate}`);
+  return new URL(
+    candidate.startsWith("http") ? candidate : `https://${candidate}`,
+  );
 }
 
 export function buildMetadata({
   title,
   description,
-  path = '/',
+  path = "/",
   keywords = [],
   index = true,
 }: {
@@ -60,10 +64,10 @@ export function buildMetadata({
       description,
       url: path,
       siteName: siteConfig.portfolioName,
-      type: 'website',
+      type: "website",
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title,
       description,
     },

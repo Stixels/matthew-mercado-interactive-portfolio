@@ -1,17 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import BootSequence from '@/components/BootSequence';
+import HeroLanding from "@/components/HeroLanding";
 
 export default function HomeGate() {
-  const router = useRouter();
-
-  useEffect(() => {
-    if (window.sessionStorage.getItem('booted') === 'true') {
-      router.replace('/hub');
-    }
-  }, [router]);
-
-  return <BootSequence />;
+  return <HeroLanding />;
 }

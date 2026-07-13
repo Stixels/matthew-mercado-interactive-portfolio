@@ -4604,37 +4604,79 @@ strong {
 }
 
 .signal-case-live-link {
-  display: inline-flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 3.35rem;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.75rem 0.9rem;
-  border: 1px solid rgba(238, 241, 236, 0.36);
+  width: min(100%, 29rem);
+  min-height: 4.4rem;
+  overflow: hidden;
+  border: 1px solid rgba(238, 241, 236, 0.24);
+  background: rgba(238, 241, 236, 0.04);
   color: #eef1ec;
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.04em;
   text-decoration: none;
-  text-transform: uppercase;
   transition:
     background 180ms ease,
     border-color 180ms ease,
     color 180ms ease;
 }
 
-.signal-case-live-link svg {
-  width: 0.85rem;
-  height: 0.85rem;
+.signal-case-live-marker {
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-left: 1rem;
+  border-radius: 999px;
+  background: var(--signal-orange);
+  box-shadow: 0 0 0 0.25rem rgba(255, 92, 53, 0.16);
+}
+
+.signal-case-live-copy {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+  padding: 0.85rem 1rem;
+}
+
+.signal-case-live-copy > span {
+  color: #aeb6b7;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.signal-case-live-copy strong {
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.signal-case-live-arrow {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  background: var(--signal-orange);
+  color: var(--signal-ink);
+  transition: background 180ms ease;
+}
+
+.signal-case-live-arrow svg {
+  width: 1.05rem;
+  height: 1.05rem;
   transition: transform 180ms ease;
 }
 
 .signal-case-live-link:hover {
-  border-color: var(--signal-orange);
-  background: var(--signal-orange);
-  color: var(--signal-ink);
+  border-color: rgba(255, 92, 53, 0.76);
+  background: rgba(255, 92, 53, 0.1);
 }
 
-.signal-case-live-link:hover svg {
-  transform: translate(0.15rem, -0.15rem);
+.signal-case-live-link:hover .signal-case-live-arrow svg {
+  transform: translate(0.18rem, -0.18rem);
 }
 
 .signal-case-facts {

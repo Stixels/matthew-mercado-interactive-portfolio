@@ -24,6 +24,9 @@ export default function ProjectView({ projectId }: { projectId: string }) {
     caseStudyProjects[(projectIndex + 1) % caseStudyProjects.length];
   const projectNumber = String(projectIndex + 1).padStart(2, "0");
   const [heroImage, ...supportingImages] = project.screenshots ?? [];
+  const liveProjectHost = project.liveUrl
+    ? new URL(project.liveUrl).hostname.replace(/^www\./, "")
+    : null;
 
   return (
     <main className="signal-case">
@@ -55,8 +58,16 @@ export default function ProjectView({ projectId }: { projectId: string }) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer"
+                aria-label={`Visit ${project.title} at ${liveProjectHost}`}
               >
-                Visit live project <ArrowUpRight aria-hidden="true" />
+                <span className="signal-case-live-marker" aria-hidden="true" />
+                <span className="signal-case-live-copy">
+                  <span>Live project</span>
+                  <strong>{liveProjectHost}</strong>
+                </span>
+                <span className="signal-case-live-arrow" aria-hidden="true">
+                  <ArrowUpRight />
+                </span>
               </a>
             </div>
           )}

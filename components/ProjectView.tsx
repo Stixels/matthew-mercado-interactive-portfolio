@@ -294,9 +294,9 @@ export default function ProjectView({ projectId }: { projectId: string }) {
                       Profile
                     </p>
                     <p className="text-sm text-zinc-400 leading-relaxed max-w-xs">
-                      Full-stack engineer and creative developer. Building
-                      escape room technology, SaaS platforms, and the hardware
-                      that powers live experiences.
+                      Software engineer and creative developer. Building escape
+                      room technology, SaaS platforms, and the hardware that
+                      powers live experiences.
                     </p>
                   </div>
                 </div>

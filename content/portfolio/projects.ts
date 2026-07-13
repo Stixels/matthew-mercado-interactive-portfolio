@@ -303,11 +303,11 @@ export const portfolioProjects: PortfolioProject[] = [
     puzzleType: null,
     tag: "VERIFIED",
     status: "VERIFIED",
-    role: "Full-Stack Engineer & Designer",
+    role: "Software Engineer & Designer",
     timeline: "LIFETIME",
     stack: ["Next.js", "TypeScript", "React", "Arduino", "Raspberry Pi"],
     overview:
-      "Full-stack engineer with a focus on frontend craft, UI/UX design, and immersive digital experiences. Builds products that run live escape rooms, move real conversion metrics, and wire up the physical puzzles inside the rooms.",
+      "Software engineer with a focus on frontend craft, UI/UX design, and immersive digital experiences. Builds products that run live escape rooms, move real conversion metrics, and wire up the physical puzzles inside the rooms.",
     color: "neon-green",
     seoKeywords: ["about Matthew Mercado", "contact Matthew Mercado"],
     screenshots: ["/matthew-headshot.png"],

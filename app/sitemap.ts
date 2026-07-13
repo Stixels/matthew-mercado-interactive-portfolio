@@ -13,17 +13,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
-    {
-      url: `${baseUrl}/hub`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
     ...projectIds.map((id) => ({
       url: `${baseUrl}/projects/${id}`,
       lastModified,
       changeFrequency: "monthly" as const,
-      priority: id === "contact" ? 0.8 : 0.7,
+      priority:
+        id === "waiver-director" || id === "escape-director" ? 0.85 : 0.7,
     })),
   ];
 }

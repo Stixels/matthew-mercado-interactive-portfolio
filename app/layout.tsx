@@ -1,24 +1,19 @@
 import type { Metadata } from "next";
-import { Orbitron, JetBrains_Mono, Chakra_Petch } from "next/font/google";
+import { Bricolage_Grotesque, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { getBaseUrl, siteConfig } from "@/config/site";
 import NavBar from "@/components/NavBar";
 
-const chakra = Chakra_Petch({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-chakra",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-rajdhani",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-});
-
-const orbitron = Orbitron({
-  subsets: ["latin"],
-  weight: ["400", "700", "900"],
-  variable: "--font-orbitron",
+  weight: ["400", "500", "600"],
+  variable: "--font-ibm-mono",
 });
 
 const baseUrl = getBaseUrl();
@@ -73,17 +68,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${chakra.variable} ${jetbrainsMono.variable} ${orbitron.variable}`}
+      className={`${bricolage.variable} ${ibmPlexMono.variable}`}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <body
         suppressHydrationWarning
-        className="bg-background text-zinc-300 antialiased"
+        className="bg-background text-foreground antialiased"
       >
-        <div className="noise" />
-        <div className="scanlines" />
-        <div className="ambient-vignette" />
-        <div className="scan-beam" />
         <NavBar />
         {children}
       </body>

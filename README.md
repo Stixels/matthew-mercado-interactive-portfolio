@@ -1,13 +1,13 @@
 # Matthew Mercado — Interactive Portfolio
 
-A Next.js site that presents work as a secured “intelligence system” experience: boot flow, hub navigation, and project views.
+A scroll-driven software engineering portfolio centered on a procedural 3D application architecture. The opening sequence follows one web application through its frontend, full-stack services, AI layer, and real-world integrations before handing off to accessible project case studies and experience details.
 
 ## Local development
 
 **Prerequisites:** Node.js 20+
 
-1. Install dependencies: `npm install`
-2. Start the dev server: `npm run dev` (Next.js 16 uses [Turbopack](https://nextjs.org/docs/app/api-reference/turbopack) by default for `dev` and `build`)
+1. Install dependencies: `pnpm install`
+2. Start the dev server: `pnpm dev` (Next.js 16 uses [Turbopack](https://nextjs.org/docs/app/api-reference/turbopack) by default for `dev` and `build`)
 
 Open [http://localhost:3000](http://localhost:3000).
 
@@ -15,12 +15,14 @@ Open [http://localhost:3000](http://localhost:3000).
 
 | Command         | Description           |
 | --------------- | --------------------- |
-| `npm run dev`   | Development server    |
-| `npm run build` | Production build      |
-| `npm run start` | Run production build  |
-| `npm run lint`  | ESLint                |
-| `npm run clean` | Remove `.next` output |
+| `pnpm dev`   | Development server    |
+| `pnpm build` | Production build      |
+| `pnpm start` | Run production build  |
+| `pnpm lint`  | ESLint                |
+| `pnpm clean` | Remove `.next` output |
 
 ## Stack
 
-Next.js, React, Tailwind CSS, Motion, Zustand.
+Next.js, React, React Three Fiber, Three.js, Motion, Tailwind CSS, Zustand.
+
+The 3D scene is procedural—there is no external model download. Motion provides the scroll progress value that drives the React Three Fiber scene, so GSAP is not required for the current choreography.

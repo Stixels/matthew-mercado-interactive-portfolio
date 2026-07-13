@@ -29,8 +29,8 @@ export async function generateMetadata({
   }
 
   return buildMetadata({
-    title: `Unlock ${project.seoTitle}`,
-    description: `Interactive portfolio challenge that unlocks the ${project.seoTitle} case study in Matthew Mercado's portfolio.`,
+    title: `${project.seoTitle} Systems Lab`,
+    description: `Optional interactive challenge inspired by the ${project.seoTitle} project in Matthew Mercado's portfolio.`,
     path: `/puzzles/${project.id}`,
     keywords: ["interactive challenge", "portfolio puzzle", project.title],
     index: false,

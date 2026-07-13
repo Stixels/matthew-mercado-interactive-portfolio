@@ -2,6 +2,7 @@ import type { LucideIcon } from "lucide-react";
 
 export type ProjectId =
   | "escape-director"
+  | "waiver-director"
   | "escape-this-frederick"
   | "level-up-vr"
   | "hardware"
@@ -14,6 +15,11 @@ export type ProjectSection = {
   title: string;
   content: string;
   span?: "full";
+};
+
+export type ScreenshotDetail = {
+  label: string;
+  description: string;
 };
 
 export type PortfolioColor =
@@ -38,10 +44,12 @@ export type PortfolioProject = {
   timeline: string;
   stack: string[];
   overview: string;
+  liveUrl?: string;
   color: PortfolioColor;
   sections?: ProjectSection[];
   seoKeywords?: string[];
   screenshots?: string[];
+  screenshotDetails?: ScreenshotDetail[];
 };
 
 export type PortfolioPuzzle = {

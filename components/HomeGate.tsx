@@ -1,7 +1,5 @@
-"use client";
-
-import HeroLanding from "@/components/HeroLanding";
+import PortfolioHome from "@/components/PortfolioHome";
 
 export default function HomeGate() {
-  return <HeroLanding />;
+  return <PortfolioHome />;
 }

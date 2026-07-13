@@ -32,9 +32,7 @@ const CIPHER_SYMBOLS = [
 
 function CipherDials({ onSuccess }: { onSuccess: () => void }) {
   const N = CIPHER_SYMBOLS.length;
-  const [target] = useState(() =>
-    Array.from({ length: 4 }, () => Math.floor(Math.random() * N)),
-  );
+  const target = [11, 3, 10, 9];
   const [values, setValues] = useState([0, 0, 0, 0]);
   const [dirs, setDirs] = useState([1, 1, 1, 1]);
   const [solved, setSolved] = useState(false);
@@ -226,11 +224,16 @@ function isPipeSolved(grid: PipeTile[][]): boolean {
 // corner rot=2:{S,W}  corner rot=0:{N,E}  corner rot=2:{S,W}  corner rot=0:{N,E}
 // straight rot=1:{E,W}  corner rot=3:{W,N}  corner rot=1:{E,S}  corner rot=3:{W,N}  corner rot=1:{E,S}
 function makePipeGrid(): PipeTile[][] {
+  let seed = 17;
+  const nextRotation = () => {
+    seed = (seed * 13 + 7) % 97;
+    return seed % 4;
+  };
   const wr = (sol: number) => {
     const opts = [0, 1, 2, 3].filter((x) => x !== sol);
-    return opts[Math.floor(Math.random() * opts.length)];
+    return opts[nextRotation() % opts.length];
   };
-  const rnd = () => Math.floor(Math.random() * 4);
+  const rnd = () => nextRotation();
   return [
     // Row 0
     [
@@ -633,9 +636,7 @@ function Fader({
 }
 
 function FrequencyFaders({ onSuccess }: { onSuccess: () => void }) {
-  const [targets] = useState(() =>
-    Array.from({ length: 3 }, () => Math.floor(Math.random() * 60) + 20),
-  );
+  const targets = useMemo(() => [42, 67, 28], []);
   const [values, setValues] = useState([5, 5, 5]);
   const [solved, setSolved] = useState(false);
   const TOLERANCE = 6;
@@ -710,6 +711,7 @@ function FrequencyFaders({ onSuccess }: { onSuccess: () => void }) {
           />
           <motion.path
             d={wavePath}
+            initial={{ d: wavePath }}
             fill="none"
             stroke={solved ? "#72EFDD" : "#4CC9F0"}
             strokeWidth="2"
@@ -777,16 +779,7 @@ function hexPts(cx: number, cy: number): string {
 }
 
 function HexMemory({ onSuccess }: { onSuccess: () => void }) {
-  const SEQ_LEN = 5;
-
-  const [sequence] = useState<number[]>(() => {
-    const s: number[] = [];
-    while (s.length < SEQ_LEN) {
-      const r = Math.floor(Math.random() * 7);
-      if (!s.includes(r)) s.push(r);
-    }
-    return s;
-  });
+  const sequence = useMemo(() => [0, 3, 5, 1, 6], []);
 
   const [showingIdx, setShowingIdx] = useState<number>(-1); // hex idx currently lit
   const [showing, setShowing] = useState(true);
@@ -993,23 +986,27 @@ function HexMemory({ onSuccess }: { onSuccess: () => void }) {
 // ─── Main PuzzleView ────────────────────────────────────────────────────────────
 
 export default function PuzzleView({ projectId }: { projectId: string }) {
-  const { unlockModule, setAccessLevel } = useSystemStore();
+  const unlockModule = useSystemStore((state) => state.unlockModule);
   const router = useRouter();
   const [isSuccess, setIsSuccess] = useState(false);
+  const redirectTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const activePuzzle = getPuzzleByProjectId(projectId);
 
   const handleSuccess = useCallback(() => {
+    unlockModule(projectId);
     setIsSuccess(true);
-    setTimeout(() => {
-      unlockModule(projectId);
-      if (projectId === "escape-this-frederick") setAccessLevel(1);
-      if (projectId === "level-up-vr") setAccessLevel(2);
-      if (projectId === "hardware") setAccessLevel(3);
-      if (projectId === "portfolio") setAccessLevel(4);
-      router.push("/projects/" + projectId);
+    redirectTimerRef.current = setTimeout(() => {
+      router.push("/hub");
     }, 2000);
-  }, [projectId, unlockModule, setAccessLevel, router]);
+  }, [projectId, unlockModule, router]);
+
+  useEffect(
+    () => () => {
+      if (redirectTimerRef.current) clearTimeout(redirectTimerRef.current);
+    },
+    [],
+  );
 
   if (!activePuzzle) {
     return (
@@ -1070,10 +1067,10 @@ export default function PuzzleView({ projectId }: { projectId: string }) {
                   textShadow: "0 0 20px rgba(114,239,221,0.6)",
                 }}
               >
-                ACCESS GRANTED
+                SIGNAL CLEARED
               </div>
               <div className="text-zinc-500 font-mono text-xs mt-2 tracking-widest">
-                Loading classified file…
+                Returning to breach console…
               </div>
             </div>
           </motion.div>

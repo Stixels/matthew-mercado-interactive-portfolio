@@ -2,7 +2,7 @@
   "name": "matthew-mercado-interactive-portfolio",
   "version": "0.1.0",
   "private": true,
-  "description": "Interactive developer portfolio (Next.js): secured-system themed UI and project hub.",
+  "description": "Interactive full-stack software engineering portfolio with a scroll-driven Three.js system architecture.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,6 +12,7 @@
     "clean": "rm -rf .next"
   },
   "dependencies": {
+    "@react-three/fiber": "^9.6.1",
     "autoprefixer": "^10.4.21",
     "clsx": "^2.1.1",
     "lucide-react": "^1.0.0",
@@ -21,6 +22,7 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "tailwind-merge": "^3.3.1",
+    "three": "0.182.0",
     "zustand": "^5.0.12"
   },
   "devDependencies": {
@@ -28,6 +30,7 @@
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "0.182.0",
     "eslint": "^9.39.1",
     "eslint-config-next": "^16.2.1",
     "prettier": "^3.8.1",

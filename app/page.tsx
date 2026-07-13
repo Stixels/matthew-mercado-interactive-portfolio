@@ -3,13 +3,13 @@ import HomeGate from "@/components/HomeGate";
 import { buildMetadata } from "@/config/site";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Interactive Developer Portfolio",
+  title: "Full-Stack Software Engineer Portfolio",
   description:
-    "Explore an interactive portfolio from Matthew Mercado featuring product case studies, immersive UI work, conversion-driven websites, and hardware-linked systems.",
+    "Selected software engineering work from Matthew Mercado across full-stack web applications, AI-enabled products, immersive interfaces, and connected systems.",
   path: "/",
   keywords: [
     "developer portfolio",
-    "interactive web design",
+    "AI applications",
     "full-stack case studies",
   ],
 });

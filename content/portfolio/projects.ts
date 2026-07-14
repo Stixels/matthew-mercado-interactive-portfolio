@@ -88,7 +88,7 @@ export const portfolioProjects: PortfolioProject[] = [
         icon: Server,
         title: "Platform Architecture",
         content:
-          "Next.js frontend, Express API, PostgreSQL on Railway. Better Auth handles subscription-based access control and Stripe powers billing. The full stack was chosen for reliability and minimal operational overhead.",
+          "Next.js frontend, Express API, PostgreSQL on Railway. Better Auth handles subscription-based access control and Stripe powers billing. The full stack was chosen for reliability, scalability, and simplicity.",
       },
       {
         icon: Wifi,
@@ -102,12 +102,6 @@ export const portfolioProjects: PortfolioProject[] = [
         content:
           "Per-room stats: success rates, average completion times, clue usage patterns, and session logs filterable by date, staff, and group size. Operators identify bottleneck puzzles and coaching opportunities without leaving the dashboard.",
       },
-      {
-        icon: Code2,
-        title: "MCP-Powered Integrations",
-        content:
-          "Built MCP servers that expose external API capabilities through one chat interface. Operators can find information and take actions across connected systems without learning each provider's separate workflow.",
-      },
     ],
   },
   {
@@ -116,7 +110,7 @@ export const portfolioProjects: PortfolioProject[] = [
     seoTitle: "Waiver Director",
     seoDescription:
       "Case study for Waiver Director, a multi-tenant waiver operations platform built with SvelteKit and Convex for signed records, bookings, follow-ups, and analytics.",
-    hubSubtitle: "PRODUCT ENGINEERING",
+    hubSubtitle: "SAAS PLATFORM",
     icon: Shield,
     level: 0,
     puzzleType: null,
@@ -135,7 +129,7 @@ export const portfolioProjects: PortfolioProject[] = [
       "Agentic APIs",
     ],
     overview:
-      "A multi-tenant SaaS for waiver operations: build and publish versioned waivers, collect immutable signed submissions, connect booking data, automate follow-ups, and understand completion and customer activity from one workspace-scoped system.",
+      "An open source multi-tenant SaaS for waiver operations: build and publish versioned waivers, collect immutable signed submissions, connect booking data, automate follow-ups, and understand completion and customer activity from one workspace-scoped system.",
     liveUrl: "https://www.waiverdirector.com/",
     color: "neon-purple",
     seoKeywords: [
@@ -221,8 +215,8 @@ export const portfolioProjects: PortfolioProject[] = [
     timeline: "2022 - Present",
     stack: [
       "Next.js",
-      "Prisma",
-      "PostgreSQL",
+      "Convex",
+      "Resend",
       "Bookeo API",
       "Mailchimp",
       "Vercel",
@@ -251,7 +245,7 @@ export const portfolioProjects: PortfolioProject[] = [
         icon: Database,
         title: "Waiver Director",
         content:
-          "The venue's custom waiver workflow runs through Waiver Director, the multi-tenant product I founded and lead. It connects signing and booking context with operational follow-ups while preserving an exact record of every completed waiver.",
+          "The venue's custom waiver workflow runs through Waiver Director, the multi-tenant product I founded and lead specifically for this venue. It connects signing and booking context with operational follow-ups while preserving an exact record of every completed waiver.",
       },
       {
         icon: Wrench,
@@ -266,25 +260,18 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "Level Up VR",
     seoTitle: "Level Up VR",
     seoDescription:
-      "Case study for Level Up VR, a custom marketing site with hand-built motion design, strong local SEO performance, and a streamlined booking experience.",
+      "Case study for Level Up VR, a ground-up website designed in Figma, built in Webflow, and enhanced with custom JavaScript interactions.",
     hubSubtitle: "DESIGN & FRONTEND",
     icon: Terminal,
     level: 2,
     puzzleType: "network",
     tag: "DEPLOYED",
     status: "DEPLOYED",
-    role: "Designer & Frontend Engineer",
+    role: "Designer & Web Developer",
     timeline: "2023 - Present",
-    stack: [
-      "HTML",
-      "CSS",
-      "Vanilla JS",
-      "Resova",
-      "Custom Animations",
-      "Webflow",
-    ],
+    stack: ["Figma", "Webflow", "HTML", "CSS", "Vanilla JS", "Resova"],
     overview:
-      "Designed and built from scratch - a fully custom web presence for a location-based VR venue that claimed the #1 local SEO rank for VR in Frederick on day one, outperforming established competitors.",
+      "Designed from the ground up in Figma and built in Webflow, this custom site used the platform to accelerate development without compromising the venue's visual identity. Select interactions were extended with vanilla JavaScript, and the finished site reached the #1 local SEO position for VR in Frederick.",
     liveUrl: "https://www.lvlupvr.com/",
     color: "neon-green",
     seoKeywords: ["motion design", "marketing website", "VR venue website"],
@@ -295,16 +282,16 @@ export const portfolioProjects: PortfolioProject[] = [
     sections: [
       {
         icon: Layers,
-        title: "Ground-Up Design & Build",
+        title: "Designed from a Blank Canvas",
         content:
-          "No templates. No CMS. No hand-offs. Every screen designed from scratch with layered visual depth, bold typographic hierarchy, and motion that mirrors the immersive nature of the physical venue. The site had to feel as premium as the experience it was selling.",
+          "Every page, visual system, and interaction began as an original design. Figma made it possible to iterate quickly on layout, typography, and motion before translating the final direction into a fully custom Webflow build - no prebuilt theme or recycled site structure.",
         span: "full",
       },
       {
         icon: Activity,
-        title: "Custom Motion",
+        title: "Webflow, Extended with Code",
         content:
-          "Every animation hand-coded in vanilla JavaScript - no library dependencies. Scroll-driven parallax, staggered reveals, and hover interactions, each tuned to the brand. Zero third-party overhead means nothing can drift or break the aesthetic.",
+          "Webflow accelerated responsive development and handled the site's core layout and presentation. Vanilla JavaScript was added selectively for animations and interactions that needed more custom behavior, keeping code focused where it created a meaningful difference.",
       },
       {
         icon: TrendingUp,
@@ -320,7 +307,7 @@ export const portfolioProjects: PortfolioProject[] = [
     hubTitle: "Hardware Systems",
     seoTitle: "Hardware and Puzzle Engineering",
     seoDescription:
-      "Case study for Matthew Mercado’s hardware and puzzle engineering work, combining Arduino circuits, Raspberry Pi control systems, and fail-safe live experience design.",
+      "Case study for Matthew Mercado’s ground-up escape room design and puzzle engineering, combining custom electronics with Raspberry Pi-driven media interactions.",
     hubSubtitle: "PHYSICAL SYSTEMS",
     icon: ShieldAlert,
     level: 3,
@@ -331,7 +318,7 @@ export const portfolioProjects: PortfolioProject[] = [
     timeline: "2020 - Present",
     stack: ["Arduino", "Raspberry Pi", "C++", "Python", "PLCs"],
     overview:
-      "The physical layer behind award-winning escape room experiences - custom Arduino circuits, PLC logic, and multi-stage puzzle sequences that bridge software and hardware into seamless live games.",
+      "End-to-end room and puzzle systems for award-winning escape room experiences - each room designed from scratch, with custom electronics and software translating layered physical actions into responsive media and environmental effects.",
     color: "error-red",
     seoKeywords: [
       "Arduino",
@@ -341,28 +328,29 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     sections: [
       {
-        icon: Cpu,
-        title: "Circuit Design",
+        icon: Layers,
+        title: "Original Room & Puzzle Design",
         content:
-          "Custom Arduino circuits for multi-stage puzzle sequences - reed switches, electromagnets, servos, and custom lighting rigs. Every puzzle is built as a discrete, modular unit. Faulty components can be swapped on-site in minutes without tearing down the room.",
+          "Each room starts as an original experience, from the player journey and environmental storytelling to the sequence of physical interactions and final solution. Proven components can be reused where they make sense, but every puzzle is adapted and integrated into a unique solution for its room.",
+        span: "full",
       },
       {
         icon: Code2,
-        title: "Control Architecture",
+        title: "Physical-to-Digital Interactions",
         content:
-          "Raspberry Pi units serve as local control nodes, running Python services that manage room state and sync with the Escape Director platform over the local network. Physical puzzle events trigger digital responses in real time.",
+          "Raspberry Pi systems connect complex physical interactions to digital media. They can evaluate a sequence of sensor-driven actions and activate video, audio, lighting, or other effects at precisely the right moment in the experience.",
+      },
+      {
+        icon: Cpu,
+        title: "Custom Electronics",
+        content:
+          "Arduino circuits, PLC logic, sensors, electromagnets, servos, and lighting controls turn the room design into a working physical system. Hardware and software are developed together so each interaction feels immediate and invisible to the player.",
       },
       {
         icon: Shield,
-        title: "Fail-Safe Design",
+        title: "Built for Live Operation",
         content:
-          "Hardware downtime in a live show is unacceptable. Every circuit includes failover paths, watchdog timers, and manual overrides. A single component failure cannot kill a session - the show goes on.",
-      },
-      {
-        icon: Activity,
-        title: "Scale",
-        content:
-          "Modular puzzle architecture means new rooms are built by adapting proven circuit templates rather than redesigning from scratch. Each build compounds the reliability of the last. No room gets a one-off design.",
+          "The finished systems are designed for repeatable resets, practical maintenance, and operator control during a live game. Serviceable components and intentional recovery paths help protect the guest experience without flattening the puzzle into a generic template.",
       },
     ],
   },

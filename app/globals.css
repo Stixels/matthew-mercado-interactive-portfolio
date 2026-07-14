@@ -3340,9 +3340,10 @@ strong {
   --signal-paper: #eef1ec;
   --signal-white: #f8faf7;
   --signal-ink: #171a1c;
-  --signal-muted: #687071;
+  --signal-muted: #596162;
   --signal-line: rgba(23, 26, 28, 0.16);
   --signal-orange: #ff5c35;
+  --signal-orange-text: #b83216;
   min-height: 100vh;
   overflow: clip;
   background: var(--signal-paper);
@@ -3594,7 +3595,7 @@ strong {
   align-items: center;
   gap: 0.75rem;
   margin: 0 0 1.75rem;
-  color: var(--signal-orange);
+  color: var(--signal-orange-text);
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 600;
@@ -3786,7 +3787,7 @@ strong {
 .signal-project-number {
   align-self: start;
   padding-top: 0.28rem;
-  color: #8c9392;
+  color: var(--signal-muted);
   font-family: var(--font-mono);
   font-size: 0.64rem;
 }
@@ -3799,7 +3800,7 @@ strong {
 
 .signal-project-copy small {
   margin-bottom: 0.45rem;
-  color: var(--signal-orange);
+  color: var(--signal-orange-text);
   font-family: var(--font-mono);
   font-size: 0.6rem;
   font-weight: 600;

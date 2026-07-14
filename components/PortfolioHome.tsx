@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
@@ -49,7 +49,7 @@ const experience = [
       "Building and maintaining software for Department of Defense programs in my current full-time role.",
   },
   {
-    period: "2026 — Now",
+    period: "Mar 2026 — Now",
     role: "Founder & Lead Software Engineer",
     company: "Waiver Director",
     summary:
@@ -63,21 +63,21 @@ const experience = [
       "Built and launched a full-stack escape-room management platform with real-time operations, analytics, billing, offline reliability, and connected APIs.",
   },
   {
-    period: "2017 — August 2024",
+    period: "Aug 2017 — Aug 2024",
     role: "Manager & Software Engineer",
     company: "Escape This Frederick",
     summary:
       "Redesigned the customer experience, doubled conversion, reduced bounce rate by 35%, and built software and electronic puzzle systems for live rooms.",
   },
   {
-    period: "Jan — Dec 2022",
+    period: "Jan 2022 — Dec 2022",
     role: "Computer Science Peer Mentor",
-    company: "Mount St. Mary’s University",
+    company: "Mount St. Mary's University",
     summary:
       "Mentored roughly 100 Computer Science I and II students in Java, Python, debugging, and practical problem-solving.",
   },
   {
-    period: "May — Aug 2022",
+    period: "May 2022 — Aug 2022",
     role: "Software Engineer Intern, Preview Team",
     company: "Box",
     summary:
@@ -89,7 +89,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function PortfolioHome() {
   const storyRef = useRef<HTMLElement>(null);
-  const sceneProgress = useRef(0);
+  const sceneTimeline = useRef(0);
   const pointer = useRef({ x: 0, y: 0 });
   const reducedMotion = useReducedMotion() ?? false;
   const [activeStep, setActiveStep] = useState(0);
@@ -97,7 +97,7 @@ export default function PortfolioHome() {
     selectedProjects[0]?.id ?? "escape-director",
   );
 
-  const { scrollYProgress } = useScroll({
+  const { scrollY, scrollYProgress } = useScroll({
     target: storyRef,
     offset: ["start start", "end end"],
   });
@@ -106,20 +106,61 @@ export default function PortfolioHome() {
     (value) => `${value * 100}%`,
   );
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    sceneProgress.current = latest;
-    const nextStep =
-      latest < 0.12
-        ? 0
-        : latest < 0.37
-          ? 1
-          : latest < 0.62
-            ? 2
-            : latest < 0.87
-              ? 3
-              : 4;
-    setActiveStep(nextStep);
-  });
+  const updateSceneTimeline = useCallback((latestScrollY: number) => {
+    if (!storyRef.current) return;
+
+    const panelCopies = Array.from(
+      storyRef.current.querySelectorAll<HTMLElement>(".signal-panel-copy"),
+    );
+    if (panelCopies.length === 0) return;
+
+    const stageHeight =
+      storyRef.current
+        .querySelector<HTMLElement>(".signal-stage")
+        ?.getBoundingClientRect().height ?? 0;
+    const readingCenter =
+      window.innerWidth <= 1100
+        ? (stageHeight + window.innerHeight) / 2
+        : window.innerHeight / 2;
+    const anchors = panelCopies.map((panelCopy) => {
+      const rect = panelCopy.getBoundingClientRect();
+      return latestScrollY + rect.top + rect.height / 2 - readingCenter;
+    });
+
+    let timeline = 0;
+    if (latestScrollY >= anchors[anchors.length - 1]) {
+      timeline = anchors.length - 1;
+    } else if (latestScrollY > anchors[0]) {
+      const segment = anchors.findIndex(
+        (anchor, index) =>
+          index < anchors.length - 1 &&
+          latestScrollY >= anchor &&
+          latestScrollY < anchors[index + 1],
+      );
+
+      if (segment >= 0) {
+        const span = anchors[segment + 1] - anchors[segment];
+        const localProgress =
+          span > 0 ? (latestScrollY - anchors[segment]) / span : 0;
+        timeline = segment + localProgress;
+      }
+    }
+
+    sceneTimeline.current = timeline;
+    const nextStep = Math.round(timeline);
+    setActiveStep((currentStep) =>
+      currentStep === nextStep ? currentStep : nextStep,
+    );
+  }, []);
+
+  useMotionValueEvent(scrollY, "change", updateSceneTimeline);
+
+  useEffect(() => {
+    const updateForViewport = () => updateSceneTimeline(window.scrollY);
+    updateForViewport();
+    window.addEventListener("resize", updateForViewport);
+    return () => window.removeEventListener("resize", updateForViewport);
+  }, [updateSceneTimeline]);
 
   const activeProject = getProjectById(activeProjectId) ?? selectedProjects[0];
 
@@ -145,7 +186,7 @@ export default function PortfolioHome() {
         <div className="signal-stage" aria-hidden="true">
           <div className="signal-canvas">
             <SignalRig
-              progress={sceneProgress}
+              timeline={sceneTimeline}
               pointer={pointer}
               reducedMotion={reducedMotion}
             />

@@ -24,7 +24,7 @@ export default function NavBar() {
       }`}
     >
       <div className="signal-nav-inner">
-        <Link href="/" className="signal-nav-mark" aria-label="Matthew Mercado home">
+        <Link href="/" className="signal-nav-mark">
           <span>MM</span>
           <strong>Matthew Mercado</strong>
         </Link>

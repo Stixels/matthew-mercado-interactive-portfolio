@@ -6,12 +6,18 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 type SignalRigProps = {
-  progress: MutableRefObject<number>;
+  timeline: MutableRefObject<number>;
   pointer: MutableRefObject<{ x: number; y: number }>;
   reducedMotion: boolean;
 };
 
 type GroupRef = RefObject<THREE.Group | null>;
+type MeshRef = RefObject<THREE.Mesh | null>;
+type SceneNode = "browser" | "service" | "ai" | "integration";
+type SceneState = {
+  camera: readonly [number, number, number];
+  emphasis: Record<SceneNode, number>;
+};
 
 const ORANGE = "#ff5c35";
 const INK = "#171a1c";
@@ -20,6 +26,43 @@ const SILVER = "#aeb7b6";
 const PAPER = "#eef1eb";
 const COBALT = "#2448d8";
 const BLUE_LIGHT = "#9eafff";
+
+const NODE_POSITIONS: Record<SceneNode, readonly [number, number, number]> = {
+  browser: [-0.85, 2.05, 0.58],
+  service: [-0.85, 0.12, 0.58],
+  ai: [1.2, 0.12, 0.58],
+  integration: [-0.85, -1.72, 0.58],
+};
+
+const NODE_SCALES: Record<SceneNode, number> = {
+  browser: 0.44,
+  service: 0.42,
+  ai: 0.5,
+  integration: 0.47,
+};
+
+const SCENE_STATES = [
+  {
+    camera: [0, 0.18, 13.6],
+    emphasis: { browser: 1, service: 1, ai: 1, integration: 1 },
+  },
+  {
+    camera: [-0.55, 2.02, 9.7],
+    emphasis: { browser: 1.08, service: 0.56, ai: 0.5, integration: 0.46 },
+  },
+  {
+    camera: [-0.68, 0.98, 10.8],
+    emphasis: { browser: 0.82, service: 1.13, ai: 0.56, integration: 0.5 },
+  },
+  {
+    camera: [0.28, 0.18, 10.3],
+    emphasis: { browser: 0.58, service: 0.78, ai: 1.14, integration: 0.54 },
+  },
+  {
+    camera: [0, 0, 13.2],
+    emphasis: { browser: 0.96, service: 1, ai: 0.98, integration: 1.12 },
+  },
+] as const satisfies readonly SceneState[];
 
 function phase(value: number, start: number, end: number) {
   return THREE.MathUtils.smoothstep(value, start, end);
@@ -370,147 +413,170 @@ function IntegrationLayer({ integrationRef }: { integrationRef: GroupRef }) {
   );
 }
 
-function Rig({ progress, pointer, reducedMotion }: SignalRigProps) {
+function SystemConnections({
+  mainCurve,
+  aiCurve,
+  flowRef,
+}: {
+  mainCurve: THREE.CatmullRomCurve3;
+  aiCurve: THREE.CatmullRomCurve3;
+  flowRef: MeshRef;
+}) {
+  return (
+    <group>
+      <mesh>
+        <tubeGeometry args={[mainCurve, 36, 0.026, 8, false]} />
+        <meshBasicMaterial
+          color={ORANGE}
+          opacity={0.56}
+          transparent
+          depthWrite={false}
+          toneMapped={false}
+        />
+      </mesh>
+      <mesh>
+        <tubeGeometry args={[aiCurve, 20, 0.026, 8, false]} />
+        <meshBasicMaterial
+          color={COBALT}
+          opacity={0.5}
+          transparent
+          depthWrite={false}
+          toneMapped={false}
+        />
+      </mesh>
+      <mesh ref={flowRef}>
+        <sphereGeometry args={[0.09, 18, 18]} />
+        <meshBasicMaterial color={ORANGE} toneMapped={false} />
+      </mesh>
+    </group>
+  );
+}
+
+function Rig({ timeline, pointer, reducedMotion }: SignalRigProps) {
   const rigRef = useRef<THREE.Group>(null);
   const browserRef = useRef<THREE.Group>(null);
   const serviceRef = useRef<THREE.Group>(null);
   const aiRef = useRef<THREE.Group>(null);
   const integrationRef = useRef<THREE.Group>(null);
-  const currentProgress = useRef(0);
+  const flowRef = useRef<THREE.Mesh>(null);
+  const mainCurve = useMemo(
+    () =>
+      new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-0.85, 1.23, 0.34),
+        new THREE.Vector3(-0.85, 0.82, 0.34),
+        new THREE.Vector3(-0.85, 0.12, 0.34),
+        new THREE.Vector3(-0.85, -0.56, 0.34),
+        new THREE.Vector3(-0.85, -1.4, 0.34),
+      ]),
+    [],
+  );
+  const aiCurve = useMemo(
+    () =>
+      new THREE.CatmullRomCurve3([
+        new THREE.Vector3(0.24, 0.12, 0.34),
+        new THREE.Vector3(0.4, 0.34, 0.34),
+        new THREE.Vector3(0.56, 0.12, 0.34),
+      ]),
+    [],
+  );
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     if (
       !rigRef.current ||
       !browserRef.current ||
       !serviceRef.current ||
       !aiRef.current ||
-      !integrationRef.current
+      !integrationRef.current ||
+      !flowRef.current
     ) {
       return;
     }
 
-    const target = progress.current;
-    currentProgress.current = reducedMotion
-      ? target
-      : THREE.MathUtils.damp(currentProgress.current, target, 4.8, delta);
-
-    const p = currentProgress.current;
-    const appFocus = phase(p, 0.08, 0.24);
-    const stackFocus = phase(p, 0.3, 0.49);
-    const aiReflow = phase(p, 0.52, 0.64);
-    const aiReveal = phase(p, 0.66, 0.77);
-    const connectReflow = phase(p, 0.78, 0.89);
-    const connectReveal = phase(p, 0.89, 0.98);
+    const targetTimeline = reducedMotion
+      ? Math.round(timeline.current)
+      : timeline.current;
+    const p = THREE.MathUtils.clamp(targetTimeline, 0, SCENE_STATES.length - 1);
+    const sceneIndex = Math.min(Math.floor(p), SCENE_STATES.length - 1);
+    const nextSceneIndex = Math.min(sceneIndex + 1, SCENE_STATES.length - 1);
+    const sceneProgress = phase(p - sceneIndex, 0.12, 0.88);
+    const currentScene = SCENE_STATES[sceneIndex];
+    const nextScene = SCENE_STATES[nextSceneIndex];
     const pageWidth =
       state.gl.domElement.ownerDocument.documentElement.clientWidth;
-    const isMobile = pageWidth <= 640;
-    const isTablet = pageWidth <= 900;
-    const isCompact = pageWidth > 900 && pageWidth <= 1100;
-
-    const baseScale = isMobile
-      ? 0.92
-      : isTablet
-        ? 0.72
-        : isCompact
-          ? 0.62
-          : 0.76;
-    const focusedScale = isMobile ? 0.78 : isTablet || isCompact ? 0.68 : 0.64;
-    rigRef.current.scale.setScalar(
-      THREE.MathUtils.lerp(baseScale, focusedScale, stackFocus),
+    const compactCameraZOffset =
+      pageWidth <= 640 ? 1.8 : pageWidth <= 1100 ? 0.9 : 0;
+    const compactCameraYOffset =
+      pageWidth <= 640 ? 0.9 : pageWidth <= 1100 ? 0.65 : 0;
+    const cameraX = THREE.MathUtils.lerp(
+      currentScene.camera[0],
+      nextScene.camera[0],
+      sceneProgress,
     );
-    let rigX = THREE.MathUtils.lerp(0.08, 0.02, appFocus);
-    rigX = THREE.MathUtils.lerp(rigX, 0.1, stackFocus);
-    if (isMobile) {
-      rigRef.current.position.x = THREE.MathUtils.lerp(
-        0.12,
-        -0.08,
-        connectReflow,
-      );
-      rigRef.current.position.y = -0.12;
-    } else if (isTablet) {
-      rigRef.current.position.x = 0.15;
-      rigRef.current.position.y = THREE.MathUtils.lerp(-2.08, 1.25, appFocus);
-    } else if (isCompact) {
-      rigRef.current.position.x = THREE.MathUtils.lerp(2.8, 1.2, appFocus);
-      rigRef.current.position.y = THREE.MathUtils.lerp(-2, 1.25, appFocus);
-    } else {
-      rigRef.current.position.x = rigX;
-      rigRef.current.position.y = 0;
-    }
+    const cameraY = THREE.MathUtils.lerp(
+      currentScene.camera[1],
+      nextScene.camera[1],
+      sceneProgress,
+    );
+    const cameraZ =
+      THREE.MathUtils.lerp(
+        currentScene.camera[2],
+        nextScene.camera[2],
+        sceneProgress,
+      ) + compactCameraZOffset;
+    state.camera.position.set(cameraX, cameraY + compactCameraYOffset, cameraZ);
+    state.camera.lookAt(cameraX, cameraY + compactCameraYOffset, 0);
+
+    rigRef.current.position.set(0, pageWidth <= 1100 ? -0.08 : 0, 0);
+    rigRef.current.scale.setScalar(pageWidth <= 640 ? 0.92 : 1);
     rigRef.current.rotation.x = -0.045 + pointer.current.y * 0.02;
     rigRef.current.rotation.y = -0.11 + pointer.current.x * 0.035;
-    rigRef.current.rotation.z = THREE.MathUtils.lerp(
-      -0.018,
-      0.012,
-      connectReflow,
+    rigRef.current.rotation.z = THREE.MathUtils.lerp(-0.012, 0.008, p / 4);
+
+    const nodes: Record<SceneNode, THREE.Group> = {
+      browser: browserRef.current,
+      service: serviceRef.current,
+      ai: aiRef.current,
+      integration: integrationRef.current,
+    };
+
+    (Object.keys(nodes) as SceneNode[]).forEach((node) => {
+      const emphasis = THREE.MathUtils.lerp(
+        currentScene.emphasis[node],
+        nextScene.emphasis[node],
+        sceneProgress,
+      );
+      nodes[node].position.set(...NODE_POSITIONS[node]);
+      nodes[node].scale.setScalar(NODE_SCALES[node] * emphasis);
+    });
+    aiRef.current.rotation.z = 0.025;
+
+    const cycle = reducedMotion ? 0.5 : (state.clock.elapsedTime * 0.26) % 1;
+    const activeScene = Math.round(p);
+    const flowPoint =
+      activeScene === 3
+        ? aiCurve.getPointAt(cycle)
+        : activeScene === 2
+          ? mainCurve.getPointAt(cycle * 0.46)
+          : activeScene === 4
+            ? mainCurve.getPointAt(0.48 + cycle * 0.52)
+            : mainCurve.getPointAt(cycle);
+    flowRef.current.position.copy(flowPoint);
+    flowRef.current.scale.setScalar(
+      reducedMotion ? 1 : 0.9 + Math.sin(state.clock.elapsedTime * 5) * 0.18,
     );
-
-    let browserX = 0;
-    browserX = THREE.MathUtils.lerp(browserX, 0.05, appFocus);
-    browserX = THREE.MathUtils.lerp(browserX, -2.6, stackFocus);
-    browserX = THREE.MathUtils.lerp(browserX, -3, aiReflow);
-    browserX = THREE.MathUtils.lerp(browserX, -3.2, connectReflow);
-    let browserY = 0;
-    browserY = THREE.MathUtils.lerp(browserY, -0.08, appFocus);
-    browserY = THREE.MathUtils.lerp(browserY, -0.55, stackFocus);
-    browserY = THREE.MathUtils.lerp(browserY, -1.05, aiReflow);
-    browserY = THREE.MathUtils.lerp(browserY, -1.35, connectReflow);
-    let browserZ = THREE.MathUtils.lerp(1.45, 2.45, appFocus);
-    browserZ = THREE.MathUtils.lerp(browserZ, 1.2, stackFocus);
-    browserZ = THREE.MathUtils.lerp(browserZ, 0.75, aiReflow);
-    browserZ = THREE.MathUtils.lerp(browserZ, 0.5, connectReflow);
-    let browserScale = THREE.MathUtils.lerp(1, 1.04, appFocus);
-    browserScale = THREE.MathUtils.lerp(browserScale, 0.58, stackFocus);
-    browserScale = THREE.MathUtils.lerp(browserScale, 0.42, aiReflow);
-    browserScale = THREE.MathUtils.lerp(browserScale, 0.34, connectReflow);
-    browserRef.current.position.set(browserX, browserY, browserZ);
-    browserRef.current.scale.setScalar(browserScale);
-
-    let serviceX = 2;
-    serviceX = THREE.MathUtils.lerp(serviceX, -2.15, aiReflow);
-    serviceX = THREE.MathUtils.lerp(serviceX, -2.8, connectReflow);
-    let serviceY = 0.38;
-    serviceY = THREE.MathUtils.lerp(serviceY, 1.5, aiReflow);
-    serviceY = THREE.MathUtils.lerp(serviceY, 1.45, connectReflow);
-    let serviceZ = 2.35;
-    serviceZ = THREE.MathUtils.lerp(serviceZ, 0.95, aiReflow);
-    serviceZ = THREE.MathUtils.lerp(serviceZ, 0.68, connectReflow);
-    let serviceScale = THREE.MathUtils.lerp(0.001, 0.72, stackFocus);
-    serviceScale = THREE.MathUtils.lerp(serviceScale, 0.36, aiReflow);
-    serviceScale = THREE.MathUtils.lerp(serviceScale, 0.32, connectReflow);
-    serviceRef.current.position.set(serviceX, serviceY, serviceZ);
-    serviceRef.current.scale.setScalar(serviceScale);
-
-    let aiX = 1.65;
-    aiX = THREE.MathUtils.lerp(aiX, -0.35, connectReflow);
-    let aiY = 0.08;
-    aiY = THREE.MathUtils.lerp(aiY, 1.35, connectReflow);
-    let aiZ = 2.5;
-    aiZ = THREE.MathUtils.lerp(aiZ, 0.88, connectReflow);
-    let aiScale = THREE.MathUtils.lerp(0.001, 0.78, aiReveal);
-    aiScale = THREE.MathUtils.lerp(aiScale, 0.38, connectReflow);
-    aiRef.current.position.set(aiX, aiY, aiZ);
-    aiRef.current.scale.setScalar(aiScale);
-    aiRef.current.rotation.z = THREE.MathUtils.lerp(0, 0.035, aiReveal);
-
-    const integrationX = 0.25;
-    const integrationY = -0.48;
-    const integrationZ = 2.45;
-    const integrationScale = THREE.MathUtils.lerp(0.001, 0.72, connectReveal);
-    integrationRef.current.position.set(
-      integrationX,
-      integrationY,
-      integrationZ,
-    );
-    integrationRef.current.scale.setScalar(integrationScale);
   });
 
   return (
-    <group ref={rigRef} scale={0.9}>
-      <IntegrationLayer integrationRef={integrationRef} />
-      <AIEngine aiRef={aiRef} />
-      <ServiceLayer serviceRef={serviceRef} />
+    <group ref={rigRef}>
+      <SystemConnections
+        mainCurve={mainCurve}
+        aiCurve={aiCurve}
+        flowRef={flowRef}
+      />
       <BrowserApplication browserRef={browserRef} />
+      <ServiceLayer serviceRef={serviceRef} />
+      <AIEngine aiRef={aiRef} />
+      <IntegrationLayer integrationRef={integrationRef} />
     </group>
   );
 }
@@ -518,6 +584,7 @@ function Rig({ progress, pointer, reducedMotion }: SignalRigProps) {
 export default function SignalRig(props: SignalRigProps) {
   return (
     <Canvas
+      tabIndex={-1}
       camera={{ position: [0, 0.25, 13.5], fov: 35, near: 0.1, far: 100 }}
       dpr={[1, 1.45]}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}

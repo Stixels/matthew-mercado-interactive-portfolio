@@ -13,7 +13,9 @@ type SignalRigProps = {
 
 type GroupRef = RefObject<THREE.Group | null>;
 type MeshRef = RefObject<THREE.Mesh | null>;
+type CableRef = RefObject<THREE.InstancedMesh | null>;
 type SceneNode = "browser" | "service" | "ai" | "integration";
+type NodeHoverHandler = (node: SceneNode | null) => void;
 type SceneState = {
   camera: readonly [number, number, number];
   emphasis: Record<SceneNode, number>;
@@ -40,6 +42,22 @@ const NODE_SCALES: Record<SceneNode, number> = {
   ai: 0.5,
   integration: 0.47,
 };
+
+const NODE_HALF_EXTENTS: Record<
+  SceneNode,
+  readonly [halfWidth: number, halfHeight: number]
+> = {
+  browser: [2.9, 1.825],
+  service: [2.575, 1.575],
+  ai: [1.575, 1.425],
+  integration: [0.625, 0.625],
+};
+
+const MAIN_CABLE_SEGMENTS = 28;
+const AI_CABLE_SEGMENTS = 16;
+const CABLE_DEPTH = -0.24;
+const CABLE_OVERLAP = 0.045;
+const Y_AXIS = new THREE.Vector3(0, 1, 0);
 
 const SCENE_STATES = [
   {
@@ -96,7 +114,47 @@ function Connection({
   );
 }
 
-function BrowserApplication({ browserRef }: { browserRef: GroupRef }) {
+function InteractionHitbox({
+  node,
+  size,
+  position = [0, 0, 0.42],
+  onHover,
+}: {
+  node: SceneNode;
+  size: readonly [number, number, number];
+  position?: readonly [number, number, number];
+  onHover: NodeHoverHandler;
+}) {
+  return (
+    <mesh
+      position={position}
+      onPointerOver={(event) => {
+        event.stopPropagation();
+        onHover(node);
+      }}
+      onPointerOut={(event) => {
+        event.stopPropagation();
+        onHover(null);
+      }}
+    >
+      <boxGeometry args={size} />
+      <meshBasicMaterial
+        transparent
+        opacity={0}
+        depthWrite={false}
+        colorWrite={false}
+      />
+    </mesh>
+  );
+}
+
+function BrowserApplication({
+  browserRef,
+  onHover,
+}: {
+  browserRef: GroupRef;
+  onHover: NodeHoverHandler;
+}) {
   const activityCurve = useMemo(
     () =>
       new THREE.CatmullRomCurve3([
@@ -110,7 +168,16 @@ function BrowserApplication({ browserRef }: { browserRef: GroupRef }) {
   );
 
   return (
-    <group ref={browserRef} position={[0, 0, 1.45]}>
+    <group
+      ref={browserRef}
+      position={[-0.85, 2.05, 0.58]}
+      scale={NODE_SCALES.browser}
+    >
+      <InteractionHitbox
+        node="browser"
+        size={[5.95, 3.8, 0.5]}
+        onHover={onHover}
+      />
       <mesh castShadow receiveShadow>
         <boxGeometry args={[5.8, 3.65, 0.18]} />
         <meshStandardMaterial color={INK} metalness={0.22} roughness={0.42} />
@@ -211,9 +278,24 @@ function BrowserApplication({ browserRef }: { browserRef: GroupRef }) {
   );
 }
 
-function ServiceLayer({ serviceRef }: { serviceRef: GroupRef }) {
+function ServiceLayer({
+  serviceRef,
+  onHover,
+}: {
+  serviceRef: GroupRef;
+  onHover: NodeHoverHandler;
+}) {
   return (
-    <group ref={serviceRef} position={[0.12, 0.08, 0.45]}>
+    <group
+      ref={serviceRef}
+      position={[-0.85, 0.12, 0.58]}
+      scale={NODE_SCALES.service}
+    >
+      <InteractionHitbox
+        node="service"
+        size={[5.3, 3.3, 0.55]}
+        onHover={onHover}
+      />
       <mesh castShadow receiveShadow>
         <boxGeometry args={[5.15, 3.15, 0.2]} />
         <meshStandardMaterial
@@ -288,7 +370,13 @@ function ServiceLayer({ serviceRef }: { serviceRef: GroupRef }) {
   );
 }
 
-function AIEngine({ aiRef }: { aiRef: GroupRef }) {
+function AIEngine({
+  aiRef,
+  onHover,
+}: {
+  aiRef: GroupRef;
+  onHover: NodeHoverHandler;
+}) {
   const nodes = [
     [-0.7, 0.72],
     [0.03, 0.92],
@@ -300,7 +388,17 @@ function AIEngine({ aiRef }: { aiRef: GroupRef }) {
   ] as const;
 
   return (
-    <group ref={aiRef} position={[0.15, 0, -0.45]}>
+    <group
+      ref={aiRef}
+      position={[1.2, 0.12, 0.58]}
+      rotation={[0, 0, 0.025]}
+      scale={NODE_SCALES.ai}
+    >
+      <InteractionHitbox
+        node="ai"
+        size={[3.3, 3, 0.6]}
+        onHover={onHover}
+      />
       <mesh castShadow receiveShadow>
         <boxGeometry args={[3.15, 2.85, 0.28]} />
         <meshStandardMaterial color={COBALT} metalness={0.12} roughness={0.4} />
@@ -339,9 +437,25 @@ function AIEngine({ aiRef }: { aiRef: GroupRef }) {
   );
 }
 
-function IntegrationLayer({ integrationRef }: { integrationRef: GroupRef }) {
+function IntegrationLayer({
+  integrationRef,
+  onHover,
+}: {
+  integrationRef: GroupRef;
+  onHover: NodeHoverHandler;
+}) {
   return (
-    <group ref={integrationRef} position={[0.25, 0, -1.25]}>
+    <group
+      ref={integrationRef}
+      position={[-0.85, -1.72, 0.58]}
+      scale={NODE_SCALES.integration}
+    >
+      <InteractionHitbox
+        node="integration"
+        size={[4.5, 3.25, 0.55]}
+        position={[1.05, 0, 0.42]}
+        onHover={onHover}
+      />
       <mesh castShadow receiveShadow>
         <boxGeometry args={[1.25, 1.25, 0.24]} />
         <meshStandardMaterial color={INK} metalness={0.24} roughness={0.45} />
@@ -413,37 +527,54 @@ function IntegrationLayer({ integrationRef }: { integrationRef: GroupRef }) {
   );
 }
 
+function SignalCable({
+  cableRef,
+  segments,
+  color,
+  opacity,
+}: {
+  cableRef: CableRef;
+  segments: number;
+  color: string;
+  opacity: number;
+}) {
+  return (
+    <instancedMesh ref={cableRef} args={[undefined, undefined, segments]}>
+      <cylinderGeometry args={[0.026, 0.026, 1, 8]} />
+      <meshBasicMaterial
+        color={color}
+        opacity={opacity}
+        transparent
+        depthWrite={false}
+        toneMapped={false}
+      />
+    </instancedMesh>
+  );
+}
+
 function SystemConnections({
-  mainCurve,
-  aiCurve,
+  mainCableRef,
+  aiCableRef,
   flowRef,
 }: {
-  mainCurve: THREE.CatmullRomCurve3;
-  aiCurve: THREE.CatmullRomCurve3;
+  mainCableRef: CableRef;
+  aiCableRef: CableRef;
   flowRef: MeshRef;
 }) {
   return (
     <group>
-      <mesh>
-        <tubeGeometry args={[mainCurve, 36, 0.026, 8, false]} />
-        <meshBasicMaterial
-          color={ORANGE}
-          opacity={0.56}
-          transparent
-          depthWrite={false}
-          toneMapped={false}
-        />
-      </mesh>
-      <mesh>
-        <tubeGeometry args={[aiCurve, 20, 0.026, 8, false]} />
-        <meshBasicMaterial
-          color={COBALT}
-          opacity={0.5}
-          transparent
-          depthWrite={false}
-          toneMapped={false}
-        />
-      </mesh>
+      <SignalCable
+        cableRef={mainCableRef}
+        segments={MAIN_CABLE_SEGMENTS}
+        color={ORANGE}
+        opacity={0.56}
+      />
+      <SignalCable
+        cableRef={aiCableRef}
+        segments={AI_CABLE_SEGMENTS}
+        color={COBALT}
+        opacity={0.5}
+      />
       <mesh ref={flowRef}>
         <sphereGeometry args={[0.09, 18, 18]} />
         <meshBasicMaterial color={ORANGE} toneMapped={false} />
@@ -459,35 +590,82 @@ function Rig({ timeline, pointer, reducedMotion }: SignalRigProps) {
   const aiRef = useRef<THREE.Group>(null);
   const integrationRef = useRef<THREE.Group>(null);
   const flowRef = useRef<THREE.Mesh>(null);
-  const mainCurve = useMemo(
-    () =>
-      new THREE.CatmullRomCurve3([
-        new THREE.Vector3(-0.85, 1.23, 0.34),
-        new THREE.Vector3(-0.85, 0.82, 0.34),
-        new THREE.Vector3(-0.85, 0.12, 0.34),
-        new THREE.Vector3(-0.85, -0.56, 0.34),
-        new THREE.Vector3(-0.85, -1.4, 0.34),
-      ]),
-    [],
-  );
-  const aiCurve = useMemo(
-    () =>
-      new THREE.CatmullRomCurve3([
-        new THREE.Vector3(0.24, 0.12, 0.34),
-        new THREE.Vector3(0.4, 0.34, 0.34),
-        new THREE.Vector3(0.56, 0.12, 0.34),
-      ]),
-    [],
-  );
+  const mainCableRef = useRef<THREE.InstancedMesh>(null);
+  const aiCableRef = useRef<THREE.InstancedMesh>(null);
+  const hoveredNodeRef = useRef<SceneNode | null>(null);
+  const cableTransform = useMemo(() => new THREE.Object3D(), []);
+  const cableStart = useMemo(() => new THREE.Vector3(), []);
+  const cableEnd = useMemo(() => new THREE.Vector3(), []);
+  const cableDirection = useMemo(() => new THREE.Vector3(), []);
+  const mainCurveRef = useRef<THREE.CatmullRomCurve3>(null);
+  const aiCurveRef = useRef<THREE.CatmullRomCurve3>(null);
 
-  useFrame((state) => {
+  if (mainCurveRef.current === null) {
+    mainCurveRef.current = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-0.85, 1.23, 0.34),
+      new THREE.Vector3(-0.85, 0.82, 0.34),
+      new THREE.Vector3(-0.85, 0.12, 0.34),
+      new THREE.Vector3(-0.85, -0.56, 0.34),
+      new THREE.Vector3(-0.85, -1.4, 0.34),
+    ]);
+  }
+
+  if (aiCurveRef.current === null) {
+    aiCurveRef.current = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(0.24, 0.12, 0.34),
+      new THREE.Vector3(0.4, 0.34, 0.34),
+      new THREE.Vector3(0.56, 0.12, 0.34),
+    ]);
+  }
+
+  const handleNodeHover: NodeHoverHandler = (node) => {
+    hoveredNodeRef.current = node;
+  };
+
+  const setAnchor = (
+    node: THREE.Group,
+    localX: number,
+    localY: number,
+    target: THREE.Vector3,
+  ) => {
+    target
+      .set(localX * node.scale.x, localY * node.scale.y, CABLE_DEPTH)
+      .applyQuaternion(node.quaternion)
+      .add(node.position);
+  };
+
+  const updateCable = (
+    cable: THREE.InstancedMesh,
+    curve: THREE.CatmullRomCurve3,
+    segments: number,
+  ) => {
+    for (let index = 0; index < segments; index += 1) {
+      curve.getPoint(index / segments, cableStart);
+      curve.getPoint((index + 1) / segments, cableEnd);
+      cableDirection.subVectors(cableEnd, cableStart);
+      cableTransform.position.copy(cableStart).add(cableEnd).multiplyScalar(0.5);
+      cableTransform.quaternion.setFromUnitVectors(
+        Y_AXIS,
+        cableDirection.normalize(),
+      );
+      cableTransform.scale.set(1, cableStart.distanceTo(cableEnd) * 1.04, 1);
+      cableTransform.updateMatrix();
+      cable.setMatrixAt(index, cableTransform.matrix);
+    }
+
+    cable.instanceMatrix.needsUpdate = true;
+  };
+
+  useFrame((state, delta) => {
     if (
       !rigRef.current ||
       !browserRef.current ||
       !serviceRef.current ||
       !aiRef.current ||
       !integrationRef.current ||
-      !flowRef.current
+      !flowRef.current ||
+      !mainCableRef.current ||
+      !aiCableRef.current
     ) {
       return;
     }
@@ -526,10 +704,16 @@ function Rig({ timeline, pointer, reducedMotion }: SignalRigProps) {
     state.camera.position.set(cameraX, cameraY + compactCameraYOffset, cameraZ);
     state.camera.lookAt(cameraX, cameraY + compactCameraYOffset, 0);
 
-    rigRef.current.position.set(0, pageWidth <= 1100 ? -0.08 : 0, 0);
+    const pointerX = reducedMotion ? 0 : pointer.current.x;
+    const pointerY = reducedMotion ? 0 : pointer.current.y;
+    rigRef.current.position.set(
+      pointerX * 0.035,
+      (pageWidth <= 1100 ? -0.08 : 0) + pointerY * 0.025,
+      0,
+    );
     rigRef.current.scale.setScalar(pageWidth <= 640 ? 0.92 : 1);
-    rigRef.current.rotation.x = -0.045 + pointer.current.y * 0.02;
-    rigRef.current.rotation.y = -0.11 + pointer.current.x * 0.035;
+    rigRef.current.rotation.x = -0.045 + pointerY * 0.026;
+    rigRef.current.rotation.y = -0.11 + pointerX * 0.045;
     rigRef.current.rotation.z = THREE.MathUtils.lerp(-0.012, 0.008, p / 4);
 
     const nodes: Record<SceneNode, THREE.Group> = {
@@ -539,16 +723,117 @@ function Rig({ timeline, pointer, reducedMotion }: SignalRigProps) {
       integration: integrationRef.current,
     };
 
-    (Object.keys(nodes) as SceneNode[]).forEach((node) => {
+    const elapsedTime = state.clock.elapsedTime;
+    (Object.keys(nodes) as SceneNode[]).forEach((node, index) => {
       const emphasis = THREE.MathUtils.lerp(
         currentScene.emphasis[node],
         nextScene.emphasis[node],
         sceneProgress,
       );
-      nodes[node].position.set(...NODE_POSITIONS[node]);
-      nodes[node].scale.setScalar(NODE_SCALES[node] * emphasis);
+      const isHovered = hoveredNodeRef.current === node && !reducedMotion;
+      const hoverScale = isHovered ? 1.055 : 1;
+      const idleOffset = reducedMotion
+        ? 0
+        : Math.sin(elapsedTime * 0.72 + index * 1.45) * 0.012;
+      const targetScale = NODE_SCALES[node] * emphasis * hoverScale;
+      const targetPosition = NODE_POSITIONS[node];
+
+      nodes[node].position.x = THREE.MathUtils.damp(
+        nodes[node].position.x,
+        targetPosition[0],
+        11,
+        delta,
+      );
+      nodes[node].position.y = THREE.MathUtils.damp(
+        nodes[node].position.y,
+        targetPosition[1] + idleOffset,
+        11,
+        delta,
+      );
+      nodes[node].position.z = THREE.MathUtils.damp(
+        nodes[node].position.z,
+        targetPosition[2] + (isHovered ? 0.13 : 0),
+        12,
+        delta,
+      );
+      nodes[node].scale.setScalar(
+        THREE.MathUtils.damp(nodes[node].scale.x, targetScale, 12, delta),
+      );
+      nodes[node].rotation.x = THREE.MathUtils.damp(
+        nodes[node].rotation.x,
+        isHovered ? pointerY * 0.055 : 0,
+        10,
+        delta,
+      );
+      nodes[node].rotation.y = THREE.MathUtils.damp(
+        nodes[node].rotation.y,
+        isHovered ? pointerX * 0.07 : 0,
+        10,
+        delta,
+      );
     });
-    aiRef.current.rotation.z = 0.025;
+    aiRef.current.rotation.z = THREE.MathUtils.damp(
+      aiRef.current.rotation.z,
+      0.025,
+      10,
+      delta,
+    );
+
+    const browserHalfHeight = NODE_HALF_EXTENTS.browser[1];
+    const serviceHalfWidth = NODE_HALF_EXTENTS.service[0];
+    const serviceHalfHeight = NODE_HALF_EXTENTS.service[1];
+    const aiHalfWidth = NODE_HALF_EXTENTS.ai[0];
+    const integrationHalfHeight = NODE_HALF_EXTENTS.integration[1];
+    const mainCurve = mainCurveRef.current!;
+    const aiCurve = aiCurveRef.current!;
+
+    setAnchor(
+      browserRef.current,
+      0,
+      -browserHalfHeight + CABLE_OVERLAP / browserRef.current.scale.y,
+      mainCurve.points[0],
+    );
+    setAnchor(
+      serviceRef.current,
+      0,
+      serviceHalfHeight - CABLE_OVERLAP / serviceRef.current.scale.y,
+      mainCurve.points[1],
+    );
+    setAnchor(serviceRef.current, 0, 0, mainCurve.points[2]);
+    setAnchor(
+      serviceRef.current,
+      0,
+      -serviceHalfHeight + CABLE_OVERLAP / serviceRef.current.scale.y,
+      mainCurve.points[3],
+    );
+    setAnchor(
+      integrationRef.current,
+      0,
+      integrationHalfHeight -
+        CABLE_OVERLAP / integrationRef.current.scale.y,
+      mainCurve.points[4],
+    );
+
+    setAnchor(
+      serviceRef.current,
+      serviceHalfWidth - CABLE_OVERLAP / serviceRef.current.scale.x,
+      0,
+      aiCurve.points[0],
+    );
+    setAnchor(
+      aiRef.current,
+      -aiHalfWidth + CABLE_OVERLAP / aiRef.current.scale.x,
+      0,
+      aiCurve.points[2],
+    );
+    aiCurve.points[1]
+      .copy(aiCurve.points[0])
+      .add(aiCurve.points[2])
+      .multiplyScalar(0.5);
+    aiCurve.points[1].y += 0.22;
+
+    updateCable(mainCableRef.current, mainCurve, MAIN_CABLE_SEGMENTS);
+    updateCable(aiCableRef.current, aiCurve, AI_CABLE_SEGMENTS);
 
     const cycle = reducedMotion ? 0.5 : (state.clock.elapsedTime * 0.26) % 1;
     const activeScene = Math.round(p);
@@ -562,21 +847,27 @@ function Rig({ timeline, pointer, reducedMotion }: SignalRigProps) {
             : mainCurve.getPointAt(cycle);
     flowRef.current.position.copy(flowPoint);
     flowRef.current.scale.setScalar(
-      reducedMotion ? 1 : 0.9 + Math.sin(state.clock.elapsedTime * 5) * 0.18,
+      reducedMotion
+        ? 1
+        : (hoveredNodeRef.current ? 1.12 : 0.9) +
+            Math.sin(state.clock.elapsedTime * 5) * 0.18,
     );
   });
 
   return (
     <group ref={rigRef}>
       <SystemConnections
-        mainCurve={mainCurve}
-        aiCurve={aiCurve}
+        mainCableRef={mainCableRef}
+        aiCableRef={aiCableRef}
         flowRef={flowRef}
       />
-      <BrowserApplication browserRef={browserRef} />
-      <ServiceLayer serviceRef={serviceRef} />
-      <AIEngine aiRef={aiRef} />
-      <IntegrationLayer integrationRef={integrationRef} />
+      <BrowserApplication browserRef={browserRef} onHover={handleNodeHover} />
+      <ServiceLayer serviceRef={serviceRef} onHover={handleNodeHover} />
+      <AIEngine aiRef={aiRef} onHover={handleNodeHover} />
+      <IntegrationLayer
+        integrationRef={integrationRef}
+        onHover={handleNodeHover}
+      />
     </group>
   );
 }

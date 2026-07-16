@@ -48,7 +48,7 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     overview:
       "A SaaS gamemaster dashboard and analytics platform for escape room operators - the most intuitive tool in the industry. Manages 6,000+ rooms globally with 99.99% uptime and an offline-first architecture built for the realities of venue Wi-Fi.",
-    liveUrl: "https://staging.escapedirector.com/",
+    liveUrl: "https://www.escapedirector.com/",
     color: "neon-blue",
     seoKeywords: [
       "SaaS dashboard",

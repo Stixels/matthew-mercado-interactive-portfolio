@@ -461,7 +461,7 @@ export default function PortfolioHome() {
             <h3>Engineering across products, platforms, and teams.</h3>
             <a
               className="signal-resume-link"
-              href="https://www.matthewmercado.dev/matthew-mercado-resume.pdf"
+              href="/matthew-mercado-resume.pdf"
               target="_blank"
               rel="noreferrer"
             >

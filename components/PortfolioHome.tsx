@@ -33,7 +33,7 @@ const selectedProjects = selectedProjectIds
   .filter((project) => project !== null);
 
 const projectOutcomes: Record<string, string> = {
-  "escape-director": "6,000+ rooms · 99.99% uptime",
+  "escape-director": "8,000+ sessions · 99.95% uptime",
   "waiver-director": "Multi-tenant product · active build",
   "escape-this-frederick": "2× conversion · Lighthouse 97",
   "level-up-vr": "#1 local search position",

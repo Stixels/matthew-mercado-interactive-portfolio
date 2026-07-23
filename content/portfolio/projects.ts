@@ -26,7 +26,7 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "Escape Director",
     seoTitle: "Escape Director",
     seoDescription:
-      "Case study for Escape Director, a SaaS gamemaster dashboard and analytics platform built for escape room operators with offline-first reliability.",
+      "Case study for Escape Director, an escape-room operations platform for building rooms, running live games, presenting a synchronized Live View, and reviewing completed sessions with offline-first reliability.",
     hubSubtitle: "SAAS PLATFORM",
     icon: Cpu,
     level: 0,
@@ -34,20 +34,20 @@ export const portfolioProjects: PortfolioProject[] = [
     tag: "ACTIVE",
     status: "ACTIVE",
     role: "Founder & Lead Software Engineer",
-    timeline: "2023 - Present",
+    timeline: "2021 - Present",
     stack: [
-      "Next.js",
-      "Express",
+      "TanStack Start",
+      "React",
+      "Express 5",
       "PostgreSQL",
       "Prisma",
       "Stripe",
       "Railway",
-      "BetterAuth",
-      "MongoDB",
-      "MCP",
+      "Better Auth",
+      "AWS S3",
     ],
     overview:
-      "A SaaS gamemaster dashboard and analytics platform for escape room operators - the most intuitive tool in the industry. Manages 6,000+ rooms globally with 99.99% uptime and an offline-first architecture built for the realities of venue Wi-Fi.",
+      "A SaaS operations platform for escape room owners and game masters. Battle-tested across 8,000+ Room Sessions with 99.95% uptime, unlimited Rooms per location, and offline-ready Room Stations built for the realities of venue Wi-Fi.",
     liveUrl: "https://www.escapedirector.com/",
     color: "neon-blue",
     seoKeywords: [
@@ -72,9 +72,9 @@ export const portfolioProjects: PortfolioProject[] = [
           "The control room operators use throughout a game to follow player progress, manage puzzles and time, and send clues through text, images, video, or audio.",
       },
       {
-        label: "Room and game statistics",
+        label: "Room Sessions and analytics",
         description:
-          "Every escape room run becomes a searchable record of performance statistics, clue usage, event logs, and gamemaster notes for later review.",
+          "Every completed Room Session becomes a searchable record of results, timing, attendance, clue usage, action history, and game master notes.",
       },
     ],
     sections: [
@@ -82,25 +82,25 @@ export const portfolioProjects: PortfolioProject[] = [
         icon: Monitor,
         title: "Gamemaster Dashboard",
         content:
-          "Built for speed under pressure. Clue delivery, puzzle tracking, countdown management, and room-specific effects - all from a single distraction-free interface. The learning curve is minutes, not days. Every interaction was designed around the split-second reality of a live session.",
+          "Built for speed under pressure. Game masters control the timer, ordered puzzles and clues, audio, images, video, and the synchronized player-facing Live View from one workspace. Every action is timestamped in the Room Session log for later review.",
       },
       {
         icon: Server,
         title: "Platform Architecture",
         content:
-          "Next.js frontend, Express API, PostgreSQL on Railway. Better Auth handles subscription-based access control and Stripe powers billing. The full stack was chosen for reliability, scalability, and simplicity.",
+          "TanStack Start and React power the frontend, backed by an Express 5 API and PostgreSQL with Prisma on Railway. Better Auth handles subscription-based access control, Stripe powers billing, and AWS S3 stores room media.",
       },
       {
         icon: Wifi,
         title: "Offline-First PWA",
         content:
-          "A service worker caches 24 hours of session data locally. Gamemasters run live rooms through complete Wi-Fi outages - the app never goes blank. Data syncs silently in the background the moment connectivity returns.",
+          "Opening a Room online atomically prepares its current Room Revision, Application Shell, signed Offline Access Grant, and every configured audio, image, and video file. Once marked Offline ready, the Room Dashboard and same-station Live View can keep running for at least 24 hours; completed Room Sessions are saved locally and sync after reconnecting.",
       },
       {
         icon: BarChart3,
         title: "Room Analytics",
         content:
-          "Per-room stats: success rates, average completion times, clue usage patterns, and session logs filterable by date, staff, and group size. Operators identify bottleneck puzzles and coaching opportunities without leaving the dashboard.",
+          "Each completed Room Session records success or failure, time remaining, attendance, game master, clues used, notes, and ordered action history. PostgreSQL rollups power summaries by Room and date range, while detailed logs preserve the story of each game.",
       },
     ],
   },

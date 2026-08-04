@@ -254,12 +254,6 @@ export default function PortfolioHome() {
                 Fast, accessible web applications turn complicated workflows
                 into something clear for customers and teams.
               </p>
-              <Link
-                className="signal-text-link"
-                href="/projects/escape-director"
-              >
-                See the application <ArrowRight aria-hidden="true" />
-              </Link>
             </div>
           </section>
 
@@ -271,12 +265,6 @@ export default function PortfolioHome() {
                 APIs, authentication, data, background jobs, and operational
                 safeguards work together behind the interface.
               </p>
-              <Link
-                className="signal-text-link"
-                href="/projects/waiver-director"
-              >
-                See the full-stack work <ArrowRight aria-hidden="true" />
-              </Link>
             </div>
           </section>
 
@@ -285,16 +273,10 @@ export default function PortfolioHome() {
               <p className="signal-kicker">03 / Applied AI</p>
               <h2>AI becomes part of the product.</h2>
               <p>
-                Ask Analytics turns plain-language questions into approved,
-                read-only metric queries while keeping Room scope, supporting
-                numbers, and metric definitions visible.
+                From analytics exploration to content review, AI supports real
+                workflows with structured evidence and a person responsible for
+                the final decision.
               </p>
-              <Link
-                className="signal-text-link"
-                href="/projects/escape-director"
-              >
-                See the Analytics AI Assistant <ArrowRight aria-hidden="true" />
-              </Link>
             </div>
           </section>
 
@@ -303,15 +285,9 @@ export default function PortfolioHome() {
               <p className="signal-kicker">04 / Integrations</p>
               <h2>Then software meets the rest of the operation.</h2>
               <p>
-                MCP servers bring bookings, messaging, analytics, and external
-                APIs into one dependable chat interface.
+                Payments, bookings, messaging, storage, analytics, and external
+                APIs become dependable workflows instead of isolated features.
               </p>
-              <Link
-                className="signal-text-link"
-                href="/projects/escape-director"
-              >
-                See the connected system <ArrowRight aria-hidden="true" />
-              </Link>
             </div>
           </section>
         </div>

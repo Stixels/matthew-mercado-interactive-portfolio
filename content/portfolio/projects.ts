@@ -26,7 +26,7 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "Escape Director",
     seoTitle: "Escape Director",
     seoDescription:
-      "Case study for Escape Director, an escape-room operations platform for building rooms, running live games, presenting a synchronized Live View, and reviewing completed sessions with offline-first reliability.",
+      "Case study for Escape Director, an escape-room operations platform with trusted live-game controls, resilient backend systems, evidence-backed analytics, and an AI assistant for exploring performance data.",
     hubSubtitle: "SAAS PLATFORM",
     icon: Cpu,
     level: 0,
@@ -49,6 +49,7 @@ export const portfolioProjects: PortfolioProject[] = [
     overview:
       "A SaaS operations platform for escape room owners and game masters. Battle-tested across 8,000+ Room Sessions with 99.95% uptime, unlimited Rooms per location, and offline-ready Room Stations built for the realities of venue Wi-Fi.",
     liveUrl: "https://www.escapedirector.com/",
+    docsUrl: "https://docs.escapedirector.com/",
     color: "neon-blue",
     seoKeywords: [
       "SaaS dashboard",
@@ -57,24 +58,30 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     screenshots: [
       "/screenshots/staging-escapedirector-com.png",
-      "/screenshots/ed-dashboard.webp",
-      "/screenshots/ed-room-statistics.webp",
+      "/screenshots/escape-director-room-dashboard.jpg",
+      "/screenshots/escape-director-rooms-overview.jpg",
+      "/screenshots/escape-director-analytics-ai.jpg",
     ],
     screenshotDetails: [
       {
-        label: "Escape room operations",
+        label: "Escape Director",
         description:
-          "A purpose-built platform for running live escape rooms and understanding every game after it ends.",
+          "The public product experience introduces the platform before the case study moves into the operational interface.",
       },
       {
-        label: "Live gamemaster dashboard",
+        label: "Live Game Master workspace",
         description:
-          "The control room operators use throughout a game to follow player progress, manage puzzles and time, and send clues through text, images, video, or audio.",
+          "The operational center for running the timer, tracking ordered Puzzles, sending Clues and media, and monitoring the player-facing Live View.",
       },
       {
-        label: "Room Sessions and analytics",
+        label: "Rooms at a glance",
         description:
-          "Every completed Room Session becomes a searchable record of results, timing, attendance, clue usage, action history, and game master notes.",
+          "Owners can manage multiple Rooms from one browser application while keeping each Room's duration, Clue allowance, content, and live state distinct.",
+      },
+      {
+        label: "Evidence-backed analytics and AI",
+        description:
+          "The current Room Summary stays visible beside Ask Analytics, helping operators investigate performance with suggested reviews, explicit scope, and the numbers behind each answer.",
       },
     ],
     sections: [
@@ -100,7 +107,13 @@ export const portfolioProjects: PortfolioProject[] = [
         icon: BarChart3,
         title: "Room Analytics",
         content:
-          "Each completed Room Session records success or failure, time remaining, attendance, game master, clues used, notes, and ordered action history. PostgreSQL rollups power summaries by Room and date range, while detailed logs preserve the story of each game.",
+          "Evidence-backed analytics turn each completed Room Session into Room-scoped performance views, with clear coverage and supporting numbers behind every result. PostgreSQL rollups power summaries by Room and date range, while detailed logs preserve success, timing, attendance, clue usage, notes, and the story of each game.",
+      },
+      {
+        icon: BrainCircuit,
+        title: "Analytics AI Assistant",
+        content:
+          "Ask Analytics helps operators explore performance in plain language. It translates each question into approved, read-only metric queries while keeping Room scope, metric definitions, and supporting evidence intact.",
       },
     ],
   },

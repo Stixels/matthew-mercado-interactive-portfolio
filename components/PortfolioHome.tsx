@@ -60,7 +60,7 @@ const experience = [
     role: "Founder & Lead Software Engineer",
     company: "Escape Director",
     summary:
-      "Built and launched a full-stack escape-room management platform with real-time operations, analytics, billing, offline reliability, and connected APIs.",
+      "Built and launched a full-stack escape-room management platform with real-time operations, evidence-backed analytics with AI-assisted exploration, billing, and offline reliability.",
   },
   {
     period: "Aug 2017 — Aug 2024",
@@ -249,7 +249,7 @@ export default function PortfolioHome() {
           <section className="signal-panel">
             <div className="signal-panel-copy signal-step-copy">
               <p className="signal-kicker">01 / Frontend</p>
-              <h2>It starts with an interface people can trust.</h2>
+              <h2>Frontends people can trust.</h2>
               <p>
                 Fast, accessible web applications turn complicated workflows
                 into something clear for customers and teams.
@@ -265,8 +265,8 @@ export default function PortfolioHome() {
 
           <section className="signal-panel">
             <div className="signal-panel-copy signal-step-copy">
-              <p className="signal-kicker">02 / Full stack</p>
-              <h2>Every click reaches a system built to hold up.</h2>
+              <p className="signal-kicker">02 / Backend</p>
+              <h2>Backends built to hold up.</h2>
               <p>
                 APIs, authentication, data, background jobs, and operational
                 safeguards work together behind the interface.

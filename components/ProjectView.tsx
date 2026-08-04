@@ -27,6 +27,9 @@ export default function ProjectView({ projectId }: { projectId: string }) {
   const liveProjectHost = project.liveUrl
     ? new URL(project.liveUrl).hostname.replace(/^www\./, "")
     : null;
+  const docsHost = project.docsUrl
+    ? new URL(project.docsUrl).hostname.replace(/^www\./, "")
+    : null;
 
   return (
     <main className="signal-case">
@@ -51,24 +54,50 @@ export default function ProjectView({ projectId }: { projectId: string }) {
             <p>{project.overview}</p>
           </div>
 
-          {project.liveUrl && (
+          {(project.liveUrl || project.docsUrl) && (
             <div className="signal-case-actions">
-              <a
-                className="signal-case-live-link"
-                href={project.liveUrl}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`Visit ${project.title} at ${liveProjectHost}`}
-              >
-                <span className="signal-case-live-marker" aria-hidden="true" />
-                <span className="signal-case-live-copy">
-                  <span>Live project</span>
-                  <strong>{liveProjectHost}</strong>
-                </span>
-                <span className="signal-case-live-arrow" aria-hidden="true">
-                  <ArrowUpRight />
-                </span>
-              </a>
+              {project.liveUrl && (
+                <a
+                  className="signal-case-live-link"
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Visit ${project.title} at ${liveProjectHost}`}
+                >
+                  <span
+                    className="signal-case-live-marker"
+                    aria-hidden="true"
+                  />
+                  <span className="signal-case-live-copy">
+                    <span>Live project</span>
+                    <strong>{liveProjectHost}</strong>
+                  </span>
+                  <span className="signal-case-live-arrow" aria-hidden="true">
+                    <ArrowUpRight />
+                  </span>
+                </a>
+              )}
+              {project.docsUrl && (
+                <a
+                  className="signal-case-live-link"
+                  href={project.docsUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Read ${project.title} product guides at ${docsHost}`}
+                >
+                  <span
+                    className="signal-case-live-marker"
+                    aria-hidden="true"
+                  />
+                  <span className="signal-case-live-copy">
+                    <span>Product guides</span>
+                    <strong>{docsHost}</strong>
+                  </span>
+                  <span className="signal-case-live-arrow" aria-hidden="true">
+                    <ArrowUpRight />
+                  </span>
+                </a>
+              )}
             </div>
           )}
 
@@ -153,7 +182,10 @@ export default function ProjectView({ projectId }: { projectId: string }) {
                     <div className="signal-case-gallery-image">
                       <Image
                         src={image}
-                        alt={detail?.label ?? `${project.title} project view ${index + 2}`}
+                        alt={
+                          detail?.label ??
+                          `${project.title} project view ${index + 2}`
+                        }
                         fill
                         sizes="(max-width: 900px) 94vw, 70vw"
                         className="object-contain"

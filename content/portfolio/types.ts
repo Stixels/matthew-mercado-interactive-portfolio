@@ -23,10 +23,7 @@ export type ScreenshotDetail = {
 };
 
 export type PortfolioColor =
-  | "neon-blue"
-  | "neon-purple"
-  | "neon-green"
-  | "error-red";
+  "neon-blue" | "neon-purple" | "neon-green" | "error-red";
 
 export type PortfolioProject = {
   id: ProjectId;
@@ -45,6 +42,7 @@ export type PortfolioProject = {
   stack: string[];
   overview: string;
   liveUrl?: string;
+  docsUrl?: string;
   color: PortfolioColor;
   sections?: ProjectSection[];
   seoKeywords?: string[];

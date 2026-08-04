@@ -285,14 +285,15 @@ export default function PortfolioHome() {
               <p className="signal-kicker">03 / Applied AI</p>
               <h2>AI becomes part of the product.</h2>
               <p>
-                Agentic workflows audit emails and waiver templates, while
-                structured generation keeps people in control of the result.
+                Ask Analytics turns plain-language questions into approved,
+                read-only metric queries while keeping Room scope, supporting
+                numbers, and metric definitions visible.
               </p>
               <Link
                 className="signal-text-link"
-                href="/projects/waiver-director"
+                href="/projects/escape-director"
               >
-                See the AI work <ArrowRight aria-hidden="true" />
+                See the Analytics AI Assistant <ArrowRight aria-hidden="true" />
               </Link>
             </div>
           </section>

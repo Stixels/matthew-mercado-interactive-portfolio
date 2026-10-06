@@ -8,10 +8,17 @@ import { ArrowUpRight } from "lucide-react";
 export default function NavBar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [overDark, setOverDark] = useState(pathname === "/");
   const homePrefix = pathname === "/" ? "" : "/";
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 24);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 24);
+      const darkHero = pathname === "/" ? document.getElementById("top") : null;
+      setOverDark(
+        darkHero ? darkHero.getBoundingClientRect().bottom > 84 : false,
+      );
+    };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -21,7 +28,7 @@ export default function NavBar() {
     <header
       className={`signal-nav ${scrolled ? "is-scrolled" : ""} ${
         pathname === "/" ? "is-home" : "is-subpage"
-      }`}
+      } ${overDark ? "is-over-dark" : ""}`}
     >
       <div className="signal-nav-inner">
         <Link href="/" className="signal-nav-mark">

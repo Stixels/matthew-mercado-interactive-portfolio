@@ -12,8 +12,9 @@ import {
   useScroll,
   useTransform,
 } from "motion/react";
-import { ArrowDown, ArrowRight, ArrowUpRight, Mail } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail } from "lucide-react";
 import { getProjectById, portfolioProjects } from "@/content/portfolio";
+import HeroRoom from "@/components/HeroRoom";
 
 const SignalRig = dynamic(() => import("@/components/SignalRig"), {
   ssr: false,
@@ -174,6 +175,8 @@ export default function PortfolioHome() {
 
   return (
     <main className="signal-portfolio">
+      <HeroRoom />
+
       <section
         ref={storyRef}
         className={`signal-story is-step-${activeStep}`}
@@ -216,34 +219,15 @@ export default function PortfolioHome() {
         </div>
 
         <div className="signal-panels">
-          <section className="signal-panel signal-hero" id="top">
-            <motion.div
-              className="signal-panel-copy"
-              initial={reducedMotion ? false : { opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease }}
-            >
-              <p className="signal-kicker">
-                Matthew Mercado{" "}
-                <span>Software engineer · Full-stack &amp; AI</span>
+          <section className="signal-panel" id="system">
+            <div className="signal-panel-copy signal-step-copy">
+              <p className="signal-kicker">00 / The system</p>
+              <h2>One application, end to end.</h2>
+              <p>
+                Follow a single product from the interface people touch to the
+                services, AI, and integrations that keep it running.
               </p>
-              <h1>I build full-stack software for the real world.</h1>
-              <p className="signal-intro">
-                Web applications, AI-enabled systems, and integrations for
-                escape rooms, VR venues, and ambitious products.
-              </p>
-              <div className="signal-actions">
-                <a className="signal-button" href="#work">
-                  View selected work <ArrowDown aria-hidden="true" />
-                </a>
-                <a
-                  className="signal-text-link"
-                  href="mailto:matthew@escapedirector.com"
-                >
-                  Start a conversation <ArrowUpRight aria-hidden="true" />
-                </a>
-              </div>
-            </motion.div>
+            </div>
           </section>
 
           <section className="signal-panel">

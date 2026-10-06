@@ -1,6 +1,6 @@
 # Matthew Mercado — Interactive Portfolio
 
-A scroll-driven software engineering portfolio centered on a procedural 3D application architecture. The opening sequence follows one web application through its frontend, full-stack services, AI layer, and real-world integrations before handing off to accessible project case studies and experience details.
+A scroll-driven software engineering portfolio centered on a procedural 3D application architecture. It opens on a dark "game master camera feed" hero where visitors sweep a UV light across a floor plan to uncover real project results, then the scroll sequence follows one web application through its frontend, full-stack services, AI layer, and real-world integrations before handing off to accessible project case studies and experience details.
 
 ## Local development
 

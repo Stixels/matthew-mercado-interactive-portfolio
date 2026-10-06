@@ -7,8 +7,8 @@ import { ArrowDown, ArrowUpRight } from "lucide-react";
 const ROTATING_WORDS = [
   "the real world.",
   "escape rooms.",
-  "VR venues.",
-  "AI products.",
+  "AI agents.",
+  "developer teams.",
   "live operations.",
 ] as const;
 
@@ -24,34 +24,34 @@ const clues = [
     note: "at 99.95% uptime",
   },
   {
-    id: "lighthouse",
-    label: "Escape This Frederick",
-    value: "Lighthouse 52 → 97",
-    note: "rebuilt from scratch",
+    id: "mcp",
+    label: "Enterprise LLM platform",
+    value: "3 of 4 MCP servers",
+    note: "running in production",
+  },
+  {
+    id: "speed",
+    label: "100,000+ entity datasets",
+    value: "7 min → under 1",
+    note: "batched writes, tuned queries",
+  },
+  {
+    id: "workflow",
+    label: "Legacy rewrite",
+    value: "−90% task time",
+    note: "shipped 3 months early",
   },
   {
     id: "conversion",
-    label: "Booking flow",
-    value: "2.5% → 5%",
-    note: "conversion, doubled",
-  },
-  {
-    id: "search",
-    label: "Level Up VR",
-    value: "#1 local search",
-    note: "for VR in Frederick",
+    label: "Escape This Frederick",
+    value: "2× conversion",
+    note: "Lighthouse 52 → 97",
   },
   {
     id: "hardware",
-    label: "Inside the rooms",
-    value: "Arduino · Pi · PLCs",
-    note: "the puzzles are wired too",
-  },
-  {
-    id: "ai",
-    label: "Applied AI",
-    value: "MCP servers · LLM evals",
-    note: "with a person signing off",
+    label: "Open-source Arduino SDK",
+    value: "Props talk to live games",
+    note: "C++, MIT licensed",
   },
 ] as const;
 
@@ -263,7 +263,8 @@ export default function HeroRoom() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease, delay: 0.1 }}
           >
-            Matthew Mercado <span>Software engineer · Full-stack &amp; AI</span>
+            Matthew Mercado{" "}
+            <span>Full-stack engineer · AI agents &amp; developer tools</span>
           </motion.p>
 
           <h1
@@ -300,9 +301,9 @@ export default function HeroRoom() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease, delay: 0.65 }}
           >
-            Web applications, AI-enabled systems, and integrations for escape
-            rooms, VR venues, and ambitious products. The proof is hidden in
-            this room.{" "}
+            Nine years of shipping web apps, AI agent tooling, and the hardware
+            behind live experiences, for defense teams, escape rooms, and two
+            SaaS products of my own. The proof is hidden in this room.{" "}
             {reducedMotion ? (
               <span className="room-hint">The lights are on.</span>
             ) : (
@@ -358,7 +359,7 @@ export default function HeroRoom() {
             <text x="340" y="416" textAnchor="end">
               ROOM 01
             </text>
-            <text x="44" y="604">
+            <text x="44" y="460">
               EXIT
             </text>
             <circle cx="470" cy="250" r="26" />

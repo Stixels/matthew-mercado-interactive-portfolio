@@ -43,46 +43,60 @@ const projectOutcomes: Record<string, string> = {
 
 const experience = [
   {
-    period: "Aug 2024 — Now",
-    role: "Software Engineer",
-    company: "Department of Defense",
+    period: "Apr 2026 — Now",
+    role: "AI Agents Software Engineer",
+    company: "U.S. Department of Defense",
     summary:
-      "Building and maintaining software for Department of Defense programs in my current full-time role.",
+      "Built 3 of the 4 production MCP servers for an enterprise LLM platform, own code review across its 15 agent-tooling repositories, and shipped an air-gapped desktop IDE for AI coding agents.",
+  },
+  {
+    period: "Jan 2025 — Apr 2026",
+    role: "Technical Lead",
+    company: "U.S. Department of Defense",
+    summary:
+      "Architected a self-service ingestion platform for 100,000+ entity datasets, cut 10,000-entity processing from 7 minutes to under 1, and made builds 6× faster with CI/CD and GitOps. Earned a division performance award.",
+  },
+  {
+    period: "Aug 2024 — Jan 2025",
+    role: "Software Engineer",
+    company: "U.S. Department of Defense",
+    summary:
+      "Replaced a legacy system with a workflow application that cut analyst task time 90%. Delivered 3 months early, and four partner agencies requested it.",
   },
   {
     period: "Mar 2026 — Now",
     role: "Founder & Lead Software Engineer",
     company: "Waiver Director",
     summary:
-      "Leading product architecture and engineering for a multi-tenant waiver operations platform with secure signed records, integrations, and AI-assisted content review.",
+      "Turning the Escape This waiver tool into a multi-tenant guest-CRM SaaS that captures every participant, with immutable audit trails, booking and email integrations, and Stripe billing.",
   },
   {
     period: "May 2023 — Now",
     role: "Founder & Lead Software Engineer",
     company: "Escape Director",
     summary:
-      "Built and launched a full-stack escape-room management platform with real-time operations, evidence-backed analytics with AI-assisted exploration, billing, and offline reliability.",
+      "Built and operate an escape-room SaaS with offline-first room operation, an LLM analytics assistant chosen through a 4-model evaluation harness, and an open-source Arduino SDK for physical props.",
   },
   {
-    period: "Aug 2017 — Aug 2024",
-    role: "Manager & Software Engineer",
+    period: "Nov 2024 — Now",
+    role: "Contract Software Engineer",
+    company: "eMediCall",
+    summary:
+      "Delivered a React Native mobile app for medical messaging with Google sign-in, camera workflows, and push notifications.",
+  },
+  {
+    period: "Jul 2017 — Aug 2024",
+    role: "Software Engineer & Manager",
     company: "Escape This Frederick",
     summary:
-      "Redesigned the customer experience, doubled conversion, reduced bounce rate by 35%, and built software and electronic puzzle systems for live rooms.",
-  },
-  {
-    period: "Jan 2022 — Dec 2022",
-    role: "Computer Science Peer Mentor",
-    company: "Mount St. Mary's University",
-    summary:
-      "Mentored roughly 100 Computer Science I and II students in Java, Python, debugging, and practical problem-solving.",
+      "Redesigned the customer experience, doubled conversion, reduced bounce rate by 35%, and engineered Arduino and PLC puzzles that eliminated manual resets.",
   },
   {
     period: "May 2022 — Aug 2022",
     role: "Software Engineer Intern, Preview Team",
     company: "Box",
     summary:
-      "Improved React and Redux analytics interfaces, built dynamic link unfurling in PHP, and expanded automated QA coverage with Cucumber and WebdriverIO.",
+      "Built social-link unfurling for every file type, upgraded React and Redux analytics menus, and expanded automated QA with Cucumber and WebdriverIO.",
   },
 ] as const;
 
@@ -387,23 +401,29 @@ export default function PortfolioHome() {
             <p className="signal-kicker">About Matthew</p>
             <h2 id="about-title">From the first sketch to the final relay.</h2>
             <p className="signal-about-lead">
-              I lead with full-stack software engineering, building web
-              applications and AI systems from interface to infrastructure—with
-              experience in the physical systems they sometimes control.
+              Nine years of full-stack engineering, from polished, accessible
+              interfaces to the infrastructure and AI agents behind them. I
+              build LLM tooling for defense teams by day, run two SaaS products
+              of my own, and still wire up physical puzzles for live rooms.
             </p>
             <dl className="signal-capabilities">
               <div>
                 <dt>Full stack</dt>
                 <dd>
-                  React, Next.js, Node.js, Convex, PostgreSQL, product
-                  architecture
+                  TypeScript, React, Next.js, SvelteKit, FastAPI, PostgreSQL,
+                  Redis
                 </dd>
               </div>
               <div>
                 <dt>Applied AI</dt>
                 <dd>
-                  Agentic APIs, LLM evaluation, structured generation, MCP
-                  servers
+                  LLM agents, MCP servers, RAG, tool calling, LLM evaluation
+                </dd>
+              </div>
+              <div>
+                <dt>Delivery</dt>
+                <dd>
+                  CI/CD, Docker, Kubernetes, Argo CD, Vitest, pytest, Playwright
                 </dd>
               </div>
               <div>

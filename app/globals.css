@@ -5399,24 +5399,24 @@ strong {
     inset 0 0 14px rgba(120, 140, 255, 0.35);
 }
 
-.room-clue.is-lighthouse {
+.room-clue.is-mcp {
   --tilt: 3deg;
   top: 15%;
   left: 58%;
 }
 
-.room-clue.is-conversion {
+.room-clue.is-speed {
   --tilt: 2deg;
   top: 44%;
   left: 9%;
 }
 
-.room-clue.is-conversion strong {
+.room-clue.is-speed strong {
   text-decoration: underline 2px;
   text-underline-offset: 0.18em;
 }
 
-.room-clue.is-search {
+.room-clue.is-workflow {
   --tilt: -3deg;
   top: 49%;
   left: 59%;
@@ -5428,7 +5428,7 @@ strong {
   left: 7%;
 }
 
-.room-clue.is-ai {
+.room-clue.is-conversion {
   --tilt: 4deg;
   top: 80%;
   left: 57%;
@@ -5642,9 +5642,21 @@ strong {
     left: 0;
   }
 
-  .room-clue.is-lighthouse,
-  .room-clue.is-search,
-  .room-clue.is-ai {
+  .room-clue.is-mcp,
+  .room-clue.is-workflow,
+  .room-clue.is-conversion {
     left: 51%;
+  }
+
+  .room-plan text {
+    display: none;
+  }
+
+  .room-clue.is-speed {
+    top: 39%;
+  }
+
+  .room-clue.is-workflow {
+    top: 57%;
   }
 }

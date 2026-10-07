@@ -14,16 +14,11 @@ export default function ProjectView({ projectId }: { projectId: string }) {
 
   if (!project) return null;
 
-  const caseStudyProjects = portfolioProjects.filter(
-    ({ id }) => id !== "contact",
-  );
-  const projectIndex = caseStudyProjects.findIndex(
+  const projectIndex = portfolioProjects.findIndex(
     ({ id }) => id === project.id,
   );
   const nextProject =
-    project.id === "contact"
-      ? caseStudyProjects[0]
-      : caseStudyProjects[(projectIndex + 1) % caseStudyProjects.length];
+    portfolioProjects[(projectIndex + 1) % portfolioProjects.length];
   const caseNumber = String(projectIndex + 1).padStart(2, "0");
   const [heroImage, ...supportingImages] = project.screenshots ?? [];
   const links = [
@@ -60,7 +55,7 @@ export default function ProjectView({ projectId }: { projectId: string }) {
           </Link>
 
           <p className="mm-cs-file">
-            {projectIndex >= 0 && <span>Case {caseNumber}</span>}
+            <span>Case {caseNumber}</span>
             {project.hubSubtitle}
           </p>
 

@@ -18,16 +18,13 @@ export async function generateMetadata({
     return buildMetadata({
       title: "Project Not Found",
       description: "The requested project case study could not be found.",
-      path: "/hub",
+      path: "/",
       index: false,
     });
   }
 
   return buildMetadata({
-    title:
-      project.id === "contact"
-        ? project.seoTitle
-        : `${project.seoTitle} — Case Study`,
+    title: `${project.seoTitle} — Case Study`,
     description: project.seoDescription,
     path: `/projects/${project.id}`,
     keywords: [...project.stack, ...(project.seoKeywords ?? []), project.title],

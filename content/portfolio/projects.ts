@@ -1,14 +1,3 @@
-import {
-  BrainCircuit,
-  Cpu,
-  Database,
-  Shield,
-  ShieldAlert,
-  Terminal,
-  User,
-  Workflow,
-} from "lucide-react";
-
 import type { PortfolioProject } from "./types";
 
 export const portfolioProjects: PortfolioProject[] = [
@@ -19,10 +8,6 @@ export const portfolioProjects: PortfolioProject[] = [
     seoDescription:
       "Case study for Escape Director, an escape-room operations SaaS with a live game master dashboard, offline-first rooms, an LLM analytics assistant chosen through a model evaluation harness, and an open-source Arduino device SDK.",
     hubSubtitle: "SAAS PLATFORM",
-    icon: Cpu,
-    level: 0,
-    puzzleType: null,
-    tag: "ACTIVE",
     status: "ACTIVE",
     role: "Founder & Lead Software Engineer",
     timeline: "2023 – Present",
@@ -55,7 +40,6 @@ export const portfolioProjects: PortfolioProject[] = [
     outcomes: ["7,600+ live games", "99.95% uptime", "Offline-first rooms"],
     liveUrl: "https://www.escapedirector.com/",
     docsUrl: "https://docs.escapedirector.com/",
-    color: "neon-blue",
     seoKeywords: [
       "escape room software",
       "offline-first web app",
@@ -126,10 +110,6 @@ export const portfolioProjects: PortfolioProject[] = [
     seoDescription:
       "Case study for Matthew Mercado's AI agent work at the U.S. Department of Defense: production MCP servers for an agency-wide LLM platform, a research agent, an air-gapped IDE for AI coding agents, and agentic-engineering training.",
     hubSubtitle: "APPLIED AI",
-    icon: Workflow,
-    level: 0,
-    puzzleType: null,
-    tag: "ACTIVE",
     status: "ACTIVE",
     role: "AI Agents Software Engineer",
     timeline: "2026 – Present",
@@ -156,7 +136,6 @@ export const portfolioProjects: PortfolioProject[] = [
     outcomes: ["3 of 4 MCP servers", "Air-gapped agent IDE"],
     mediaNote:
       "This work runs on a closed network, so there are no screenshots. Everything here matches my public, cleared resume.",
-    color: "neon-green",
     seoKeywords: [
       "MCP servers",
       "FastMCP",
@@ -199,10 +178,6 @@ export const portfolioProjects: PortfolioProject[] = [
     seoDescription:
       "Case study for Waiver Director, a multi-tenant waiver and guest-CRM SaaS built with SvelteKit and Convex, with immutable signed records, booking integrations, automated follow-ups, and AI content review.",
     hubSubtitle: "SAAS PLATFORM",
-    icon: Shield,
-    level: 0,
-    puzzleType: null,
-    tag: "ACTIVE",
     status: "ACTIVE",
     role: "Founder & Lead Software Engineer",
     timeline: "2026 – Present",
@@ -227,7 +202,6 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     outcomes: ["Multi-tenant SaaS", "Immutable signed records"],
     liveUrl: "https://www.waiverdirector.com/",
-    color: "neon-purple",
     seoKeywords: [
       "waiver software",
       "guest CRM",
@@ -297,10 +271,6 @@ export const portfolioProjects: PortfolioProject[] = [
     seoDescription:
       "Case study for Escape This Frederick: a website rebuild that took Lighthouse from 52 to 97 and doubled conversion, a custom waiver app, and Arduino and PLC puzzles that eliminated manual resets.",
     hubSubtitle: "WEB ENGINEERING",
-    icon: Database,
-    level: 1,
-    puzzleType: "auth",
-    tag: "DEPLOYED",
     status: "DEPLOYED",
     role: "Software Engineer & Manager",
     timeline: "2017 – 2024",
@@ -328,7 +298,6 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     outcomes: ["2× conversion", "Lighthouse 52 → 97"],
     liveUrl: "https://escapethisfrederick.com/",
-    color: "neon-purple",
     seoKeywords: ["local SEO", "conversion optimization", "booking flow"],
     screenshots: ["/screenshots/escapethisfrederick-com.png"],
     sections: [
@@ -361,10 +330,6 @@ export const portfolioProjects: PortfolioProject[] = [
     seoDescription:
       "Case study for Level Up VR, a ground-up website designed in Figma, built in Webflow, and enhanced with custom JavaScript interactions.",
     hubSubtitle: "DESIGN & FRONTEND",
-    icon: Terminal,
-    level: 2,
-    puzzleType: "network",
-    tag: "DEPLOYED",
     status: "DEPLOYED",
     role: "Designer & Web Developer",
     timeline: "2023",
@@ -379,7 +344,6 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     outcomes: ["#1 local search", "Figma to Webflow"],
     liveUrl: "https://www.lvlupvr.com/",
-    color: "neon-green",
     seoKeywords: ["marketing website", "Webflow", "VR venue website"],
     screenshots: [
       "/screenshots/lvlupvr-home.png",
@@ -422,10 +386,6 @@ export const portfolioProjects: PortfolioProject[] = [
     seoDescription:
       "Case study for Matthew Mercado's escape room puzzle engineering: Arduino, PLC, and Raspberry Pi systems, puzzles that reset themselves, and an open-source device SDK that connects props to live games.",
     hubSubtitle: "PHYSICAL SYSTEMS",
-    icon: ShieldAlert,
-    level: 3,
-    puzzleType: "frequency",
-    tag: "RESTRICTED",
     status: "RESTRICTED",
     role: "Puzzle Engineer & Hardware Developer",
     timeline: "2017 – Present",
@@ -441,7 +401,6 @@ export const portfolioProjects: PortfolioProject[] = [
     outcomes: ["Arduino · Pi · PLCs", "No manual resets"],
     mediaNote:
       "These systems live inside working rooms, so the details stay hidden to keep the puzzles fun.",
-    color: "error-red",
     seoKeywords: [
       "Arduino",
       "Raspberry Pi",
@@ -479,10 +438,6 @@ export const portfolioProjects: PortfolioProject[] = [
     seoDescription:
       "Case study for this interactive portfolio: an escape-room camera-feed hero with a UV flashlight that reveals real project results, light and dark themes, and practical case-study storytelling.",
     hubSubtitle: "CREATIVE DEVELOPMENT",
-    icon: BrainCircuit,
-    level: 4,
-    puzzleType: "matrix",
-    tag: "EXPERIMENTAL",
     status: "EXPERIMENTAL",
     role: "Full-Stack Engineer & Designer",
     timeline: "2026 – Present",
@@ -496,7 +451,6 @@ export const portfolioProjects: PortfolioProject[] = [
       { value: "0", label: "React re-renders while the light moves" },
       { value: "2", label: "Themes, following your system setting" },
     ],
-    color: "neon-blue",
     seoKeywords: ["interactive portfolio", "creative development", "CSS mask"],
     mediaNote: "You're looking at it.",
     sections: [
@@ -516,28 +470,6 @@ export const portfolioProjects: PortfolioProject[] = [
           "Next.js 16 statically generates every page. Design tokens drive matching light and dark themes with no flash on load, and with reduced motion turned on, the lights simply stay on.",
       },
     ],
-  },
-  {
-    id: "contact",
-    title: "About Matthew",
-    hubTitle: "About Matthew",
-    seoTitle: "About Matthew Mercado",
-    seoDescription:
-      "Profile and contact page for Matthew Mercado, a full-stack software engineer building AI agent tooling, SaaS products, and the hardware behind live experiences.",
-    hubSubtitle: "ABOUT & CONTACT",
-    icon: User,
-    level: 0,
-    puzzleType: null,
-    tag: "VERIFIED",
-    status: "VERIFIED",
-    role: "Full-Stack Software Engineer",
-    timeline: "LIFETIME",
-    stack: ["TypeScript", "React", "Python", "LLM agents", "Arduino"],
-    overview:
-      "Full-stack software engineer with nine years of experience, known for polished, accessible interfaces and thoughtful UX. Builds LLM agent platforms and AI developer tools, runs two SaaS products, and wires up the physical puzzles inside live rooms.",
-    color: "neon-green",
-    seoKeywords: ["about Matthew Mercado", "contact Matthew Mercado"],
-    screenshots: ["/matthew-headshot.png"],
   },
 ];
 

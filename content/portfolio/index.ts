@@ -1,11 +1,8 @@
 export type {
-  PortfolioColor,
   PortfolioProject,
-  PortfolioPuzzle,
   ProjectId,
   ProjectMetric,
   ProjectSection,
-  PuzzleId,
 } from "./types";
 
 export {
@@ -14,9 +11,3 @@ export {
   projectIds,
   projectsById,
 } from "./projects";
-export {
-  getPuzzleByProjectId,
-  puzzleByProjectId,
-  puzzleProjectIds,
-  puzzleProjects,
-} from "./puzzles";

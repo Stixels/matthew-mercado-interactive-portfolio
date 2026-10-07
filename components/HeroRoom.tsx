@@ -123,7 +123,6 @@ export default function HeroRoom() {
     let pointerActive = false;
     let light = { x: 0, y: 0 };
     const start = performance.now();
-    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
 
     const applyLight = (clientX: number, clientY: number) => {
       const heroRect = hero.getBoundingClientRect();
@@ -155,7 +154,7 @@ export default function HeroRoom() {
 
     const sweep = (now: number) => {
       const idle = now - lastPointer > 5000;
-      if (!pointerActive || idle || !canHover.matches) {
+      if (!pointerActive || idle) {
         pointerActive = false;
         const rect = field.getBoundingClientRect();
         if (rect.bottom > 0 && rect.top < window.innerHeight) {
@@ -170,8 +169,12 @@ export default function HeroRoom() {
       frame = requestAnimationFrame(sweep);
     };
 
+    // A mouse steers the light as it moves; a finger aims it with a tap, so
+    // swiping over the hero still scrolls the page.
     const handlePointer = (event: PointerEvent) => {
-      if (event.pointerType !== "mouse") return;
+      if (event.type === "pointermove" && event.pointerType !== "mouse") {
+        return;
+      }
       pointerActive = true;
       lastPointer = performance.now();
       applyLight(event.clientX, event.clientY);
@@ -190,9 +193,11 @@ export default function HeroRoom() {
     }
 
     hero.addEventListener("pointermove", handlePointer);
+    hero.addEventListener("pointerdown", handlePointer);
     frame = requestAnimationFrame(sweep);
     return () => {
       hero.removeEventListener("pointermove", handlePointer);
+      hero.removeEventListener("pointerdown", handlePointer);
       cancelAnimationFrame(frame);
     };
   }, [reducedMotion]);
@@ -302,7 +307,9 @@ export default function HeroRoom() {
                     : "Move your light across the wall to find it."}
                 </span>
                 <span className="room-hint is-touch">
-                  Watch the light sweep the wall.
+                  {hasMoved
+                    ? "Keep searching."
+                    : "Tap the wall to aim your light."}
                 </span>
               </>
             )}

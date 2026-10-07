@@ -4352,10 +4352,27 @@ body {
   display: inline-block;
 }
 
-.room-word {
+/* Invisible copies of every rotating phrase stack in one grid cell so the
+   line always reserves the longest one; the live text sits on top and its
+   wider scramble frames can't push the layout around. */
+.room-line > .room-word {
+  position: relative;
+  display: inline-grid;
+  max-width: 100%;
   color: var(--mm-accent);
   white-space: nowrap;
   text-shadow: 0 0 40px var(--mm-accent-glow);
+}
+
+.room-word-ghost {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+
+.room-word-live {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .room-caret {
@@ -5408,7 +5425,7 @@ body {
   }
 
   .room-copy h1 {
-    font-size: clamp(2.7rem, 12.4vw, 4.4rem);
+    font-size: clamp(2rem, 10.6vw, 4.2rem);
   }
 
   .room-intro {

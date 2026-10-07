@@ -269,8 +269,16 @@ export default function HeroRoom() {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.9, ease, delay: 0.4 }}
               >
-                <ScrambledWord enabled={!reducedMotion} />
-                <i className="room-caret" />
+                {ROTATING_WORDS.map((word) => (
+                  <span key={word} className="room-word-ghost">
+                    {word}
+                    <i className="room-caret" />
+                  </span>
+                ))}
+                <span className="room-word-live">
+                  <ScrambledWord enabled={!reducedMotion} />
+                  <i className="room-caret" />
+                </span>
               </motion.span>
             </span>
           </h1>

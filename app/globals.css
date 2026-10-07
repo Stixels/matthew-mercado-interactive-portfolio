@@ -707,6 +707,9 @@ body {
   width: min(100%, 600px, calc((100svh - 13rem) * 0.9375));
   justify-self: end;
   aspect-ratio: 600 / 640;
+  /* A long press aims the light, so it must not open the copy menu. */
+  -webkit-touch-callout: none;
+  user-select: none;
 }
 
 .room-plan {

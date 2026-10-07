@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, FileText } from "lucide-react";
+import { RESUME_URL } from "@/lib/site";
 
 const ROTATING_WORDS = [
   "the real world.",
@@ -376,6 +377,14 @@ export default function HeroRoom() {
             <a className="room-button" href="#work">
               <span>{cleared ? "Unlock the work" : "View selected work"}</span>
               <ArrowDown aria-hidden="true" />
+            </a>
+            <a
+              className="room-link"
+              href={RESUME_URL}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Read my resume <FileText aria-hidden="true" />
             </a>
             <a className="room-link" href="mailto:matthew@escapedirector.com">
               Start a conversation <ArrowUpRight aria-hidden="true" />

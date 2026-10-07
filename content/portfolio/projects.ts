@@ -81,7 +81,7 @@ export const portfolioProjects: PortfolioProject[] = [
       "Arduino SDK",
     ],
     screenshots: [
-      "/screenshots/staging-escapedirector-com.png",
+      "/screenshots/escape-director-home.png",
       "/screenshots/escape-director-room-dashboard.jpg",
       "/screenshots/escape-director-rooms-overview.jpg",
       "/screenshots/escape-director-analytics-ai.jpg",
@@ -251,16 +251,15 @@ export const portfolioProjects: PortfolioProject[] = [
       "SvelteKit Convex",
     ],
     screenshots: [
-      "/screenshots/waiver-director.png",
+      "/screenshots/waiver-director-home.png",
       "/screenshots/waiver-director-ai-audit.png",
       "/screenshots/waiver-director-authoring.png",
       "/screenshots/waiver-director-integrations.png",
     ],
     screenshotDetails: [
       {
-        label: "Workspace overview",
-        description:
-          "Bookings, signed records, follow-ups, and workspace activity in one view.",
+        label: "Waiver Director",
+        description: "The public product site.",
       },
       {
         label: "AI review, human decision",

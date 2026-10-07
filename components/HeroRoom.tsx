@@ -418,8 +418,8 @@ export default function HeroRoom() {
         </ul>
       </div>
 
-      <a className="room-scroll" href="#system" aria-label="Enter the system">
-        <span>Enter the system</span>
+      <a className="room-scroll" href="#work">
+        <span>Open the case files</span>
         <ArrowDown aria-hidden="true" />
       </a>
     </section>

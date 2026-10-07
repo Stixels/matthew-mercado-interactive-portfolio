@@ -78,10 +78,14 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
-      <body
-        suppressHydrationWarning
-        className="bg-background text-foreground antialiased"
-      >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`,
+          }}
+        />
+      </head>
+      <body suppressHydrationWarning className="antialiased">
         <NavBar />
         {children}
       </body>

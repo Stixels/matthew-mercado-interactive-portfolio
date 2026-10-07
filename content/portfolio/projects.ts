@@ -82,8 +82,8 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     screenshots: [
       "/screenshots/escape-director-home.png",
-      "/screenshots/escape-director-rooms-overview.jpg",
-      "/screenshots/escape-director-analytics-ai.jpg",
+      "/screenshots/escape-director-all-rooms.webp",
+      "/screenshots/escape-director-analytics.webp",
     ],
     screenshotDetails: [
       {
@@ -96,9 +96,9 @@ export const portfolioProjects: PortfolioProject[] = [
           "Owners run unlimited rooms from one browser app, each with its own duration, clue allowance, content, and live state.",
       },
       {
-        label: "Ask Analytics",
+        label: "Analytics",
         description:
-          "Operators ask questions in plain language and get answers backed by the numbers, scoped to the room and dates they chose.",
+          "A dashboard operators arrange themselves, with success rates and game master activity per room, and Ask Analytics a click away for plain-language questions.",
       },
     ],
     sections: [

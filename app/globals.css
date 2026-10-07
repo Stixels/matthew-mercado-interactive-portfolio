@@ -2041,6 +2041,11 @@ body {
   gap: clamp(3rem, 6vw, 5rem);
 }
 
+/* App screenshots are wide desktop captures. */
+.mm-cs-gallery .mm-cs-shot-image {
+  aspect-ratio: 2 / 1;
+}
+
 /* Story ------------------------------------------------------------------ */
 
 .mm-cs-block.mm-section {

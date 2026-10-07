@@ -121,6 +121,9 @@ export default function HeroRoom() {
     let frame = 0;
     let lastPointer = 0;
     let pointerActive = false;
+    let dragging = false;
+    let holdTimer = 0;
+    let touchStart = { x: 0, y: 0 };
     let light = { x: 0, y: 0 };
     const start = performance.now();
 
@@ -153,7 +156,7 @@ export default function HeroRoom() {
     };
 
     const sweep = (now: number) => {
-      const idle = now - lastPointer > 5000;
+      const idle = !dragging && now - lastPointer > 5000;
       if (!pointerActive || idle) {
         pointerActive = false;
         const rect = field.getBoundingClientRect();
@@ -169,17 +172,57 @@ export default function HeroRoom() {
       frame = requestAnimationFrame(sweep);
     };
 
+    const aim = (clientX: number, clientY: number) => {
+      pointerActive = true;
+      lastPointer = performance.now();
+      applyLight(clientX, clientY);
+      detectClues();
+      setHasMoved(true);
+    };
+
     // A mouse steers the light as it moves; a finger aims it with a tap, so
     // swiping over the hero still scrolls the page.
     const handlePointer = (event: PointerEvent) => {
       if (event.type === "pointermove" && event.pointerType !== "mouse") {
         return;
       }
-      pointerActive = true;
+      aim(event.clientX, event.clientY);
+    };
+
+    // Pressing and holding a finger on the wall picks the light up, and it
+    // then follows the finger. A quick swipe moves before the hold lands, so
+    // it scrolls as usual.
+    const handleTouchStart = (event: TouchEvent) => {
+      if (event.touches.length !== 1) return;
+      const touch = event.touches[0];
+      touchStart = { x: touch.clientX, y: touch.clientY };
+      window.clearTimeout(holdTimer);
+      holdTimer = window.setTimeout(() => {
+        dragging = true;
+        navigator.vibrate?.(12);
+        aim(touchStart.x, touchStart.y);
+      }, 280);
+    };
+
+    const handleTouchMove = (event: TouchEvent) => {
+      const touch = event.touches[0];
+      if (!touch) return;
+      if (dragging) {
+        event.preventDefault();
+        aim(touch.clientX, touch.clientY);
+      } else if (
+        Math.hypot(touch.clientX - touchStart.x, touch.clientY - touchStart.y) >
+        10
+      ) {
+        window.clearTimeout(holdTimer);
+      }
+    };
+
+    const handleTouchEnd = () => {
+      window.clearTimeout(holdTimer);
+      if (!dragging) return;
+      dragging = false;
       lastPointer = performance.now();
-      applyLight(event.clientX, event.clientY);
-      detectClues();
-      setHasMoved(true);
     };
 
     if (reducedMotion) {
@@ -194,10 +237,19 @@ export default function HeroRoom() {
 
     hero.addEventListener("pointermove", handlePointer);
     hero.addEventListener("pointerdown", handlePointer);
+    field.addEventListener("touchstart", handleTouchStart, { passive: true });
+    field.addEventListener("touchmove", handleTouchMove, { passive: false });
+    field.addEventListener("touchend", handleTouchEnd);
+    field.addEventListener("touchcancel", handleTouchEnd);
     frame = requestAnimationFrame(sweep);
     return () => {
       hero.removeEventListener("pointermove", handlePointer);
       hero.removeEventListener("pointerdown", handlePointer);
+      field.removeEventListener("touchstart", handleTouchStart);
+      field.removeEventListener("touchmove", handleTouchMove);
+      field.removeEventListener("touchend", handleTouchEnd);
+      field.removeEventListener("touchcancel", handleTouchEnd);
+      window.clearTimeout(holdTimer);
       cancelAnimationFrame(frame);
     };
   }, [reducedMotion]);
@@ -309,7 +361,7 @@ export default function HeroRoom() {
                 <span className="room-hint is-touch">
                   {hasMoved
                     ? "Keep searching."
-                    : "Tap the wall to aim your light."}
+                    : "Tap or hold the wall to aim your light."}
                 </span>
               </>
             )}

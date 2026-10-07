@@ -3,6 +3,7 @@ export type {
   PortfolioProject,
   PortfolioPuzzle,
   ProjectId,
+  ProjectMetric,
   ProjectSection,
   PuzzleId,
 } from "./types";

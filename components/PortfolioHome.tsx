@@ -3,9 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUpRight, FileText, Mail } from "lucide-react";
 import { getProjectById } from "@/content/portfolio";
 import HeroRoom from "@/components/HeroRoom";
+import { RESUME_URL } from "@/lib/site";
 
 const caseIds = [
   "escape-director",
@@ -333,7 +334,7 @@ export default function PortfolioHome() {
           >
             <a
               className="mm-text-link"
-              href="/matthew-mercado-resume.pdf"
+              href={RESUME_URL}
               target="_blank"
               rel="noreferrer"
             >
@@ -376,6 +377,14 @@ export default function PortfolioHome() {
             <Mail aria-hidden="true" />
             <span>matthew@escapedirector.com</span>
             <ArrowUpRight aria-hidden="true" />
+          </a>
+          <a
+            className="mm-contact-resume"
+            href={RESUME_URL}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FileText aria-hidden="true" /> View my resume
           </a>
           <footer className="mm-footer">
             <span>© Matthew Mercado</span>

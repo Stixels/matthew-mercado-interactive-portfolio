@@ -2270,3 +2270,209 @@ header.mm-cs-split {
     transition: none;
   }
 }
+
+/* Case features ---------------------------------------------------------- */
+
+.mm-cs-feature-heading {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.mm-cs-feature-heading p {
+  max-width: 52ch;
+  margin: 0;
+  color: var(--mm-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.mm-cs-flow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mm-cs-flow li {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border: 1px solid var(--mm-line-strong);
+  background: var(--mm-bg);
+}
+
+.mm-cs-flow li:first-child {
+  border-color: var(--mm-accent);
+}
+
+.mm-cs-flow-index {
+  color: var(--mm-accent-text);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.mm-cs-flow h3 {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 640;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+}
+
+.mm-cs-flow p {
+  margin: 0;
+  color: var(--mm-muted);
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
+/* Arrows sit in the gap between cards. */
+.mm-cs-flow-arrow {
+  position: absolute;
+  top: 1.45rem;
+  right: -1.3rem;
+  z-index: 1;
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--mm-accent-text);
+}
+
+.mm-cs-compare {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.mm-cs-compare th,
+.mm-cs-compare td {
+  padding: 1.15rem 1rem 1.15rem 0;
+  border-bottom: 1px solid var(--mm-line);
+  text-align: left;
+  vertical-align: baseline;
+}
+
+.mm-cs-compare thead th {
+  padding-top: 0;
+  border-bottom-color: var(--mm-line-strong);
+  color: var(--mm-faint);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.mm-cs-compare tbody th {
+  width: 40%;
+  font-family: var(--font-sans);
+  font-weight: 560;
+}
+
+.mm-cs-compare tbody td:nth-child(2) {
+  color: var(--mm-faint);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.mm-cs-compare tbody td:last-child {
+  color: var(--mm-accent-text);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.mm-cs-stats {
+  border: 1px solid var(--mm-accent);
+  background: var(--mm-bg);
+}
+
+.mm-cs-stats dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin: 0;
+}
+
+.mm-cs-stats dl > div {
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.mm-cs-stats dl > div + div {
+  border-left: 1px solid var(--mm-line);
+}
+
+.mm-cs-stats dd {
+  margin: 0;
+  color: var(--mm-accent-text);
+  font-size: clamp(2.6rem, 5vw, 4.8rem);
+  font-weight: 650;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
+.mm-cs-stats dt {
+  color: var(--mm-muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.mm-cs-stats > p {
+  margin: 0;
+  padding: 1rem clamp(1.5rem, 3vw, 2.25rem);
+  border-top: 1px solid var(--mm-line);
+  color: var(--mm-muted);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 1100px) {
+  .mm-cs-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mm-cs-flow-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .mm-cs-flow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .mm-cs-compare tbody th {
+    width: auto;
+  }
+
+  .mm-cs-compare th,
+  .mm-cs-compare td {
+    padding-right: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .mm-cs-stats dl {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .mm-cs-stats dl > div + div {
+    border-left: 0;
+  }
+
+  .mm-cs-stats dl > div:nth-child(even) {
+    border-left: 1px solid var(--mm-line);
+  }
+
+  .mm-cs-stats dl > div:nth-child(n + 3) {
+    border-top: 1px solid var(--mm-line);
+  }
+}

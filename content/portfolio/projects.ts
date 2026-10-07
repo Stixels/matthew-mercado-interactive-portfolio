@@ -34,6 +34,52 @@ export const portfolioProjects: PortfolioProject[] = [
       footageTitle: "The game master's view.",
       stack: "Under the hood",
     },
+    features: [
+      {
+        kind: "flow",
+        label: "Outage drill",
+        title: "What happens when the Wi-Fi drops.",
+        intro:
+          "Venue internet fails at the worst moments. The room is designed so players never notice.",
+        steps: [
+          {
+            name: "Prepare",
+            detail:
+              "Opening a room caches its current revision, the app shell, a signed offline access grant, and every audio, image, and video file.",
+          },
+          {
+            name: "Keep playing",
+            detail:
+              "The dashboard and the players' Live View keep the clock, clues, and media running from IndexedDB with no connection at all.",
+          },
+          {
+            name: "Queue",
+            detail:
+              "Each finished game lands in a durable outbox with an idempotency key, so it survives a refresh or a reboot.",
+          },
+          {
+            name: "Sync once",
+            detail:
+              "When the connection returns, the outbox drains. No game is lost, and none is counted twice.",
+          },
+        ],
+      },
+      {
+        kind: "stats",
+        label: "Model tryouts",
+        title: "How the AI assistant earned the job.",
+        intro:
+          "Candidate models ran the real production tool flow, not a demo prompt, and were judged on quality, latency, and cost.",
+        items: [
+          { value: "4", label: "Models compared head to head" },
+          { value: "3", label: "Benchmark rounds" },
+          { value: "72", label: "Conversation turns per model" },
+          { value: "Blind", label: "Answer review, so no favorites" },
+        ],
+        footnote:
+          "Trace grading checked every tool call, and spend limits kept the tryouts cheap.",
+      },
+    ],
     challenge:
       "An escape room runs on a 60-minute clock with players inside who are counting on it. Most venues juggle a timer app, a clue screen, and paper notes, and a dropped Wi-Fi connection can stall a live game. I had run rooms since 2017, so I built the tool I wanted at the game master's desk.",
     metrics: [
@@ -140,6 +186,37 @@ export const portfolioProjects: PortfolioProject[] = [
       stack: "Built with",
       media: "Closed network",
     },
+    features: [
+      {
+        kind: "flow",
+        label: "Request path",
+        title: "From a question to a cited answer.",
+        intro:
+          "What happens behind the chat box when someone asks the platform for help.",
+        steps: [
+          {
+            name: "Ask",
+            detail:
+              "An employee asks a question in the enterprise Svelte chat interface.",
+          },
+          {
+            name: "Choose tools",
+            detail:
+              "The model picks from tools the platform's MCP servers expose, three of the four built by me.",
+          },
+          {
+            name: "Do the work",
+            detail:
+              "FastMCP servers search knowledge repositories, run multi-step research, or build a chart from a validated schema.",
+          },
+          {
+            name: "Answer",
+            detail:
+              "The result comes back as one answer with citations, or a finished chart, in seconds.",
+          },
+        ],
+      },
+    ],
     challenge:
       "An enterprise AI assistant is only as useful as the tools it can call. Teams needed it to search internal knowledge, draw charts, and help write code, on a network with no internet access, where every tool had to be secure, reviewable, and easy for other teams to build on.",
     metrics: [
@@ -216,6 +293,37 @@ export const portfolioProjects: PortfolioProject[] = [
       footageTitle: "From signature to follow-up.",
       stack: "Stack",
     },
+    features: [
+      {
+        kind: "flow",
+        label: "Record lifecycle",
+        title: "One signature, start to finish.",
+        intro:
+          "A waiver is a legal record first and a marketing relationship second. The system keeps the two apart.",
+        steps: [
+          {
+            name: "Publish",
+            detail:
+              "The operator publishes a waiver, and that version locks so it can never change under a signature.",
+          },
+          {
+            name: "Sign",
+            detail:
+              "Every participant signs from a link, QR code, embed, or kiosk, including minors, before they arrive.",
+          },
+          {
+            name: "Freeze",
+            detail:
+              "The submission captures signer details, answers, signature, and booking context in an immutable audit trail.",
+          },
+          {
+            name: "Follow up",
+            detail:
+              "Signers who opted in sync to Mailchimp, and scheduled emails bring them back for another visit.",
+          },
+        ],
+      },
+    ],
     challenge:
       "At Escape This Frederick, I built a waiver app that captured every guest for remarketing, and other venues wanted the same thing. Waiver Director rebuilds it as a multi-tenant product, where each business's legal records have to stay exact and isolated from every other business.",
     metrics: [
@@ -317,6 +425,28 @@ export const portfolioProjects: PortfolioProject[] = [
       buildTitle: "Faster, clearer, fully booked.",
       stack: "Built with",
     },
+    features: [
+      {
+        kind: "compare",
+        label: "Before and after",
+        title: "What the rebuild changed.",
+        rows: [
+          { measure: "Lighthouse performance", before: "52", after: "97" },
+          { measure: "Visitors who book", before: "2.5%", after: "5%" },
+          { measure: "Bounce rate", before: "—", after: "35% lower" },
+          {
+            measure: "Guests on the marketing list",
+            before: "Booker only",
+            after: "Every player",
+          },
+          {
+            measure: "Puzzle resets between games",
+            before: "By hand",
+            after: "Automatic",
+          },
+        ],
+      },
+    ],
     challenge:
       "The old site was slow and lost bookings. Lighthouse scored it 52, only 2.5% of visitors booked, and guest details lived only with whoever made the booking. In the rooms, puzzles had to be reset by hand between every game.",
     metrics: [
@@ -373,6 +503,35 @@ export const portfolioProjects: PortfolioProject[] = [
       footageTitle: "Every game, one tap away.",
       stack: "Tools",
     },
+    features: [
+      {
+        kind: "flow",
+        label: "Process",
+        title: "From blank canvas to bookings.",
+        steps: [
+          {
+            name: "Figma",
+            detail:
+              "An original visual system and every page, designed and iterated before any build work.",
+          },
+          {
+            name: "Webflow",
+            detail:
+              "A responsive build with a CMS game catalog that staff can grow on their own.",
+          },
+          {
+            name: "JavaScript",
+            detail:
+              "Custom interactions and animation only where the platform stopped short.",
+          },
+          {
+            name: "Resova",
+            detail:
+              "A restyled booking widget, so browsing turns into a reservation without a jarring handoff.",
+          },
+        ],
+      },
+    ],
     challenge:
       "A new VR venue needed a site that felt as energetic as the games, that staff could update without a developer, and that moved visitors straight to booking.",
     metrics: [
@@ -436,6 +595,35 @@ export const portfolioProjects: PortfolioProject[] = [
       stack: "Parts bin",
       media: "Classified by design",
     },
+    features: [
+      {
+        kind: "flow",
+        label: "Signal chain",
+        title: "From a player's hands to the game master's screen.",
+        steps: [
+          {
+            name: "Sense",
+            detail:
+              "Sensors, switches, and magnets pick up what players do with the props.",
+          },
+          {
+            name: "Decide",
+            detail:
+              "Arduino or PLC logic checks the sequence and knows when a puzzle is truly solved.",
+          },
+          {
+            name: "React",
+            detail:
+              "Raspberry Pi systems fire video, audio, light, or a lock release at the right moment.",
+          },
+          {
+            name: "Report",
+            detail:
+              "The Escape Director device SDK sends state and completion to the live dashboard.",
+          },
+        ],
+      },
+    ],
     challenge:
       "A great puzzle has to feel like magic to players and be dull to maintain: it must reset itself between games, recover if something goes wrong, and let the game master see what's happening from the desk.",
     metrics: [
@@ -495,6 +683,35 @@ export const portfolioProjects: PortfolioProject[] = [
       stack: "Built with",
       media: "Live demo",
     },
+    features: [
+      {
+        kind: "flow",
+        label: "One frame of light",
+        title: "How the flashlight works.",
+        steps: [
+          {
+            name: "Pointer",
+            detail:
+              "A pointer move, or an animation frame of the automatic sweep on touch screens.",
+          },
+          {
+            name: "CSS variables",
+            detail:
+              "The position is written straight to custom properties, skipping React entirely.",
+          },
+          {
+            name: "Mask",
+            detail:
+              "A radial mask-image reveals the UV ink layer under the light.",
+          },
+          {
+            name: "Discovery",
+            detail:
+              "A distance check marks a clue as found, the only moment React re-renders.",
+          },
+        ],
+      },
+    ],
     challenge:
       "A portfolio has a few seconds to make an impression, but it still has to answer the boring questions quickly. I wanted an opening people remember that never stands between a recruiter and the facts.",
     metrics: [

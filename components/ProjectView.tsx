@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { getProjectById, portfolioProjects } from "@/content/portfolio";
+import CaseFeatureSection from "@/components/CaseFeatureSection";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -23,12 +24,17 @@ export default function ProjectView({ projectId }: { projectId: string }) {
   const [heroImage, ...supportingImages] = project.screenshots ?? [];
   const { headings } = project;
   const hasGallery = supportingImages.length > 0;
+  const features = project.features ?? [];
   const chapters = [
     project.challenge && "brief",
+    ...features.map((_, index) => `feature-${index}`),
     project.sections?.length && "build",
     hasGallery && "footage",
     "stack",
   ].filter(Boolean);
+  // Alternate section backgrounds down the page, whichever chapters exist.
+  const chapterClass = (chapter: string) =>
+    `mm-section mm-cs-block${chapters.indexOf(chapter) % 2 ? " mm-section-alt" : ""}`;
   const chapterNumber = (chapter: string) =>
     String(chapters.indexOf(chapter) + 1).padStart(2, "0");
   const links = [
@@ -161,7 +167,7 @@ export default function ProjectView({ projectId }: { projectId: string }) {
       )}
 
       {project.challenge && (
-        <section className="mm-section mm-cs-block" aria-labelledby="cs-brief">
+        <section className={chapterClass("brief")} aria-labelledby="cs-brief">
           <div className="mm-frame mm-cs-split">
             <p className="mm-label">
               <span>{chapterNumber("brief")}</span> {headings.brief}
@@ -173,11 +179,19 @@ export default function ProjectView({ projectId }: { projectId: string }) {
         </section>
       )}
 
+      {features.map((feature, index) => (
+        <CaseFeatureSection
+          key={feature.title}
+          feature={feature}
+          id={`cs-feature-${index}`}
+          number={chapterNumber(`feature-${index}`)}
+          alt={chapters.indexOf(`feature-${index}`) % 2 === 1}
+          reveal={reveal}
+        />
+      ))}
+
       {project.sections && project.sections.length > 0 && (
-        <section
-          className="mm-section mm-section-alt mm-cs-block"
-          aria-labelledby="cs-build"
-        >
+        <section className={chapterClass("build")} aria-labelledby="cs-build">
           <div className="mm-frame">
             <header className="mm-cs-split">
               <p className="mm-label">
@@ -203,7 +217,7 @@ export default function ProjectView({ projectId }: { projectId: string }) {
 
       {hasGallery && (
         <section
-          className="mm-section mm-cs-block"
+          className={chapterClass("footage")}
           aria-labelledby="cs-gallery"
         >
           <div className="mm-frame">
@@ -251,7 +265,7 @@ export default function ProjectView({ projectId }: { projectId: string }) {
         </section>
       )}
 
-      <section className="mm-section mm-cs-block" aria-labelledby="cs-stack">
+      <section className={chapterClass("stack")} aria-labelledby="cs-stack">
         <div className="mm-frame mm-cs-split">
           <p className="mm-label" id="cs-stack">
             <span>{chapterNumber("stack")}</span> {headings.stack}

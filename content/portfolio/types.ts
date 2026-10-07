@@ -28,6 +28,28 @@ export type CaseHeadings = {
   media?: string;
 };
 
+type FeatureBase = {
+  label: string;
+  title: string;
+  intro?: string;
+};
+
+/** A case-specific section shown between the brief and the build. */
+export type CaseFeature =
+  | (FeatureBase & {
+      kind: "flow";
+      steps: { name: string; detail: string }[];
+    })
+  | (FeatureBase & {
+      kind: "compare";
+      rows: { measure: string; before: string; after: string }[];
+    })
+  | (FeatureBase & {
+      kind: "stats";
+      items: ProjectMetric[];
+      footnote?: string;
+    });
+
 export type ScreenshotDetail = {
   label: string;
   description: string;
@@ -52,6 +74,7 @@ export type PortfolioProject = {
   /** Short proof chips shown on the homepage case card. */
   outcomes?: string[];
   headings: CaseHeadings;
+  features?: CaseFeature[];
   /** Shown when a case has no screenshots to explain why. */
   mediaNote?: string;
   liveUrl?: string;

@@ -374,9 +374,9 @@ export default function HeroRoom() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease, delay: 0.8 }}
           >
-            <a className="room-button" href="#work">
-              <span>{cleared ? "Unlock the work" : "View selected work"}</span>
-              <ArrowDown aria-hidden="true" />
+            <a className="room-button" href="mailto:matthew@escapedirector.com">
+              <span>Start a conversation</span>
+              <ArrowUpRight aria-hidden="true" />
             </a>
             <a
               className="room-link"
@@ -385,9 +385,6 @@ export default function HeroRoom() {
               rel="noreferrer"
             >
               Read my resume <FileText aria-hidden="true" />
-            </a>
-            <a className="room-link" href="mailto:matthew@escapedirector.com">
-              Start a conversation <ArrowUpRight aria-hidden="true" />
             </a>
           </motion.div>
         </div>

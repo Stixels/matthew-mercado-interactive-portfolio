@@ -72,20 +72,6 @@ export default function CaseFeatureSection({
             </tbody>
           </motion.table>
         )}
-
-        {feature.kind === "stats" && (
-          <motion.div className="mm-cs-stats" {...reveal}>
-            <dl>
-              {feature.items.map((item) => (
-                <div key={item.label}>
-                  <dd>{item.value}</dd>
-                  <dt>{item.label}</dt>
-                </div>
-              ))}
-            </dl>
-            {feature.footnote && <p>{feature.footnote}</p>}
-          </motion.div>
-        )}
       </div>
     </section>
   );

@@ -20,8 +20,8 @@ export type ProjectMetric = {
 /** Per-case wording for the case page's section labels and headings. */
 export type CaseHeadings = {
   brief: string;
-  build: string;
-  buildTitle: string;
+  build?: string;
+  buildTitle?: string;
   footage?: string;
   footageTitle?: string;
   stack: string;
@@ -43,11 +43,6 @@ export type CaseFeature =
   | (FeatureBase & {
       kind: "compare";
       rows: { measure: string; before: string; after: string }[];
-    })
-  | (FeatureBase & {
-      kind: "stats";
-      items: ProjectMetric[];
-      footnote?: string;
     });
 
 export type ScreenshotDetail = {

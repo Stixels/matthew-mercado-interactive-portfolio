@@ -19,10 +19,8 @@ export const portfolioProjects: PortfolioProject[] = [
       "Prisma",
       "PostgreSQL",
       "IndexedDB",
-      "AWS S3",
       "Stripe",
       "Vercel AI Gateway",
-      "Arduino C++",
     ],
     overview:
       "The operations platform I built and run for escape rooms. Game masters control the clock, clues, puzzles, media, and the players' screen from one dashboard, and the room keeps running when the venue's internet doesn't.",
@@ -64,21 +62,6 @@ export const portfolioProjects: PortfolioProject[] = [
           },
         ],
       },
-      {
-        kind: "stats",
-        label: "Model tryouts",
-        title: "How the AI assistant earned the job.",
-        intro:
-          "Candidate models ran the real production tool flow, not a demo prompt, and were judged on quality, latency, and cost.",
-        items: [
-          { value: "4", label: "Models compared head to head" },
-          { value: "3", label: "Benchmark rounds" },
-          { value: "72", label: "Conversation turns per model" },
-          { value: "Blind", label: "Answer review, so no favorites" },
-        ],
-        footnote:
-          "Trace grading checked every tool call, and spend limits kept the tryouts cheap.",
-      },
     ],
     challenge:
       "An escape room runs on a 60-minute clock with players inside who are counting on it. Most venues juggle a timer app, a clue screen, and paper notes, and a dropped Wi-Fi connection can stall a live game. I had run rooms since 2017, so I built the tool I wanted at the game master's desk.",
@@ -86,10 +69,6 @@ export const portfolioProjects: PortfolioProject[] = [
       { value: "7,600+", label: "Live games run on the platform" },
       { value: "132,000+", label: "Game actions logged" },
       { value: "99.95%", label: "Uptime over the trailing 12 months" },
-      {
-        value: "4 models",
-        label: "Benchmarked before the AI assistant shipped",
-      },
     ],
     outcomes: ["7,600+ live games", "99.95% uptime", "Offline-first rooms"],
     liveUrl: "https://www.escapedirector.com/",
@@ -135,24 +114,14 @@ export const portfolioProjects: PortfolioProject[] = [
           "Game masters run the clock, ordered puzzles, clues, audio, images, video, and the synchronized player-facing Live View from one screen. Automations fire from solved puzzles, clock events, or a game master's command, and every action is timestamped in the session log for review afterward.",
       },
       {
-        title: "Built to survive an outage",
+        title: "An AI assistant that earned the job",
         content:
-          "Opening a room prepares everything it needs ahead of time: an IndexedDB store, a verified offline access grant, and every media file. If the internet drops mid-game, the room keeps running. Completed games go into a durable, idempotent outbox and sync once the connection returns, without duplicates.",
-      },
-      {
-        title: "Analytics you can talk to",
-        content:
-          "Ask Analytics is an LLM assistant on OpenAI models through Vercel AI Gateway. It answers business questions in plain language and customizes an operator's dashboard through schema-validated tool calls, using approved, read-only metric queries so room scope and metric definitions stay intact.",
-      },
-      {
-        title: "Choosing the model with evidence",
-        content:
-          "Before it shipped, I built an evaluation harness on the production tool flow and compared 4 models across 3 benchmark rounds, 72 turns per model. Trace grading, blinded answer review, and spend limits picked the production model on quality, latency, and cost rather than on vibes.",
+          "Ask Analytics answers business questions in plain language and reshapes an operator's dashboard through schema-validated tool calls. Before it shipped, I ran 4 candidate models through the real production tool flow, 3 rounds and 72 turns each, with trace grading and blinded review, and picked the winner on quality, latency, and cost.",
       },
       {
         title: "Props that talk to the game",
         content:
-          "I released an open-source, MIT-licensed C++ device SDK for Arduino. It gives physical props state, command, and completion APIs with automatic pairing and reconnection, so a solved puzzle in the room shows up on the game master's dashboard instantly.",
+          "An open-source, MIT-licensed Arduino SDK gives physical props state, command, and completion APIs with automatic pairing and reconnection, so a solved puzzle shows up on the dashboard instantly.",
       },
     ],
   },
@@ -174,8 +143,6 @@ export const portfolioProjects: PortfolioProject[] = [
       "TypeScript",
       "Electron",
       "Svelte",
-      "LLM agents",
-      "PKI authentication",
     ],
     overview:
       "The tools behind an agency-wide LLM platform at the U.S. Department of Defense: MCP servers that let its assistant do real work, an air-gapped IDE for AI coding agents, and the skills and training that help teams build with them.",
@@ -186,48 +153,16 @@ export const portfolioProjects: PortfolioProject[] = [
       stack: "Built with",
       media: "Closed network",
     },
-    features: [
-      {
-        kind: "flow",
-        label: "Request path",
-        title: "From a question to a cited answer.",
-        intro:
-          "What happens behind the chat box when someone asks the platform for help.",
-        steps: [
-          {
-            name: "Ask",
-            detail:
-              "An employee asks a question in the enterprise Svelte chat interface.",
-          },
-          {
-            name: "Choose tools",
-            detail:
-              "The model picks from tools the platform's MCP servers expose, three of the four built by me.",
-          },
-          {
-            name: "Do the work",
-            detail:
-              "FastMCP servers search knowledge repositories, run multi-step research, or build a chart from a validated schema.",
-          },
-          {
-            name: "Answer",
-            detail:
-              "The result comes back as one answer with citations, or a finished chart, in seconds.",
-          },
-        ],
-      },
-    ],
     challenge:
       "An enterprise AI assistant is only as useful as the tools it can call. Teams needed it to search internal knowledge, draw charts, and help write code, on a network with no internet access, where every tool had to be secure, reviewable, and easy for other teams to build on.",
     metrics: [
       { value: "3 of 4", label: "Production MCP servers on the platform" },
       { value: "1,000s", label: "Tool calls handled every month" },
       { value: "15", label: "Agent-tooling repositories I review" },
-      { value: "20+", label: "Merge requests reviewed each week" },
     ],
     outcomes: ["3 of 4 MCP servers", "Air-gapped agent IDE"],
     mediaNote:
-      "This work runs on a closed network, so there are no screenshots. Everything here matches my public, cleared resume.",
+      "This work runs on a closed network, so there are no screenshots.",
     seoKeywords: [
       "MCP servers",
       "FastMCP",
@@ -239,17 +174,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         title: "MCP servers in production",
         content:
-          "I built 3 of the platform's 4 production Model Context Protocol servers in Python with FastMCP. They handle thousands of tool calls a month from an enterprise Svelte chat interface used across the agency.",
-      },
-      {
-        title: "One cited answer from many sources",
-        content:
-          "A multi-step research agent and a knowledge-repository MCP server search several sources and return one answer with citations, replacing a series of manual lookups.",
-      },
-      {
-        title: "Charts from plain English",
-        content:
-          "Schema-validated visualization tools, exposed as MCP servers, turn a plain-English request into a chart or diagram in seconds. The schemas keep the model's output valid every time.",
+          "I built 3 of the platform's 4 production MCP servers in Python with FastMCP, handling thousands of tool calls a month. They include a multi-step research agent that returns one cited answer from many sources, and schema-validated tools that turn plain English into charts and diagrams in seconds.",
       },
       {
         title: "An IDE for agents, fully offline",
@@ -259,7 +184,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         title: "Raising the bar across teams",
         content:
-          "I own code review for the platform's 15 agent-tooling repositories, and I wrote the agent skills, workflows, and agentic-engineering onboarding course that teams use for AI-assisted development, including developers who are new to software engineering.",
+          "I own code review for the platform's 15 agent-tooling repositories, more than 20 merge requests a week, and wrote the agent skills and onboarding course teams use to build with AI.",
       },
     ],
   },
@@ -273,22 +198,13 @@ export const portfolioProjects: PortfolioProject[] = [
     status: "ACTIVE",
     role: "Founder & Lead Software Engineer",
     timeline: "2026 – Present",
-    stack: [
-      "SvelteKit",
-      "Svelte 5",
-      "TypeScript",
-      "Convex",
-      "Clerk",
-      "Stripe",
-      "Resend",
-      "Tailwind CSS",
-    ],
+    stack: ["SvelteKit", "TypeScript", "Convex", "Clerk", "Stripe", "Resend"],
     overview:
       "A guest CRM that starts with the waiver. Experience businesses collect a signature from every participant before they arrive, not just the person who booked, and turn those signers into relationships they can follow up with.",
     headings: {
       brief: "Origin story",
       build: "Design decisions",
-      buildTitle: "Legal records that never drift.",
+      buildTitle: "Safe for every business on it.",
       footage: "Product tour",
       footageTitle: "From signature to follow-up.",
       stack: "Stack",
@@ -326,11 +242,6 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     challenge:
       "At Escape This Frederick, I built a waiver app that captured every guest for remarketing, and other venues wanted the same thing. Waiver Director rebuilds it as a multi-tenant product, where each business's legal records have to stay exact and isolated from every other business.",
-    metrics: [
-      { value: "Every guest", label: "Captured, not only the booker" },
-      { value: "Locked", label: "Waiver versions freeze when published" },
-      { value: "4 ways", label: "To sign: link, QR code, embed, or kiosk" },
-    ],
     outcomes: ["Multi-tenant SaaS", "Immutable signed records"],
     liveUrl: "https://www.waiverdirector.com/",
     seoKeywords: [
@@ -369,24 +280,9 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     sections: [
       {
-        title: "Records that can't drift",
-        content:
-          "Published waiver versions are frozen. Every signed submission keeps the exact signer details, answers, signature, minors, and booking context from the moment of signing, with an immutable audit trail. Notes and later changes from booking providers stay outside the legal record.",
-      },
-      {
         title: "Isolation by default",
         content:
           "Every query is scoped to a workspace and authorized on the server in Convex. Clerk handles sign-in, owners and staff get role-based access, and Stripe handles billing per workspace.",
-      },
-      {
-        title: "Signing that fits the booking",
-        content:
-          "Guests sign from a link, QR code, website embed, or kiosk, with no app to install. Bookeo bookings fill in customer details, and a live dashboard shows which bookings still have missing signatures before the group arrives.",
-      },
-      {
-        title: "Follow-up that respects consent",
-        content:
-          "Automated email campaigns can be scheduled, canceled, or sent manually, with delivery tracking. Mailchimp sync only includes signers who opted in, and the OAuth flow returns operators to the exact audience-selection step they left.",
       },
       {
         title: "AI review, human decision",
@@ -414,15 +310,13 @@ export const portfolioProjects: PortfolioProject[] = [
       "Bookeo API",
       "Mailchimp",
       "Vercel",
-      "Arduino",
-      "PLCs",
     ],
     overview:
       "Seven years at Maryland's highest-rated escape room, where I ran games, rebuilt the website, wrote the waiver software, and wired the puzzles. It's where I learned to build for the people on both sides of the screen.",
     headings: {
       brief: "Where it started",
       build: "The overhaul",
-      buildTitle: "Faster, clearer, fully booked.",
+      buildTitle: "How the numbers moved.",
       stack: "Built with",
     },
     features: [
@@ -449,36 +343,20 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     challenge:
       "The old site was slow and lost bookings. Lighthouse scored it 52, only 2.5% of visitors booked, and guest details lived only with whoever made the booking. In the rooms, puzzles had to be reset by hand between every game.",
-    metrics: [
-      { value: "2×", label: "Conversion, from 2.5% to 5%" },
-      { value: "−35%", label: "Bounce rate after the redesign" },
-      { value: "52 → 97", label: "Lighthouse performance score" },
-      { value: "#1", label: "Local search ranking in Maryland" },
-    ],
     outcomes: ["2× conversion", "Lighthouse 52 → 97"],
     liveUrl: "https://escapethisfrederick.com/",
     seoKeywords: ["local SEO", "conversion optimization", "booking flow"],
     screenshots: ["/screenshots/escapethisfrederick-com.png"],
     sections: [
       {
-        title: "A faster site that sells",
+        title: "Rebuilt around the booking",
         content:
-          "I rebuilt the site from scratch on Next.js. Lighthouse went from 52 to 97, bounce rate dropped 35%, and the site took the top local search spot in the state.",
-      },
-      {
-        title: "Conversion, measured",
-        content:
-          "A redesigned booking flow, stronger room storytelling, and clearer calls to action doubled conversion from 2.5% to 5%. Each change came from session data, not guesswork.",
+          "I rebuilt the site from scratch on Next.js with a redesigned booking flow, stronger room storytelling, and clearer calls to action. Every change came from session data, and the site took the top local search spot in the state.",
       },
       {
         title: "A waiver app that captured every guest",
         content:
           "I wrote the venue's digital waiver application in Next.js, Prisma, and PostgreSQL, with Bookeo and Mailchimp integrations, so every player, not just the booker, joined the marketing list. It later became Waiver Director.",
-      },
-      {
-        title: "Puzzles that reset themselves",
-        content:
-          "Arduino, C++, and PLC-controlled electronic puzzles replaced manual resets between games, giving staff that time back and keeping every group's experience consistent.",
       },
     ],
   },
@@ -497,8 +375,6 @@ export const portfolioProjects: PortfolioProject[] = [
       "A website for a VR arcade, designed from a blank canvas in Figma and built in Webflow, with custom JavaScript where the platform stopped. It reached the top local search result for VR in Frederick.",
     headings: {
       brief: "The ask",
-      build: "The build",
-      buildTitle: "Designed first, then built to book.",
       footage: "Screens",
       footageTitle: "Every game, one tap away.",
       stack: "Tools",
@@ -556,23 +432,6 @@ export const portfolioProjects: PortfolioProject[] = [
           "Carousels driven by a CMS collection, so staff can add games themselves.",
       },
     ],
-    sections: [
-      {
-        title: "Designed from a blank canvas",
-        content:
-          "Every page, the visual system, and the interactions started as original designs in Figma, with no theme or recycled structure. I iterated on layout, type, and motion there before building anything.",
-      },
-      {
-        title: "Webflow, extended with code",
-        content:
-          "Webflow handled the responsive layout and content, which kept the site easy for staff to run. I added vanilla JavaScript only where an animation or interaction needed more than the platform offered.",
-      },
-      {
-        title: "Built to book",
-        content:
-          "The Resova booking widget is embedded and restyled to match the site, so there's no jarring handoff between browsing and reserving. The game catalog grows from a CMS collection with no developer involved.",
-      },
-    ],
   },
   {
     id: "hardware",
@@ -590,8 +449,6 @@ export const portfolioProjects: PortfolioProject[] = [
       "Puzzles and room systems for award-winning escape rooms, from the first sketch to the final relay. Custom electronics turn what players do with their hands into sound, video, light, and open doors.",
     headings: {
       brief: "Design constraints",
-      build: "How the magic works",
-      buildTitle: "Invisible to players, easy to run.",
       stack: "Parts bin",
       media: "Classified by design",
     },
@@ -625,7 +482,7 @@ export const portfolioProjects: PortfolioProject[] = [
       },
     ],
     challenge:
-      "A great puzzle has to feel like magic to players and be dull to maintain: it must reset itself between games, recover if something goes wrong, and let the game master see what's happening from the desk.",
+      "Every room I design starts from scratch, and every puzzle has to feel like magic to players while staying dull to maintain: it resets itself between games, recovers if something goes wrong, and lets the game master see what's happening from the desk.",
     metrics: [
       { value: "0", label: "Manual resets needed between games" },
       { value: "MIT", label: "Open-source device SDK" },
@@ -638,28 +495,6 @@ export const portfolioProjects: PortfolioProject[] = [
       "Raspberry Pi",
       "embedded systems",
       "escape room puzzles",
-    ],
-    sections: [
-      {
-        title: "Original rooms and puzzles",
-        content:
-          "Each room starts as an original experience: the player journey, the story told by the space, and the order of physical interactions that lead to the finale. Proven parts get reused, but every puzzle is adapted to its room.",
-      },
-      {
-        title: "Physical to digital",
-        content:
-          "Raspberry Pi systems watch a sequence of sensor-driven actions and trigger video, audio, lighting, or other effects at exactly the right moment in the game.",
-      },
-      {
-        title: "Custom electronics",
-        content:
-          "Arduino circuits, PLC logic, sensors, electromagnets, servos, and lighting controls turn the design into a working system. I develop the hardware and software together so every interaction feels instant to the player.",
-      },
-      {
-        title: "From prop to platform",
-        content:
-          "The open-source Escape Director device SDK gives any Arduino prop state, command, and completion APIs with automatic pairing and reconnection, so puzzles report straight to the live game master dashboard.",
-      },
     ],
   },
   {
@@ -726,11 +561,6 @@ export const portfolioProjects: PortfolioProject[] = [
         title: "A room you can search",
         content:
           "The hero borrows from the escape rooms behind much of my work: a CAM 01 feed and a floor plan with six real results written in UV ink. Find them all and the room clears. Every result is also listed for screen readers and in the case files, so nobody has to play to learn what I built.",
-      },
-      {
-        title: "A flashlight without re-renders",
-        content:
-          "The light position is written straight to CSS custom properties on each pointer move or animation frame, and a radial mask reveals the UV layer, so React only re-renders when a clue is found. On touch screens the light sweeps the wall on its own.",
       },
       {
         title: "Practical by default",

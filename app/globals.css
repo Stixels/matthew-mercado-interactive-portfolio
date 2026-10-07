@@ -2387,53 +2387,6 @@ header.mm-cs-split {
   letter-spacing: -0.03em;
 }
 
-.mm-cs-stats {
-  border: 1px solid var(--mm-accent);
-  background: var(--mm-bg);
-}
-
-.mm-cs-stats dl {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  margin: 0;
-}
-
-.mm-cs-stats dl > div {
-  display: grid;
-  align-content: start;
-  gap: 0.6rem;
-  padding: clamp(1.5rem, 3vw, 2.25rem);
-}
-
-.mm-cs-stats dl > div + div {
-  border-left: 1px solid var(--mm-line);
-}
-
-.mm-cs-stats dd {
-  margin: 0;
-  color: var(--mm-accent-text);
-  font-size: clamp(2.6rem, 5vw, 4.8rem);
-  font-weight: 650;
-  letter-spacing: -0.06em;
-  line-height: 1;
-}
-
-.mm-cs-stats dt {
-  color: var(--mm-muted);
-  font-size: 0.9rem;
-  line-height: 1.45;
-}
-
-.mm-cs-stats > p {
-  margin: 0;
-  padding: 1rem clamp(1.5rem, 3vw, 2.25rem);
-  border-top: 1px solid var(--mm-line);
-  color: var(--mm-muted);
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  line-height: 1.6;
-}
-
 @media (max-width: 1100px) {
   .mm-cs-flow {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2458,21 +2411,5 @@ header.mm-cs-split {
   .mm-cs-compare td {
     padding-right: 0.6rem;
     font-size: 0.9rem;
-  }
-
-  .mm-cs-stats dl {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-
-  .mm-cs-stats dl > div + div {
-    border-left: 0;
-  }
-
-  .mm-cs-stats dl > div:nth-child(even) {
-    border-left: 1px solid var(--mm-line);
-  }
-
-  .mm-cs-stats dl > div:nth-child(n + 3) {
-    border-top: 1px solid var(--mm-line);
   }
 }

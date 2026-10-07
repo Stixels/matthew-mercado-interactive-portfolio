@@ -1,29 +1,53 @@
-import type { LucideIcon } from "lucide-react";
-
 export type ProjectId =
   | "escape-director"
+  | "ai-agent-platform"
   | "waiver-director"
-  | "escape-this-frederick"
-  | "level-up-vr"
+  | "web-design"
   | "hardware"
-  | "portfolio"
-  | "contact";
-export type PuzzleId = "auth" | "network" | "frequency" | "matrix";
+  | "portfolio";
 
 export type ProjectSection = {
-  icon: LucideIcon;
   title: string;
   content: string;
-  span?: "full";
 };
+
+export type ProjectMetric = {
+  value: string;
+  label: string;
+};
+
+/** Per-case wording for the case page's section labels and headings. */
+export type CaseHeadings = {
+  brief: string;
+  build?: string;
+  buildTitle?: string;
+  footage?: string;
+  footageTitle?: string;
+  stack: string;
+  media?: string;
+};
+
+type FeatureBase = {
+  label: string;
+  title: string;
+  intro?: string;
+};
+
+/** A case-specific section shown between the brief and the build. */
+export type CaseFeature =
+  | (FeatureBase & {
+      kind: "flow";
+      steps: { name: string; detail: string }[];
+    })
+  | (FeatureBase & {
+      kind: "compare";
+      rows: { measure: string; before: string; after: string }[];
+    });
 
 export type ScreenshotDetail = {
   label: string;
   description: string;
 };
-
-export type PortfolioColor =
-  "neon-blue" | "neon-purple" | "neon-green" | "error-red";
 
 export type PortfolioProject = {
   id: ProjectId;
@@ -32,28 +56,27 @@ export type PortfolioProject = {
   seoTitle: string;
   seoDescription: string;
   hubSubtitle: string;
-  icon: LucideIcon;
-  level: number;
-  puzzleType: PuzzleId | null;
-  tag: "ACTIVE" | "DEPLOYED" | "RESTRICTED" | "EXPERIMENTAL" | "VERIFIED";
-  status: "ACTIVE" | "DEPLOYED" | "RESTRICTED" | "EXPERIMENTAL" | "VERIFIED";
+  status: "ACTIVE" | "DEPLOYED" | "RESTRICTED" | "EXPERIMENTAL";
   role: string;
   timeline: string;
   stack: string[];
   overview: string;
+  /** The situation the work answered, told in a few sentences. */
+  challenge?: string;
+  /** Headline numbers shown on the case page. */
+  metrics?: ProjectMetric[];
+  /** Short proof chips shown on the homepage case card. */
+  outcomes?: string[];
+  headings: CaseHeadings;
+  features?: CaseFeature[];
+  /** Shown when a case has no screenshots to explain why. */
+  mediaNote?: string;
   liveUrl?: string;
   docsUrl?: string;
-  color: PortfolioColor;
+  /** Extra outbound links, for cases that span more than one site. */
+  links?: { label: string; url: string }[];
   sections?: ProjectSection[];
   seoKeywords?: string[];
   screenshots?: string[];
   screenshotDetails?: ScreenshotDetail[];
-};
-
-export type PortfolioPuzzle = {
-  id: PuzzleId;
-  label: string;
-  color: PortfolioColor;
-  hex: string;
-  description: string;
 };

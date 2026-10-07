@@ -18,7 +18,7 @@ const clues = [
   {
     id: "sessions",
     label: "Escape Director",
-    value: "8,000+ live sessions",
+    value: "7,600+ live games",
     note: "at 99.95% uptime",
   },
   {

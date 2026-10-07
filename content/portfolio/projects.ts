@@ -1,23 +1,3 @@
-import {
-  Activity,
-  BarChart3,
-  BrainCircuit,
-  Code2,
-  Cpu,
-  Database,
-  Layers,
-  Monitor,
-  Server,
-  Shield,
-  ShieldAlert,
-  Terminal,
-  TrendingUp,
-  User,
-  Wifi,
-  Wrench,
-  Zap,
-} from "lucide-react";
-
 import type { PortfolioProject } from "./types";
 
 export const portfolioProjects: PortfolioProject[] = [
@@ -26,94 +6,179 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "Escape Director",
     seoTitle: "Escape Director",
     seoDescription:
-      "Case study for Escape Director, an escape-room operations platform with trusted live-game controls, resilient backend systems, evidence-backed analytics, and an AI assistant for exploring performance data.",
+      "Case study for Escape Director, an escape-room operations SaaS with a live game master dashboard, offline-first rooms, an LLM analytics assistant chosen through a model evaluation harness, and an open-source Arduino device SDK.",
     hubSubtitle: "SAAS PLATFORM",
-    icon: Cpu,
-    level: 0,
-    puzzleType: null,
-    tag: "ACTIVE",
     status: "ACTIVE",
     role: "Founder & Lead Software Engineer",
-    timeline: "2021 - Present",
+    timeline: "2023 – Present",
     stack: [
       "TanStack Start",
       "React",
-      "Express 5",
-      "PostgreSQL",
+      "TypeScript",
+      "Express",
       "Prisma",
+      "PostgreSQL",
+      "IndexedDB",
       "Stripe",
-      "Railway",
-      "Better Auth",
-      "AWS S3",
+      "Vercel AI Gateway",
     ],
     overview:
-      "A SaaS operations platform for escape room owners and game masters. Battle-tested across 8,000+ Room Sessions with 99.95% uptime, unlimited Rooms per location, and offline-ready Room Stations built for the realities of venue Wi-Fi.",
+      "The operations platform I built and run for escape rooms. Game masters control the clock, clues, puzzles, media, and the players' screen from one dashboard, and the room keeps running when the venue's internet doesn't.",
+    headings: {
+      brief: "The problem at the desk",
+      build: "Inside the platform",
+      buildTitle: "Built for the countdown.",
+      footage: "Live from the venue",
+      footageTitle: "The game master's view.",
+      stack: "Under the hood",
+    },
+    features: [
+      {
+        kind: "flow",
+        label: "Outage drill",
+        title: "What happens when the Wi-Fi drops.",
+        intro:
+          "Venue internet fails at the worst moments. The room is designed so players never notice.",
+        steps: [
+          {
+            name: "Prepare",
+            detail:
+              "Opening a room caches its current revision, the app shell, a signed offline access grant, and every audio, image, and video file.",
+          },
+          {
+            name: "Keep playing",
+            detail:
+              "The dashboard and the players' Live View keep the clock, clues, and media running from IndexedDB with no connection at all.",
+          },
+          {
+            name: "Queue",
+            detail:
+              "Each finished game lands in a durable outbox with an idempotency key, so it survives a refresh or a reboot.",
+          },
+          {
+            name: "Sync once",
+            detail:
+              "When the connection returns, the outbox drains. No game is lost, and none is counted twice.",
+          },
+        ],
+      },
+    ],
+    challenge:
+      "An escape room runs on a 60-minute clock with players inside who are counting on it. Most venues juggle a timer app, a clue screen, and paper notes, and a dropped Wi-Fi connection can stall a live game. I had run rooms since 2017, so I built the tool I wanted at the game master's desk.",
+    metrics: [
+      { value: "7,600+", label: "Live games run on the platform" },
+      { value: "132,000+", label: "Game actions logged" },
+      { value: "99.95%", label: "Uptime over the trailing 12 months" },
+    ],
+    outcomes: ["7,600+ live games", "99.95% uptime", "Offline-first rooms"],
     liveUrl: "https://www.escapedirector.com/",
     docsUrl: "https://docs.escapedirector.com/",
-    color: "neon-blue",
     seoKeywords: [
-      "SaaS dashboard",
-      "escape room analytics",
-      "offline-first PWA",
+      "escape room software",
+      "offline-first web app",
+      "LLM analytics assistant",
+      "LLM evaluation",
+      "Arduino SDK",
     ],
     screenshots: [
-      "/screenshots/staging-escapedirector-com.png",
-      "/screenshots/escape-director-room-dashboard.jpg",
-      "/screenshots/escape-director-rooms-overview.jpg",
-      "/screenshots/escape-director-analytics-ai.jpg",
+      "/screenshots/escape-director-home.png",
+      "/screenshots/escape-director-all-rooms.webp",
+      "/screenshots/escape-director-analytics.webp",
     ],
     screenshotDetails: [
       {
         label: "Escape Director",
-        description:
-          "The public product experience introduces the platform before the case study moves into the operational interface.",
+        description: "The public product site.",
       },
       {
-        label: "Live Game Master workspace",
+        label: "Every room at a glance",
         description:
-          "The operational center for running the timer, tracking ordered Puzzles, sending Clues and media, and monitoring the player-facing Live View.",
+          "Owners run unlimited rooms from one browser app, each with its own duration, clue allowance, content, and live state.",
       },
       {
-        label: "Rooms at a glance",
+        label: "Analytics",
         description:
-          "Owners can manage multiple Rooms from one browser application while keeping each Room's duration, Clue allowance, content, and live state distinct.",
-      },
-      {
-        label: "Evidence-backed analytics and AI",
-        description:
-          "The current Room Summary stays visible beside Ask Analytics, helping operators investigate performance with suggested reviews, explicit scope, and the numbers behind each answer.",
+          "A dashboard operators arrange themselves, with success rates and game master activity per room, and Ask Analytics a click away for plain-language questions.",
       },
     ],
     sections: [
       {
-        icon: Monitor,
-        title: "Gamemaster Dashboard",
+        title: "One dashboard for the live game",
         content:
-          "Built for speed under pressure. Game masters control the timer, ordered puzzles and clues, audio, images, video, and the synchronized player-facing Live View from one workspace. Every action is timestamped in the Room Session log for later review.",
+          "Game masters run the clock, ordered puzzles, clues, audio, images, video, and the synchronized player-facing Live View from one screen. Automations fire from solved puzzles, clock events, or a game master's command, and every action is timestamped in the session log for review afterward.",
       },
       {
-        icon: Server,
-        title: "Platform Architecture",
+        title: "An AI assistant that earned the job",
         content:
-          "TanStack Start and React power the frontend, backed by an Express 5 API and PostgreSQL with Prisma on Railway. Better Auth handles subscription-based access control, Stripe powers billing, and AWS S3 stores room media.",
+          "Ask Analytics answers business questions in plain language and reshapes an operator's dashboard through schema-validated tool calls. Before it shipped, I ran 4 candidate models through the real production tool flow, 3 rounds and 72 turns each, with trace grading and blinded review, and picked the winner on quality, latency, and cost.",
       },
       {
-        icon: Wifi,
-        title: "Offline-First PWA",
+        title: "Props that talk to the game",
         content:
-          "Opening a Room online atomically prepares its current Room Revision, Application Shell, signed Offline Access Grant, and every configured audio, image, and video file. Once marked Offline ready, the Room Dashboard and same-station Live View can keep running for at least 24 hours; completed Room Sessions are saved locally and sync after reconnecting.",
+          "An open-source, MIT-licensed Arduino SDK gives physical props state, command, and completion APIs with automatic pairing and reconnection, so a solved puzzle shows up on the dashboard instantly.",
+      },
+    ],
+  },
+  {
+    id: "ai-agent-platform",
+    title: "Enterprise AI Agent Tooling",
+    hubTitle: "AI Agent Tooling",
+    seoTitle: "Enterprise AI Agent Tooling",
+    seoDescription:
+      "Case study for Matthew Mercado's AI agent work at the U.S. Department of Defense: production MCP servers for an agency-wide LLM platform, a research agent, an air-gapped IDE for AI coding agents, and agentic-engineering training.",
+    hubSubtitle: "APPLIED AI",
+    status: "ACTIVE",
+    role: "AI Agents Software Engineer",
+    timeline: "2026 – Present",
+    stack: [
+      "Python",
+      "FastMCP",
+      "Model Context Protocol",
+      "TypeScript",
+      "Electron",
+      "Svelte",
+    ],
+    overview:
+      "The tools behind an agency-wide LLM platform at the U.S. Department of Defense: MCP servers that let its assistant do real work, an air-gapped IDE for AI coding agents, and the skills and training that help teams build with them.",
+    headings: {
+      brief: "The mission",
+      build: "The tool belt",
+      buildTitle: "Giving an assistant real capabilities.",
+      stack: "Built with",
+      media: "Closed network",
+    },
+    challenge:
+      "An enterprise AI assistant is only as useful as the tools it can call. Teams needed it to search internal knowledge, draw charts, and help write code, on a network with no internet access, where every tool had to be secure, reviewable, and easy for other teams to build on.",
+    metrics: [
+      { value: "3 of 4", label: "Production MCP servers on the platform" },
+      { value: "1,000s", label: "Tool calls handled every month" },
+      { value: "15", label: "Agent-tooling repositories I review" },
+    ],
+    outcomes: ["3 of 4 MCP servers", "Air-gapped agent IDE"],
+    mediaNote:
+      "This work runs on a closed network, so there are no screenshots.",
+    seoKeywords: [
+      "MCP servers",
+      "FastMCP",
+      "LLM agents",
+      "AI developer tools",
+      "Electron IDE",
+    ],
+    sections: [
+      {
+        title: "MCP servers in production",
+        content:
+          "I built 3 of the platform's 4 production MCP servers in Python with FastMCP, handling thousands of tool calls a month. They include a multi-step research agent that returns one cited answer from many sources, and schema-validated tools that turn plain English into charts and diagrams in seconds.",
       },
       {
-        icon: BarChart3,
-        title: "Room Analytics",
+        title: "An IDE for agents, fully offline",
         content:
-          "Evidence-backed analytics turn each completed Room Session into Room-scoped performance views, with clear coverage and supporting numbers behind every result. PostgreSQL rollups power summaries by Room and date range, while detailed logs preserve success, timing, attendance, clue usage, notes, and the story of each game.",
+          "I shipped an air-gapped Electron and TypeScript IDE for AI coding agents on Linux and Windows, with offline package mirrors, a model gateway, PKI authentication, and in-app updates. Dozens of employees were using it before it was ever advertised.",
       },
       {
-        icon: BrainCircuit,
-        title: "Analytics AI Assistant",
+        title: "Raising the bar across teams",
         content:
-          "Ask Analytics helps operators explore performance in plain language. It translates each question into approved, read-only metric queries while keeping Room scope, metric definitions, and supporting evidence intact.",
+          "I own code review for the platform's 15 agent-tooling repositories, more than 20 merge requests a week, and wrote the agent skills and onboarding course teams use to build with AI.",
       },
     ],
   },
@@ -122,195 +187,239 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "Waiver Director",
     seoTitle: "Waiver Director",
     seoDescription:
-      "Case study for Waiver Director, a multi-tenant waiver operations platform built with SvelteKit and Convex for signed records, bookings, follow-ups, and analytics.",
+      "Case study for Waiver Director, a multi-tenant waiver and guest-CRM SaaS built with SvelteKit and Convex, with immutable signed records, booking integrations, automated follow-ups, and AI content review.",
     hubSubtitle: "SAAS PLATFORM",
-    icon: Shield,
-    level: 0,
-    puzzleType: null,
-    tag: "ACTIVE",
     status: "ACTIVE",
     role: "Founder & Lead Software Engineer",
-    timeline: "2026 - Present",
-    stack: [
-      "SvelteKit",
-      "Svelte 5",
-      "Convex",
-      "Clerk",
-      "TypeScript",
-      "Resend",
-      "Tailwind CSS",
-      "Agentic APIs",
-    ],
+    timeline: "2026 – Present",
+    stack: ["SvelteKit", "TypeScript", "Convex", "Clerk", "Stripe", "Resend"],
     overview:
-      "An open source multi-tenant SaaS for waiver operations: build and publish versioned waivers, collect immutable signed submissions, connect booking data, automate follow-ups, and understand completion and customer activity from one workspace-scoped system.",
+      "A guest CRM that starts with the waiver. Experience businesses collect a signature from every participant before they arrive, not just the person who booked, and turn those signers into relationships they can follow up with.",
+    headings: {
+      brief: "Origin story",
+      build: "Design decisions",
+      buildTitle: "Safe for every business on it.",
+      footage: "Product tour",
+      footageTitle: "From signature to follow-up.",
+      stack: "Stack",
+    },
+    features: [
+      {
+        kind: "flow",
+        label: "Record lifecycle",
+        title: "One signature, start to finish.",
+        intro:
+          "A waiver is a legal record first and a marketing relationship second. The system keeps the two apart.",
+        steps: [
+          {
+            name: "Publish",
+            detail:
+              "The operator publishes a waiver, and that version locks so it can never change under a signature.",
+          },
+          {
+            name: "Sign",
+            detail:
+              "Every participant signs from a link, QR code, embed, or kiosk, including minors, before they arrive.",
+          },
+          {
+            name: "Freeze",
+            detail:
+              "The submission captures signer details, answers, signature, and booking context in an immutable audit trail.",
+          },
+          {
+            name: "Follow up",
+            detail:
+              "Signers who opted in sync to Mailchimp, and scheduled emails bring them back for another visit.",
+          },
+        ],
+      },
+    ],
+    challenge:
+      "At Escape This Frederick, I built a waiver app that captured every guest for remarketing, and other venues wanted the same thing. Waiver Director rebuilds it as a multi-tenant product, where each business's legal records have to stay exact and isolated from every other business.",
+    outcomes: ["Multi-tenant SaaS", "Immutable signed records"],
     liveUrl: "https://www.waiverdirector.com/",
-    color: "neon-purple",
     seoKeywords: [
-      "waiver management SaaS",
-      "multi-tenant application",
+      "waiver software",
+      "guest CRM",
+      "multi-tenant SaaS",
       "SvelteKit Convex",
-      "workflow automation",
     ],
     screenshots: [
-      "/screenshots/waiver-director.png",
+      "/screenshots/waiver-director-home.png",
       "/screenshots/waiver-director-ai-audit.png",
       "/screenshots/waiver-director-authoring.png",
       "/screenshots/waiver-director-integrations.png",
     ],
     screenshotDetails: [
       {
-        label: "Workspace overview",
-        description:
-          "One operational view for bookings, signed records, follow-ups, and workspace activity.",
+        label: "Waiver Director",
+        description: "The public product site.",
       },
       {
         label: "AI review, human decision",
         description:
-          "The audit turns a template into a scored critique, specific suggestions, and a reviewable diff before an operator applies anything.",
+          "The audit turns a template into a score, specific suggestions, and a reviewable diff before the operator applies anything.",
       },
       {
         label: "Waiver authoring",
         description:
-          "Operators compose the waiver, add structured questions, preview signer details, and publish from one focused workspace.",
+          "Operators write the waiver, add structured questions, preview what signers see, and publish from one workspace.",
       },
       {
-        label: "Consent-driven integrations",
+        label: "Integrations with consent built in",
         description:
-          "Provider setup explains the handoff before authorization and keeps opted-in signer data tied to an explicitly selected audience.",
+          "Provider setup explains the handoff before authorization, and only opted-in signers sync to the audience the operator chose.",
       },
     ],
     sections: [
       {
-        icon: Shield,
-        title: "Signed-record integrity",
+        title: "Isolation by default",
         content:
-          "Published waiver versions are frozen and every signed submission keeps the exact signer details, answers, signature, minors, and booking context captured at signing time. Operational notes and later provider changes stay outside the legal record.",
+          "Every query is scoped to a workspace and authorized on the server in Convex. Clerk handles sign-in, owners and staff get role-based access, and Stripe handles billing per workspace.",
       },
       {
-        icon: Layers,
-        title: "Workspace-safe architecture",
+        title: "AI review, human decision",
         content:
-          "Designed the product around strict workspace isolation with server-side authorization in Convex. Owners and staff get purposeful permissions while stable workspace handles keep routing clear without inventing a parent-organization model the domain does not need.",
-      },
-      {
-        icon: Activity,
-        title: "Operational workflows",
-        content:
-          "Booking-linked and public signing flows feed customer, submission, and session views. Follow-ups can be queued, scheduled, canceled, or sent manually while analytics surface completion gaps, booking volume, customer activity, and email performance.",
-      },
-      {
-        icon: BrainCircuit,
-        title: "Agentic Content Audits",
-        content:
-          "Built agentic API workflows where an LLM audits operator-written emails and waiver templates, then returns structured, actionable feedback. The system accelerates review while keeping the operator responsible for the final language.",
-      },
-      {
-        icon: Zap,
-        title: "Integration design",
-        content:
-          "Bookeo supplies booking context while Mailchimp and Constant Contact flows keep marketing consent explicit. OAuth callbacks return operators to the exact audience-selection step so setup can be completed without losing context.",
+          "An LLM audits operator-written waivers and emails and returns structured feedback with a reviewable diff. It speeds up review, while the operator stays responsible for the final language.",
       },
     ],
   },
   {
-    id: "escape-this-frederick",
-    title: "Escape This Frederick",
-    seoTitle: "Escape This Frederick",
+    id: "web-design",
+    title: "Web Design & Engineering",
+    hubTitle: "Web Design",
+    seoTitle: "Web Design & Engineering",
     seoDescription:
-      "Case study for Escape This Frederick, a conversion-focused website rebuild that improved Lighthouse performance, doubled conversion rate, and strengthened local SEO.",
-    hubSubtitle: "WEB ENGINEERING",
-    icon: Database,
-    level: 1,
-    puzzleType: "auth",
-    tag: "DEPLOYED",
+      "Web design case study: a Next.js rebuild of Escape This Frederick that took Lighthouse from 52 to 97 and doubled conversion, and a Figma-to-Webflow site that put Level Up VR at the top of local search.",
+    hubSubtitle: "WEB DESIGN",
     status: "DEPLOYED",
-    role: "Web Developer & Product Lead",
-    timeline: "2022 - Present",
+    role: "Designer & Web Engineer",
+    timeline: "2017 – 2024",
     stack: [
       "Next.js",
-      "Convex",
-      "Resend",
+      "React",
+      "Tailwind CSS",
+      "Prisma",
+      "PostgreSQL",
+      "Figma",
+      "Webflow",
+      "JavaScript",
       "Bookeo API",
+      "Resova",
       "Mailchimp",
       "Vercel",
-      "WordPress",
     ],
     overview:
-      "A complete digital overhaul of Maryland's highest-rated escape room. Rebuilt from a 52 Lighthouse score to 97, doubled the conversion rate from 2.5% to 5%, and secured the #1 local SEO position statewide.",
-    liveUrl: "https://escapethisfrederick.com/",
-    color: "neon-purple",
-    seoKeywords: ["local SEO", "conversion optimization", "booking flow"],
-    screenshots: ["/screenshots/escapethisfrederick-com.png"],
-    sections: [
+      "Two venue websites, one goal: turn visitors into bookings. I rebuilt Escape This Frederick, Maryland's highest-rated escape room, in Next.js, and designed Level Up VR's site from a blank canvas in Figma before building it in Webflow.",
+    headings: {
+      brief: "Where it started",
+      build: "Two sites",
+      buildTitle: "Built around the booking.",
+      footage: "Screens",
+      footageTitle: "Level Up VR, from Figma to live.",
+      stack: "Built with",
+    },
+    features: [
       {
-        icon: Zap,
-        title: "Performance Overhaul",
-        content:
-          "Rebuilt from scratch with modern architecture - Lighthouse jumped from 52 to 97. Improved Core Web Vitals drove a 35% reduction in bounce rate and cemented the #1 local SEO position statewide.",
+        kind: "compare",
+        label: "Before and after",
+        title: "What the Escape This rebuild changed.",
+        rows: [
+          { measure: "Lighthouse performance", before: "52", after: "97" },
+          { measure: "Visitors who book", before: "2.5%", after: "5%" },
+          { measure: "Bounce rate", before: "—", after: "35% lower" },
+          {
+            measure: "Guests on the marketing list",
+            before: "Booker only",
+            after: "Every player",
+          },
+        ],
       },
       {
-        icon: TrendingUp,
-        title: "Conversion Engineering",
-        content:
-          "Conversion rate doubled from 2.5% to 5% through a redesigned booking flow, stronger visual room storytelling, and clearer CTAs. Every change was backed by session data, not guesswork.",
-      },
-      {
-        icon: Database,
-        title: "Waiver Director",
-        content:
-          "The venue's custom waiver workflow runs through Waiver Director, the multi-tenant product I founded and lead specifically for this venue. It connects signing and booking context with operational follow-ups while preserving an exact record of every completed waiver.",
-      },
-      {
-        icon: Wrench,
-        title: "Puzzle Engineering",
-        content:
-          "Beyond the web stack - designed and wired custom Arduino circuits and PLC logic for several of the venue's award-winning physical rooms. Software and hardware working as a unified system.",
+        kind: "flow",
+        label: "Process",
+        title: "Level Up VR, from blank canvas to bookings.",
+        steps: [
+          {
+            name: "Figma",
+            detail:
+              "An original visual system and every page, designed and iterated before any build work.",
+          },
+          {
+            name: "Webflow",
+            detail:
+              "A responsive build with a CMS game catalog that staff can grow on their own.",
+          },
+          {
+            name: "JavaScript",
+            detail:
+              "Custom interactions and animation only where the platform stopped short.",
+          },
+          {
+            name: "Resova",
+            detail:
+              "A restyled booking widget, so browsing turns into a reservation without a jarring handoff.",
+          },
+        ],
       },
     ],
-  },
-  {
-    id: "level-up-vr",
-    title: "Level Up VR",
-    seoTitle: "Level Up VR",
-    seoDescription:
-      "Case study for Level Up VR, a ground-up website designed in Figma, built in Webflow, and enhanced with custom JavaScript interactions.",
-    hubSubtitle: "DESIGN & FRONTEND",
-    icon: Terminal,
-    level: 2,
-    puzzleType: "network",
-    tag: "DEPLOYED",
-    status: "DEPLOYED",
-    role: "Designer & Web Developer",
-    timeline: "2023 - Present",
-    stack: ["Figma", "Webflow", "HTML", "CSS", "Vanilla JS", "Resova"],
-    overview:
-      "Designed from the ground up in Figma and built in Webflow, this custom site used the platform to accelerate development without compromising the venue's visual identity. Select interactions were extended with vanilla JavaScript, and the finished site reached the #1 local SEO position for VR in Frederick.",
-    liveUrl: "https://www.lvlupvr.com/",
-    color: "neon-green",
-    seoKeywords: ["motion design", "marketing website", "VR venue website"],
+    challenge:
+      "Escape This Frederick's old site was slow and lost bookings: Lighthouse scored it 52 and only 2.5% of visitors booked. Meanwhile, a new VR arcade in Frederick needed a site that felt as energetic as its games, that staff could update without a developer.",
+    metrics: [
+      { value: "2×", label: "Booking conversion at Escape This" },
+      { value: "52 → 97", label: "Lighthouse performance" },
+      { value: "#1", label: "Local search for VR in Frederick" },
+    ],
+    outcomes: ["2× conversion", "Lighthouse 52 → 97", "#1 local search"],
+    links: [
+      {
+        label: "Visit Escape This Frederick",
+        url: "https://escapethisfrederick.com/",
+      },
+      { label: "Visit Level Up VR", url: "https://www.lvlupvr.com/" },
+    ],
+    seoKeywords: [
+      "web design",
+      "conversion optimization",
+      "local SEO",
+      "Webflow",
+      "Next.js",
+    ],
     screenshots: [
+      "/screenshots/escapethisfrederick-com.png",
       "/screenshots/lvlupvr-home.png",
       "/screenshots/lvlupvr-games-carousels.png",
     ],
+    screenshotDetails: [
+      {
+        label: "Escape This Frederick",
+        description: "The rebuilt Next.js site.",
+      },
+      {
+        label: "Level Up VR home",
+        description: "The landing page, designed in Figma first.",
+      },
+      {
+        label: "Level Up VR game catalog",
+        description:
+          "Carousels driven by a CMS collection, so staff can add games themselves.",
+      },
+    ],
     sections: [
       {
-        icon: Layers,
-        title: "Designed from a Blank Canvas",
+        title: "Escape This Frederick, rebuilt from scratch",
         content:
-          "Every page, visual system, and interaction began as an original design. Figma made it possible to iterate quickly on layout, typography, and motion before translating the final direction into a fully custom Webflow build - no prebuilt theme or recycled site structure.",
-        span: "full",
+          "A new Next.js site with a redesigned booking flow, stronger room storytelling, and clearer calls to action. Every change came from session data, and the site took the top local search spot in the state.",
       },
       {
-        icon: Activity,
-        title: "Webflow, Extended with Code",
+        title: "A waiver app that captured every guest",
         content:
-          "Webflow accelerated responsive development and handled the site's core layout and presentation. Vanilla JavaScript was added selectively for animations and interactions that needed more custom behavior, keeping code focused where it created a meaningful difference.",
+          "I wrote the venue's digital waiver application in Next.js, Prisma, and PostgreSQL, with Bookeo and Mailchimp integrations, so every player joined the marketing list. It later became Waiver Director.",
       },
       {
-        icon: TrendingUp,
-        title: "Results",
+        title: "Level Up VR, designed to be run by staff",
         content:
-          "Number one local SEO for VR in Frederick on launch. Resova booking widget embedded and restyled to eliminate friction between discovery and reservation. Game catalog scales as the venue adds new titles - no developer involvement required.",
+          "A Webflow build on my own Figma design, with a CMS game catalog so adding a new game takes zero developer hours, and a booking widget restyled to match.",
       },
     ],
   },
@@ -320,51 +429,62 @@ export const portfolioProjects: PortfolioProject[] = [
     hubTitle: "Hardware Systems",
     seoTitle: "Hardware and Puzzle Engineering",
     seoDescription:
-      "Case study for Matthew Mercado’s ground-up escape room design and puzzle engineering, combining custom electronics with Raspberry Pi-driven media interactions.",
+      "Case study for Matthew Mercado's escape room puzzle engineering: Arduino, PLC, and Raspberry Pi systems, puzzles that reset themselves, and an open-source device SDK that connects props to live games.",
     hubSubtitle: "PHYSICAL SYSTEMS",
-    icon: ShieldAlert,
-    level: 3,
-    puzzleType: "frequency",
-    tag: "RESTRICTED",
     status: "RESTRICTED",
     role: "Puzzle Engineer & Hardware Developer",
-    timeline: "2020 - Present",
-    stack: ["Arduino", "Raspberry Pi", "C++", "Python", "PLCs"],
+    timeline: "2017 – Present",
+    stack: ["Arduino", "C++", "Raspberry Pi", "Python", "PLCs", "Sensors"],
     overview:
-      "End-to-end room and puzzle systems for award-winning escape room experiences - each room designed from scratch, with custom electronics and software translating layered physical actions into responsive media and environmental effects.",
-    color: "error-red",
+      "Puzzles and room systems for award-winning escape rooms, from the first sketch to the final relay. Custom electronics turn what players do with their hands into sound, video, light, and open doors.",
+    headings: {
+      brief: "Design constraints",
+      stack: "Parts bin",
+      media: "Classified by design",
+    },
+    features: [
+      {
+        kind: "flow",
+        label: "Signal chain",
+        title: "From a player's hands to the game master's screen.",
+        steps: [
+          {
+            name: "Sense",
+            detail:
+              "Sensors, switches, and magnets pick up what players do with the props.",
+          },
+          {
+            name: "Decide",
+            detail:
+              "Arduino or PLC logic checks the sequence and knows when a puzzle is truly solved.",
+          },
+          {
+            name: "React",
+            detail:
+              "Raspberry Pi systems fire video, audio, light, or a lock release at the right moment.",
+          },
+          {
+            name: "Report",
+            detail:
+              "The Escape Director device SDK sends state and completion to the live dashboard.",
+          },
+        ],
+      },
+    ],
+    challenge:
+      "Every room I design starts from scratch, and every puzzle has to feel like magic to players while staying dull to maintain: it resets itself between games, recovers if something goes wrong, and lets the game master see what's happening from the desk.",
+    metrics: [
+      { value: "0", label: "Manual resets needed between games" },
+      { value: "MIT", label: "Open-source device SDK" },
+    ],
+    outcomes: ["Arduino · Pi · PLCs", "No manual resets"],
+    mediaNote:
+      "These systems live inside working rooms, so the details stay hidden to keep the puzzles fun.",
     seoKeywords: [
       "Arduino",
       "Raspberry Pi",
       "embedded systems",
-      "physical computing",
-    ],
-    sections: [
-      {
-        icon: Layers,
-        title: "Original Room & Puzzle Design",
-        content:
-          "Each room starts as an original experience, from the player journey and environmental storytelling to the sequence of physical interactions and final solution. Proven components can be reused where they make sense, but every puzzle is adapted and integrated into a unique solution for its room.",
-        span: "full",
-      },
-      {
-        icon: Code2,
-        title: "Physical-to-Digital Interactions",
-        content:
-          "Raspberry Pi systems connect complex physical interactions to digital media. They can evaluate a sequence of sensor-driven actions and activate video, audio, lighting, or other effects at precisely the right moment in the experience.",
-      },
-      {
-        icon: Cpu,
-        title: "Custom Electronics",
-        content:
-          "Arduino circuits, PLC logic, sensors, electromagnets, servos, and lighting controls turn the room design into a working physical system. Hardware and software are developed together so each interaction feels immediate and invisible to the player.",
-      },
-      {
-        icon: Shield,
-        title: "Built for Live Operation",
-        content:
-          "The finished systems are designed for repeatable resets, practical maintenance, and operator control during a live game. Serviceable components and intentional recovery paths help protect the guest experience without flattening the puzzle into a generic template.",
-      },
+      "escape room puzzles",
     ],
   },
   {
@@ -375,78 +495,69 @@ export const portfolioProjects: PortfolioProject[] = [
     seoDescription:
       "Case study for this interactive portfolio: an escape-room camera-feed hero with a UV flashlight that reveals real project results, light and dark themes, and practical case-study storytelling.",
     hubSubtitle: "CREATIVE DEVELOPMENT",
-    icon: BrainCircuit,
-    level: 4,
-    puzzleType: "matrix",
-    tag: "EXPERIMENTAL",
     status: "EXPERIMENTAL",
     role: "Full-Stack Engineer & Designer",
-    timeline: "2026 - Present",
-    stack: [
-      "Next.js 16",
-      "React 19",
-      "TypeScript",
-      "Motion",
-      "CSS masks",
-      "CSS",
-    ],
+    timeline: "2026 – Present",
+    stack: ["Next.js 16", "React 19", "TypeScript", "Motion", "CSS masks"],
     overview:
-      "The portfolio you are navigating right now - it opens on a game master's camera feed of an escape room, hands you a UV flashlight to find the proof written on the wall, then gets out of the way so the work and case studies stay easy to reach.",
-    color: "neon-blue",
-    seoKeywords: [
-      "interactive portfolio",
-      "creative development",
-      "motion design",
+      "The site you're on. It opens on a game master's camera feed of an escape room, hands you a UV flashlight to find the proof written on the wall, then gets out of the way so the work is easy to read.",
+    headings: {
+      brief: "Why a room",
+      build: "Behind the wall",
+      buildTitle: "Playful up front, practical underneath.",
+      stack: "Built with",
+      media: "Live demo",
+    },
+    features: [
+      {
+        kind: "flow",
+        label: "One frame of light",
+        title: "How the flashlight works.",
+        steps: [
+          {
+            name: "Pointer",
+            detail:
+              "A pointer move, or an animation frame of the automatic sweep on touch screens.",
+          },
+          {
+            name: "CSS variables",
+            detail:
+              "The position is written straight to custom properties, skipping React entirely.",
+          },
+          {
+            name: "Mask",
+            detail:
+              "A radial mask-image reveals the UV ink layer under the light.",
+          },
+          {
+            name: "Discovery",
+            detail:
+              "A distance check marks a clue as found, the only moment React re-renders.",
+          },
+        ],
+      },
     ],
+    challenge:
+      "A portfolio has a few seconds to make an impression, but it still has to answer the boring questions quickly. I wanted an opening people remember that never stands between a recruiter and the facts.",
+    metrics: [
+      { value: "6", label: "Results hidden on the wall" },
+      { value: "0", label: "React re-renders while the light moves" },
+      { value: "2", label: "Themes, following your system setting" },
+    ],
+    seoKeywords: ["interactive portfolio", "creative development", "CSS mask"],
+    mediaNote: "You're looking at it.",
     sections: [
       {
-        icon: Layers,
-        title: "A Room You Can Search",
+        title: "A room you can search",
         content:
-          "The hero borrows from the escape rooms behind much of the work: a CAM 01 feed, a session clock, and a floor plan with six real results hidden in UV ink. Find them all and the room clears, but every result is also listed for screen readers and in the case files below, so nobody has to play to learn what was built.",
-        span: "full",
+          "The hero borrows from the escape rooms behind much of my work: a CAM 01 feed and a floor plan with six real results written in UV ink. Find them all and the room clears. Every result is also listed for screen readers and in the case files, so nobody has to play to learn what I built.",
       },
       {
-        icon: Activity,
-        title: "A Flashlight Without Re-renders",
+        title: "Practical by default",
         content:
-          "The light position is written straight to CSS custom properties on each pointer move or animation frame, and a radial mask reveals the UV layer, so React only re-renders when a clue is found. On touch screens the light sweeps the wall on its own.",
-      },
-      {
-        icon: Server,
-        title: "Architecture",
-        content:
-          "Next.js 16 and React 19 provide the application shell and statically generated project routes. Motion handles entrances and transitions, design tokens drive matching light and dark themes with no flash on load, and strict TypeScript keeps the content and presentation model coherent.",
-      },
-      {
-        icon: Monitor,
-        title: "Practical by Default",
-        content:
-          "The playful opening leads into conventional case files, capabilities, about, experience, and contact sections. With reduced motion the lights simply stay on, and the theme follows the system setting until a visitor picks one.",
+          "Next.js 16 statically generates every page. Design tokens drive matching light and dark themes with no flash on load, and with reduced motion turned on, the lights simply stay on.",
       },
     ],
-  },
-  {
-    id: "contact",
-    title: "About Matthew",
-    hubTitle: "About Matthew",
-    seoTitle: "About Matthew Mercado",
-    seoDescription:
-      "Profile and contact page for Matthew Mercado, a full-stack engineer and designer focused on conversion-driven products, immersive interfaces, and hardware-linked experiences.",
-    hubSubtitle: "ABOUT & CONTACT",
-    icon: User,
-    level: 0,
-    puzzleType: null,
-    tag: "VERIFIED",
-    status: "VERIFIED",
-    role: "Software Engineer & Designer",
-    timeline: "LIFETIME",
-    stack: ["Next.js", "TypeScript", "React", "Arduino", "Raspberry Pi"],
-    overview:
-      "Software engineer with a focus on frontend craft, UI/UX design, and immersive digital experiences. Builds products that run live escape rooms, move real conversion metrics, and wire up the physical puzzles inside the rooms.",
-    color: "neon-green",
-    seoKeywords: ["about Matthew Mercado", "contact Matthew Mercado"],
-    screenshots: ["/matthew-headshot.png"],
   },
 ];
 

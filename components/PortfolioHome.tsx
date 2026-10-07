@@ -9,9 +9,9 @@ import HeroRoom from "@/components/HeroRoom";
 
 const caseIds = [
   "escape-director",
+  "ai-agent-platform",
   "waiver-director",
-  "escape-this-frederick",
-  "level-up-vr",
+  "web-design",
   "hardware",
 ] as const;
 
@@ -19,21 +19,9 @@ const cases = caseIds
   .map((id) => getProjectById(id))
   .filter((project) => project !== null);
 
-const caseOutcomes: Record<string, string[]> = {
-  "escape-director": [
-    "8,000+ live sessions",
-    "99.95% uptime",
-    "Offline-first rooms",
-  ],
-  "waiver-director": ["Multi-tenant SaaS", "Immutable audit trails"],
-  "escape-this-frederick": ["2× conversion", "Lighthouse 52 → 97"],
-  "level-up-vr": ["#1 local search", "Figma to Webflow"],
-  hardware: ["Arduino · Pi · PLCs", "No manual resets"],
-};
-
 const proof = [
   "9 years shipping",
-  "8,000+ live sessions",
+  "7,600+ live games",
   "99.95% uptime",
   "3 of 4 production MCP servers",
   "7 min → under 1 min",
@@ -158,14 +146,14 @@ export default function PortfolioHome() {
   const reducedMotion = useReducedMotion() ?? false;
   const [featured, ...rest] = cases;
 
-  const reveal = reducedMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 28 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, amount: 0.2 },
-        transition: { duration: 0.7, ease },
-      };
+  // Always keep whileInView so content that rendered hidden on the server
+  // still appears once reduced motion is detected after hydration.
+  const reveal = {
+    initial: reducedMotion ? false : { opacity: 0, y: 28 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.2 },
+    transition: reducedMotion ? { duration: 0 } : { duration: 0.7, ease },
+  } as const;
 
   return (
     <main className="mm-home">
@@ -219,7 +207,7 @@ export default function PortfolioHome() {
                   <strong>{featured.title}</strong>
                   <span className="mm-case-overview">{featured.overview}</span>
                   <span className="mm-case-outcomes">
-                    {caseOutcomes[featured.id]?.map((outcome) => (
+                    {featured.outcomes?.map((outcome) => (
                       <span key={outcome}>{outcome}</span>
                     ))}
                   </span>
@@ -266,7 +254,7 @@ export default function PortfolioHome() {
                     </span>
                     <strong>{project.hubTitle ?? project.title}</strong>
                     <span className="mm-case-outcomes">
-                      {caseOutcomes[project.id]?.map((outcome) => (
+                      {project.outcomes?.map((outcome) => (
                         <span key={outcome}>{outcome}</span>
                       ))}
                     </span>

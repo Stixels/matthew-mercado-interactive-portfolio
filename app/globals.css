@@ -4226,7 +4226,6 @@ body {
 }
 
 .room-hud-feed,
-.room-hud-clock,
 .room-hud-clues,
 .room-hud-location {
   position: absolute;
@@ -4247,25 +4246,6 @@ body {
   border-radius: 50%;
   background: var(--mm-accent);
   box-shadow: 0 0 10px var(--mm-accent-glow);
-  animation: room-rec 1.6s steps(1, end) infinite;
-}
-
-@keyframes room-rec {
-  50% {
-    opacity: 0.15;
-  }
-}
-
-.room-hud-clock {
-  top: 1.1rem;
-  right: 1.5rem;
-  color: var(--mm-ink);
-  font-size: 0.78rem;
-  font-variant-numeric: tabular-nums;
-}
-
-.room-hud-clock em {
-  font-size: 0.62rem;
 }
 
 .room-hud-clues {
@@ -4385,13 +4365,6 @@ body {
   margin-left: 0.08em;
   background: var(--mm-accent);
   vertical-align: -0.02em;
-  animation: room-caret 1s steps(1, end) infinite;
-}
-
-@keyframes room-caret {
-  50% {
-    opacity: 0;
-  }
 }
 
 .room-intro {
@@ -4469,19 +4442,6 @@ body {
 
 .room-button:hover svg {
   transform: translateY(0.2rem);
-}
-
-.room-hero.is-cleared:not(.is-static) .room-button {
-  animation: room-unlock 1.8s ease-out infinite;
-}
-
-@keyframes room-unlock {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 92, 53, 0.55);
-  }
-  100% {
-    box-shadow: 0 0 0 18px rgba(255, 92, 53, 0);
-  }
 }
 
 .room-link {
@@ -4685,13 +4645,6 @@ body {
 .room-scroll svg {
   width: 0.8rem;
   height: 0.8rem;
-  animation: room-nudge 1.8s ease-in-out infinite;
-}
-
-@keyframes room-nudge {
-  50% {
-    transform: translateY(0.25rem);
-  }
 }
 
 /* Reduced motion: the lights are on. */
@@ -4705,12 +4658,6 @@ body {
 .room-hero.is-static .room-found,
 .room-hero.is-static .room-light {
   display: none;
-}
-
-.room-hero.is-static .room-caret,
-.room-hero.is-static .room-rec,
-.room-hero.is-static .room-scroll svg {
-  animation: none;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -5209,14 +5156,6 @@ body {
 .mm-log li.is-live::before {
   border-color: var(--mm-accent);
   background: var(--mm-accent);
-  box-shadow: 0 0 0 0 rgba(255, 92, 53, 0.5);
-  animation: mm-live 2.2s ease-out infinite;
-}
-
-@keyframes mm-live {
-  to {
-    box-shadow: 0 0 0 10px rgba(255, 92, 53, 0);
-  }
 }
 
 .mm-log-period {
@@ -5347,8 +5286,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mm-ticker-track,
-  .mm-log li.is-live::before {
+  .mm-ticker-track {
     animation: none;
   }
 
@@ -5442,17 +5380,8 @@ body {
   }
 
   .room-hud-feed,
-  .room-hud-clock {
-    top: 0.8rem;
-  }
-
   .room-hud-feed {
     left: 0.9rem;
-  }
-
-  .room-hud-clock {
-    right: 0.9rem;
-    font-size: 0.66rem;
   }
 
   .room-hud-clues {

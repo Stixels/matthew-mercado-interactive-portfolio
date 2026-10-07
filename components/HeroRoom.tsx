@@ -14,8 +14,6 @@ const ROTATING_WORDS = [
 
 const GLYPHS = "ABCDEFGHJKLNPRSTUVXYZ0123456789/<>*";
 
-const SESSION_SECONDS = 60 * 60;
-
 const clues = [
   {
     id: "sessions",
@@ -56,13 +54,6 @@ const clues = [
 ] as const;
 
 const ease = [0.22, 1, 0.36, 1] as const;
-
-function formatClock(seconds: number) {
-  const safe = Math.max(0, seconds);
-  const minutes = Math.floor(safe / 60);
-  const rest = safe % 60;
-  return `${String(minutes).padStart(2, "0")}:${String(rest).padStart(2, "0")}`;
-}
 
 function ScrambledWord({ enabled }: { enabled: boolean }) {
   const [text, setText] = useState<string>(ROTATING_WORDS[0]);
@@ -119,16 +110,8 @@ export default function HeroRoom() {
   const found = useRef<Set<string>>(new Set());
   const reducedMotion = useReducedMotion() ?? false;
   const [foundIds, setFoundIds] = useState<string[]>([]);
-  const [secondsLeft, setSecondsLeft] = useState(SESSION_SECONDS);
   const [hasMoved, setHasMoved] = useState(false);
   const cleared = foundIds.length === clues.length;
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setSecondsLeft((current) => Math.max(0, current - 1));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
 
   useEffect(() => {
     const hero = heroRef.current;
@@ -234,9 +217,6 @@ export default function HeroRoom() {
         <span className="room-hud-corner is-br" />
         <p className="room-hud-feed">
           <span className="room-rec" /> CAM 01 <em>Room: Portfolio</em>
-        </p>
-        <p className="room-hud-clock">
-          <em>Session</em> {formatClock(secondsLeft)}
         </p>
         <div className="room-hud-clues">
           <span>{cleared ? "Room cleared" : "Clues found"}</span>

@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, Caveat, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { getBaseUrl, siteConfig } from "@/config/site";
 import NavBar from "@/components/NavBar";
+import SectionLinks from "@/components/SectionLinks";
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -87,6 +88,7 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning className="antialiased">
         <NavBar />
+        <SectionLinks />
         {children}
       </body>
     </html>

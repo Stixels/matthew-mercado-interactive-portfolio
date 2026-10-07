@@ -5056,66 +5056,6 @@ body {
   display: grid;
 }
 
-/* Disciplines ------------------------------------------------------------ */
-
-.mm-disciplines {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid var(--mm-line-strong);
-  list-style: none;
-}
-
-.mm-disciplines li {
-  display: grid;
-  align-content: start;
-  gap: 1rem;
-  padding: 1.75rem 1.5rem 2rem 0;
-  border-right: 1px solid var(--mm-line);
-}
-
-.mm-disciplines li + li {
-  padding-left: 1.5rem;
-}
-
-.mm-disciplines li:last-child {
-  border-right: 0;
-}
-
-.mm-discipline-index {
-  color: var(--mm-accent-text);
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.mm-disciplines h3 {
-  margin: 0;
-  font-size: clamp(1.35rem, 1.8vw, 1.75rem);
-  font-weight: 640;
-  letter-spacing: -0.04em;
-  line-height: 1.05;
-}
-
-.mm-disciplines p {
-  margin: 0;
-  color: var(--mm-muted);
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-.mm-discipline-tools {
-  margin-top: 0.5rem;
-  color: var(--mm-uv);
-  font-family: var(--font-mono);
-  font-size: 0.64rem;
-  letter-spacing: 0.04em;
-  line-height: 1.7;
-}
-
 /* About ------------------------------------------------------------------ */
 
 .mm-about {
@@ -5201,6 +5141,35 @@ body {
   font-weight: 650;
   letter-spacing: -0.05em;
   line-height: 1;
+}
+
+.mm-toolkit {
+  margin: 2.5rem 0 0;
+  border-top: 1px solid var(--mm-line);
+}
+
+.mm-toolkit div {
+  display: grid;
+  grid-template-columns: 8rem minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--mm-line);
+}
+
+.mm-toolkit dt {
+  color: var(--mm-accent-text);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mm-toolkit dd {
+  margin: 0;
+  color: var(--mm-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 /* Experience log --------------------------------------------------------- */
@@ -5391,24 +5360,6 @@ body {
 
 /* Responsive ------------------------------------------------------------- */
 
-@media (max-width: 1180px) {
-  .mm-disciplines {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .mm-disciplines li:nth-child(3) {
-    border-right: 0;
-  }
-
-  .mm-disciplines li:nth-child(4) {
-    padding-left: 0;
-  }
-
-  .mm-disciplines li:nth-child(n + 4) {
-    border-top: 1px solid var(--mm-line);
-  }
-}
-
 @media (max-width: 1100px) {
   .room-layout,
   .mm-frame {
@@ -5467,22 +5418,6 @@ body {
 @media (max-width: 760px) {
   .mm-case-grid {
     grid-template-columns: 1fr;
-  }
-
-  .mm-disciplines {
-    grid-template-columns: 1fr;
-  }
-
-  .mm-disciplines li,
-  .mm-disciplines li + li,
-  .mm-disciplines li:nth-child(4) {
-    padding: 1.5rem 0;
-    border-right: 0;
-    border-top: 1px solid var(--mm-line);
-  }
-
-  .mm-disciplines li:first-child {
-    border-top: 0;
   }
 }
 
@@ -5623,6 +5558,11 @@ body {
 
   .mm-facts dd {
     font-size: 1.7rem;
+  }
+
+  .mm-toolkit div {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
   }
 
   .mm-log li {

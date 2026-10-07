@@ -43,36 +43,23 @@ const proof = [
   "Open-source Arduino SDK",
 ];
 
-const disciplines = [
-  {
-    label: "Frontend",
-    title: "Frontends people can trust.",
-    body: "Fast, accessible web applications that turn complicated workflows into something clear for customers and teams.",
-    tools: "React · Next.js · SvelteKit · TanStack · Zustand",
-  },
-  {
-    label: "Backend",
-    title: "Backends built to hold up.",
-    body: "APIs, authentication, data, background jobs, and operational safeguards working together behind the interface.",
-    tools: "Node · FastAPI · Spring Boot · PostgreSQL · Redis",
-  },
+const toolkit = [
   {
     label: "Applied AI",
-    title: "AI as part of the product.",
-    body: "Agents, MCP servers, and evaluation harnesses that support real workflows, with a person responsible for the final decision.",
-    tools: "LLM agents · MCP · RAG · tool calling · evals",
+    tools: "LLM agents · MCP servers · RAG · tool calling · LLM evaluation",
+  },
+  {
+    label: "Full stack",
+    tools:
+      "TypeScript · React · Next.js · SvelteKit · Node · FastAPI · PostgreSQL · Redis",
   },
   {
     label: "Delivery",
-    title: "Shipping without drama.",
-    body: "CI/CD, GitOps, and test suites that make builds faster and keep bug reports down after launch.",
-    tools: "Docker · Kubernetes · Argo CD · Vitest · Playwright",
+    tools: "Docker · Kubernetes · Argo CD · CI/CD · Vitest · Playwright",
   },
   {
-    label: "Physical",
-    title: "Software that flips real switches.",
-    body: "Sensors, relays, and props wired into live games, built for repeatable resets and fail-safe control.",
-    tools: "Arduino · Raspberry Pi · PLCs · C++",
+    label: "Hardware",
+    tools: "Arduino · Raspberry Pi · PLCs · C++ · sensors",
   },
 ] as const;
 
@@ -293,47 +280,10 @@ export default function PortfolioHome() {
       </section>
 
       <section
-        id="stack"
+        id="about"
         className="mm-section mm-section-alt"
-        aria-labelledby="stack-title"
+        aria-labelledby="about-title"
       >
-        <div className="mm-frame">
-          <SectionHeading
-            index="02"
-            label="The system"
-            title="One engineer, end to end."
-            id="stack-title"
-          >
-            <p>
-              From the interface people touch to the services, AI, delivery
-              pipeline, and hardware that keep it running.
-            </p>
-          </SectionHeading>
-
-          <ol className="mm-disciplines">
-            {disciplines.map((item, index) => (
-              <motion.li
-                key={item.label}
-                {...reveal}
-                transition={
-                  reducedMotion
-                    ? undefined
-                    : { duration: 0.6, ease, delay: index * 0.06 }
-                }
-              >
-                <span className="mm-discipline-index">
-                  {String(index + 1).padStart(2, "0")} / {item.label}
-                </span>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-                <span className="mm-discipline-tools">{item.tools}</span>
-              </motion.li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section id="about" className="mm-section" aria-labelledby="about-title">
         <div className="mm-frame mm-about">
           <motion.div className="mm-about-photo" {...reveal}>
             <Image
@@ -350,7 +300,7 @@ export default function PortfolioHome() {
 
           <div className="mm-about-copy">
             <SectionHeading
-              index="03"
+              index="02"
               label="About Matthew"
               title="From the first sketch to the final relay."
               id="about-title"
@@ -369,18 +319,26 @@ export default function PortfolioHome() {
                 </div>
               ))}
             </dl>
+            <dl className="mm-toolkit">
+              {toolkit.map((row) => (
+                <div key={row.label}>
+                  <dt>{row.label}</dt>
+                  <dd>{row.tools}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </section>
 
       <section
         id="experience"
-        className="mm-section mm-section-alt"
+        className="mm-section"
         aria-labelledby="experience-title"
       >
         <div className="mm-frame mm-experience">
           <SectionHeading
-            index="04"
+            index="03"
             label="Session log"
             title="Engineering across products, platforms, and teams."
             id="experience-title"
@@ -420,7 +378,7 @@ export default function PortfolioHome() {
       >
         <div className="mm-frame">
           <p className="mm-label">
-            <span>05</span> Exit this room
+            <span>04</span> Exit this room
           </p>
           <h2 id="contact-title">Let’s build something people remember.</h2>
           <a

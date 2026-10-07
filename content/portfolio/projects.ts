@@ -373,7 +373,7 @@ export const portfolioProjects: PortfolioProject[] = [
     hubTitle: "Portfolio Experience",
     seoTitle: "Interactive Portfolio Experience",
     seoDescription:
-      "Case study for this responsive interactive portfolio, combining scroll-driven Three.js scenes, Motion choreography, React, and practical case-study storytelling.",
+      "Case study for this interactive portfolio: an escape-room camera-feed hero with a UV flashlight that reveals real project results, light and dark themes, and practical case-study storytelling.",
     hubSubtitle: "CREATIVE DEVELOPMENT",
     icon: BrainCircuit,
     level: 4,
@@ -386,13 +386,12 @@ export const portfolioProjects: PortfolioProject[] = [
       "Next.js 16",
       "React 19",
       "TypeScript",
-      "React Three Fiber",
-      "Three.js",
       "Motion",
+      "CSS masks",
       "CSS",
     ],
     overview:
-      "The portfolio you are navigating right now - a clean, scroll-driven story that turns a full-stack application into an explorable 3D system, then gets out of the way so the work and case studies remain easy to reach.",
+      "The portfolio you are navigating right now - it opens on a game master's camera feed of an escape room, hands you a UV flashlight to find the proof written on the wall, then gets out of the way so the work and case studies stay easy to reach.",
     color: "neon-blue",
     seoKeywords: [
       "interactive portfolio",
@@ -402,28 +401,28 @@ export const portfolioProjects: PortfolioProject[] = [
     sections: [
       {
         icon: Layers,
-        title: "A System You Can Read",
+        title: "A Room You Can Search",
         content:
-          "The opening scene explains the work through a familiar application, then reveals its service layer, AI engine, and integrations in sequence. Each object has one purpose, and the editorial layout keeps project information available without making visitors solve a puzzle first.",
+          "The hero borrows from the escape rooms behind much of the work: a CAM 01 feed, a session clock, and a floor plan with six real results hidden in UV ink. Find them all and the room clears, but every result is also listed for screen readers and in the case files below, so nobody has to play to learn what was built.",
         span: "full",
       },
       {
         icon: Activity,
-        title: "Responsive 3D Choreography",
+        title: "A Flashlight Without Re-renders",
         content:
-          "React Three Fiber renders a procedural scene with no downloaded 3D assets. Motion tracks the document story while the scene uses staged reflows and reveals, keeping models separated on desktop and placing the visual in its own sticky band on mobile.",
+          "The light position is written straight to CSS custom properties on each pointer move or animation frame, and a radial mask reveals the UV layer, so React only re-renders when a clue is found. On touch screens the light sweeps the wall on its own.",
       },
       {
         icon: Server,
         title: "Architecture",
         content:
-          "Next.js 16 and React 19 provide the application shell and statically generated project routes. Three.js and React Three Fiber own the visual layer, Motion handles interface transitions, and strict TypeScript keeps the content and presentation model coherent.",
+          "Next.js 16 and React 19 provide the application shell and statically generated project routes. Motion handles entrances and transitions, design tokens drive matching light and dark themes with no flash on load, and strict TypeScript keeps the content and presentation model coherent.",
       },
       {
         icon: Monitor,
         title: "Practical by Default",
         content:
-          "The experimental opening leads into conventional selected-work, about, experience, and contact sections. Reduced-motion preferences remove interpolation, case-study screenshots remain fully visible, and the experience adapts to touch screens without placing text over the 3D scene.",
+          "The playful opening leads into conventional case files, capabilities, about, experience, and contact sections. With reduced motion the lights simply stay on, and the theme follows the system setting until a visitor picks one.",
       },
     ],
   },

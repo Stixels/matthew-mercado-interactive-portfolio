@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, IBM_Plex_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Caveat, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { getBaseUrl, siteConfig } from "@/config/site";
 import NavBar from "@/components/NavBar";
@@ -14,6 +14,12 @@ const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-ibm-mono",
+});
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["500", "700"],
+  variable: "--font-hand",
 });
 
 const baseUrl = getBaseUrl();
@@ -68,14 +74,18 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bricolage.variable} ${ibmPlexMono.variable}`}
+      className={`${bricolage.variable} ${ibmPlexMono.variable} ${caveat.variable}`}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
-      <body
-        suppressHydrationWarning
-        className="bg-background text-foreground antialiased"
-      >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`,
+          }}
+        />
+      </head>
+      <body suppressHydrationWarning className="antialiased">
         <NavBar />
         {children}
       </body>

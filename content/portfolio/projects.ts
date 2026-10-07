@@ -82,7 +82,6 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     screenshots: [
       "/screenshots/escape-director-home.png",
-      "/screenshots/escape-director-room-dashboard.jpg",
       "/screenshots/escape-director-rooms-overview.jpg",
       "/screenshots/escape-director-analytics-ai.jpg",
     ],
@@ -90,11 +89,6 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         label: "Escape Director",
         description: "The public product site.",
-      },
-      {
-        label: "The game master's desk",
-        description:
-          "The live dashboard: clock, ordered puzzles, clues, media, and a preview of what players see, with every action timestamped.",
       },
       {
         label: "Every room at a glance",

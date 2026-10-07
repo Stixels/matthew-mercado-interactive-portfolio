@@ -1241,17 +1241,12 @@ body {
 /* Two wide cards, then a row of three. */
 .mm-case-grid {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
 }
 
 .mm-case-grid > div {
   display: grid;
-  grid-column: span 2;
-}
-
-.mm-case-grid > div:nth-child(-n + 2) {
-  grid-column: span 3;
 }
 
 /* About ------------------------------------------------------------------ */
@@ -1607,11 +1602,6 @@ body {
 @media (max-width: 760px) {
   .mm-case-grid {
     grid-template-columns: 1fr;
-  }
-
-  .mm-case-grid > div,
-  .mm-case-grid > div:nth-child(-n + 2) {
-    grid-column: auto;
   }
 }
 

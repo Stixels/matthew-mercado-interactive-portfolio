@@ -26,6 +26,11 @@ const nextConfig: NextConfig = {
     return [
       { source: "/hub", destination: "/", permanent: true },
       { source: "/projects/contact", destination: "/#about", permanent: true },
+      {
+        source: "/projects/:id(escape-this-frederick|level-up-vr)",
+        destination: "/projects/web-design",
+        permanent: true,
+      },
       { source: "/puzzles/:id*", destination: "/", permanent: true },
     ];
   },

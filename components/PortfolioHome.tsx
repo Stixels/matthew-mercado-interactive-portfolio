@@ -11,8 +11,7 @@ const caseIds = [
   "escape-director",
   "ai-agent-platform",
   "waiver-director",
-  "escape-this-frederick",
-  "level-up-vr",
+  "web-design",
   "hardware",
 ] as const;
 

@@ -291,14 +291,15 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
-    id: "escape-this-frederick",
-    title: "Escape This Frederick",
-    seoTitle: "Escape This Frederick",
+    id: "web-design",
+    title: "Web Design & Engineering",
+    hubTitle: "Web Design",
+    seoTitle: "Web Design & Engineering",
     seoDescription:
-      "Case study for Escape This Frederick: a website rebuild that took Lighthouse from 52 to 97 and doubled conversion, a custom waiver app, and Arduino and PLC puzzles that eliminated manual resets.",
-    hubSubtitle: "WEB ENGINEERING",
+      "Web design case study: a Next.js rebuild of Escape This Frederick that took Lighthouse from 52 to 97 and doubled conversion, and a Figma-to-Webflow site that put Level Up VR at the top of local search.",
+    hubSubtitle: "WEB DESIGN",
     status: "DEPLOYED",
-    role: "Software Engineer & Manager",
+    role: "Designer & Web Engineer",
     timeline: "2017 – 2024",
     stack: [
       "Next.js",
@@ -306,23 +307,29 @@ export const portfolioProjects: PortfolioProject[] = [
       "Tailwind CSS",
       "Prisma",
       "PostgreSQL",
+      "Figma",
+      "Webflow",
+      "JavaScript",
       "Bookeo API",
+      "Resova",
       "Mailchimp",
       "Vercel",
     ],
     overview:
-      "Seven years at Maryland's highest-rated escape room, where I ran games, rebuilt the website, wrote the waiver software, and wired the puzzles. It's where I learned to build for the people on both sides of the screen.",
+      "Two venue websites, one goal: turn visitors into bookings. I rebuilt Escape This Frederick, Maryland's highest-rated escape room, in Next.js, and designed Level Up VR's site from a blank canvas in Figma before building it in Webflow.",
     headings: {
       brief: "Where it started",
-      build: "The overhaul",
-      buildTitle: "How the numbers moved.",
+      build: "Two sites",
+      buildTitle: "Built around the booking.",
+      footage: "Screens",
+      footageTitle: "Level Up VR, from Figma to live.",
       stack: "Built with",
     },
     features: [
       {
         kind: "compare",
         label: "Before and after",
-        title: "What the rebuild changed.",
+        title: "What the Escape This rebuild changed.",
         rows: [
           { measure: "Lighthouse performance", before: "52", after: "97" },
           { measure: "Visitors who book", before: "2.5%", after: "5%" },
@@ -332,57 +339,12 @@ export const portfolioProjects: PortfolioProject[] = [
             before: "Booker only",
             after: "Every player",
           },
-          {
-            measure: "Puzzle resets between games",
-            before: "By hand",
-            after: "Automatic",
-          },
         ],
       },
-    ],
-    challenge:
-      "The old site was slow and lost bookings. Lighthouse scored it 52, only 2.5% of visitors booked, and guest details lived only with whoever made the booking. In the rooms, puzzles had to be reset by hand between every game.",
-    outcomes: ["2× conversion", "Lighthouse 52 → 97"],
-    liveUrl: "https://escapethisfrederick.com/",
-    seoKeywords: ["local SEO", "conversion optimization", "booking flow"],
-    screenshots: ["/screenshots/escapethisfrederick-com.png"],
-    sections: [
-      {
-        title: "Rebuilt around the booking",
-        content:
-          "I rebuilt the site from scratch on Next.js with a redesigned booking flow, stronger room storytelling, and clearer calls to action. Every change came from session data, and the site took the top local search spot in the state.",
-      },
-      {
-        title: "A waiver app that captured every guest",
-        content:
-          "I wrote the venue's digital waiver application in Next.js, Prisma, and PostgreSQL, with Bookeo and Mailchimp integrations, so every player, not just the booker, joined the marketing list. It later became Waiver Director.",
-      },
-    ],
-  },
-  {
-    id: "level-up-vr",
-    title: "Level Up VR",
-    seoTitle: "Level Up VR",
-    seoDescription:
-      "Case study for Level Up VR, a ground-up website designed in Figma, built in Webflow, and enhanced with custom JavaScript interactions.",
-    hubSubtitle: "DESIGN & FRONTEND",
-    status: "DEPLOYED",
-    role: "Designer & Web Developer",
-    timeline: "2023",
-    stack: ["Figma", "Webflow", "HTML", "CSS", "JavaScript", "Resova"],
-    overview:
-      "A website for a VR arcade, designed from a blank canvas in Figma and built in Webflow, with custom JavaScript where the platform stopped. It reached the top local search result for VR in Frederick.",
-    headings: {
-      brief: "The ask",
-      footage: "Screens",
-      footageTitle: "Every game, one tap away.",
-      stack: "Tools",
-    },
-    features: [
       {
         kind: "flow",
         label: "Process",
-        title: "From blank canvas to bookings.",
+        title: "Level Up VR, from blank canvas to bookings.",
         steps: [
           {
             name: "Figma",
@@ -408,27 +370,62 @@ export const portfolioProjects: PortfolioProject[] = [
       },
     ],
     challenge:
-      "A new VR venue needed a site that felt as energetic as the games, that staff could update without a developer, and that moved visitors straight to booking.",
+      "Escape This Frederick's old site was slow and lost bookings: Lighthouse scored it 52 and only 2.5% of visitors booked. Meanwhile, a new VR arcade in Frederick needed a site that felt as energetic as its games, that staff could update without a developer.",
     metrics: [
+      { value: "2×", label: "Booking conversion at Escape This" },
+      { value: "52 → 97", label: "Lighthouse performance" },
       { value: "#1", label: "Local search for VR in Frederick" },
-      { value: "0", label: "Developer hours to add a new game" },
     ],
-    outcomes: ["#1 local search", "Figma to Webflow"],
-    liveUrl: "https://www.lvlupvr.com/",
-    seoKeywords: ["marketing website", "Webflow", "VR venue website"],
+    outcomes: ["2× conversion", "Lighthouse 52 → 97", "#1 local search"],
+    links: [
+      {
+        label: "Visit Escape This Frederick",
+        url: "https://escapethisfrederick.com/",
+      },
+      { label: "Visit Level Up VR", url: "https://www.lvlupvr.com/" },
+    ],
+    seoKeywords: [
+      "web design",
+      "conversion optimization",
+      "local SEO",
+      "Webflow",
+      "Next.js",
+    ],
     screenshots: [
+      "/screenshots/escapethisfrederick-com.png",
       "/screenshots/lvlupvr-home.png",
       "/screenshots/lvlupvr-games-carousels.png",
     ],
     screenshotDetails: [
       {
-        label: "Home page",
+        label: "Escape This Frederick",
+        description: "The rebuilt Next.js site.",
+      },
+      {
+        label: "Level Up VR home",
         description: "The landing page, designed in Figma first.",
       },
       {
-        label: "Game catalog",
+        label: "Level Up VR game catalog",
         description:
           "Carousels driven by a CMS collection, so staff can add games themselves.",
+      },
+    ],
+    sections: [
+      {
+        title: "Escape This Frederick, rebuilt from scratch",
+        content:
+          "A new Next.js site with a redesigned booking flow, stronger room storytelling, and clearer calls to action. Every change came from session data, and the site took the top local search spot in the state.",
+      },
+      {
+        title: "A waiver app that captured every guest",
+        content:
+          "I wrote the venue's digital waiver application in Next.js, Prisma, and PostgreSQL, with Bookeo and Mailchimp integrations, so every player joined the marketing list. It later became Waiver Director.",
+      },
+      {
+        title: "Level Up VR, designed to be run by staff",
+        content:
+          "A Webflow build on my own Figma design, with a CMS game catalog so adding a new game takes zero developer hours, and a booking widget restyled to match.",
       },
     ],
   },

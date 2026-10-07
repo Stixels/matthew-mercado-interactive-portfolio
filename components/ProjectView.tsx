@@ -46,6 +46,7 @@ export default function ProjectView({ projectId }: { projectId: string }) {
       label: "Read the product guides",
       url: project.docsUrl,
     },
+    ...(project.links ?? []),
   ].filter((link): link is { label: string; url: string } => Boolean(link));
 
   // Always keep whileInView so content that rendered hidden on the server

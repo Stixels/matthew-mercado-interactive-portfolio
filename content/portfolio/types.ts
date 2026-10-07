@@ -2,8 +2,7 @@ export type ProjectId =
   | "escape-director"
   | "ai-agent-platform"
   | "waiver-director"
-  | "escape-this-frederick"
-  | "level-up-vr"
+  | "web-design"
   | "hardware"
   | "portfolio";
 
@@ -74,6 +73,8 @@ export type PortfolioProject = {
   mediaNote?: string;
   liveUrl?: string;
   docsUrl?: string;
+  /** Extra outbound links, for cases that span more than one site. */
+  links?: { label: string; url: string }[];
   sections?: ProjectSection[];
   seoKeywords?: string[];
   screenshots?: string[];

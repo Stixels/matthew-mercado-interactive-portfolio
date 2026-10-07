@@ -1,4 +1,5 @@
 export type {
+  CaseHeadings,
   PortfolioProject,
   ProjectId,
   ProjectMetric,

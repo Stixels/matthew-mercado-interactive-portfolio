@@ -26,6 +26,14 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     overview:
       "The operations platform I built and run for escape rooms. Game masters control the clock, clues, puzzles, media, and the players' screen from one dashboard, and the room keeps running when the venue's internet doesn't.",
+    headings: {
+      brief: "The problem at the desk",
+      build: "Inside the platform",
+      buildTitle: "Built for the countdown.",
+      footage: "Live from the venue",
+      footageTitle: "The game master's view.",
+      stack: "Under the hood",
+    },
     challenge:
       "An escape room runs on a 60-minute clock with players inside who are counting on it. Most venues juggle a timer app, a clue screen, and paper notes, and a dropped Wi-Fi connection can stall a live game. I had run rooms since 2017, so I built the tool I wanted at the game master's desk.",
     metrics: [
@@ -125,6 +133,13 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     overview:
       "The tools behind an agency-wide LLM platform at the U.S. Department of Defense: MCP servers that let its assistant do real work, an air-gapped IDE for AI coding agents, and the skills and training that help teams build with them.",
+    headings: {
+      brief: "The mission",
+      build: "The tool belt",
+      buildTitle: "Giving an assistant real capabilities.",
+      stack: "Built with",
+      media: "Closed network",
+    },
     challenge:
       "An enterprise AI assistant is only as useful as the tools it can call. Teams needed it to search internal knowledge, draw charts, and help write code, on a network with no internet access, where every tool had to be secure, reviewable, and easy for other teams to build on.",
     metrics: [
@@ -193,6 +208,14 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     overview:
       "A guest CRM that starts with the waiver. Experience businesses collect a signature from every participant before they arrive, not just the person who booked, and turn those signers into relationships they can follow up with.",
+    headings: {
+      brief: "Origin story",
+      build: "Design decisions",
+      buildTitle: "Legal records that never drift.",
+      footage: "Product tour",
+      footageTitle: "From signature to follow-up.",
+      stack: "Stack",
+    },
     challenge:
       "At Escape This Frederick, I built a waiver app that captured every guest for remarketing, and other venues wanted the same thing. Waiver Director rebuilds it as a multi-tenant product, where each business's legal records have to stay exact and isolated from every other business.",
     metrics: [
@@ -288,6 +311,12 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     overview:
       "Seven years at Maryland's highest-rated escape room, where I ran games, rebuilt the website, wrote the waiver software, and wired the puzzles. It's where I learned to build for the people on both sides of the screen.",
+    headings: {
+      brief: "Where it started",
+      build: "The overhaul",
+      buildTitle: "Faster, clearer, fully booked.",
+      stack: "Built with",
+    },
     challenge:
       "The old site was slow and lost bookings. Lighthouse scored it 52, only 2.5% of visitors booked, and guest details lived only with whoever made the booking. In the rooms, puzzles had to be reset by hand between every game.",
     metrics: [
@@ -336,6 +365,14 @@ export const portfolioProjects: PortfolioProject[] = [
     stack: ["Figma", "Webflow", "HTML", "CSS", "JavaScript", "Resova"],
     overview:
       "A website for a VR arcade, designed from a blank canvas in Figma and built in Webflow, with custom JavaScript where the platform stopped. It reached the top local search result for VR in Frederick.",
+    headings: {
+      brief: "The ask",
+      build: "The build",
+      buildTitle: "Designed first, then built to book.",
+      footage: "Screens",
+      footageTitle: "Every game, one tap away.",
+      stack: "Tools",
+    },
     challenge:
       "A new VR venue needed a site that felt as energetic as the games, that staff could update without a developer, and that moved visitors straight to booking.",
     metrics: [
@@ -392,6 +429,13 @@ export const portfolioProjects: PortfolioProject[] = [
     stack: ["Arduino", "C++", "Raspberry Pi", "Python", "PLCs", "Sensors"],
     overview:
       "Puzzles and room systems for award-winning escape rooms, from the first sketch to the final relay. Custom electronics turn what players do with their hands into sound, video, light, and open doors.",
+    headings: {
+      brief: "Design constraints",
+      build: "How the magic works",
+      buildTitle: "Invisible to players, easy to run.",
+      stack: "Parts bin",
+      media: "Classified by design",
+    },
     challenge:
       "A great puzzle has to feel like magic to players and be dull to maintain: it must reset itself between games, recover if something goes wrong, and let the game master see what's happening from the desk.",
     metrics: [
@@ -444,6 +488,13 @@ export const portfolioProjects: PortfolioProject[] = [
     stack: ["Next.js 16", "React 19", "TypeScript", "Motion", "CSS masks"],
     overview:
       "The site you're on. It opens on a game master's camera feed of an escape room, hands you a UV flashlight to find the proof written on the wall, then gets out of the way so the work is easy to read.",
+    headings: {
+      brief: "Why a room",
+      build: "Behind the wall",
+      buildTitle: "Playful up front, practical underneath.",
+      stack: "Built with",
+      media: "Live demo",
+    },
     challenge:
       "A portfolio has a few seconds to make an impression, but it still has to answer the boring questions quickly. I wanted an opening people remember that never stands between a recruiter and the facts.",
     metrics: [

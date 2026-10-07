@@ -21,6 +21,16 @@ export default function ProjectView({ projectId }: { projectId: string }) {
     portfolioProjects[(projectIndex + 1) % portfolioProjects.length];
   const caseNumber = String(projectIndex + 1).padStart(2, "0");
   const [heroImage, ...supportingImages] = project.screenshots ?? [];
+  const { headings } = project;
+  const hasGallery = supportingImages.length > 0;
+  const chapters = [
+    project.challenge && "brief",
+    project.sections?.length && "build",
+    hasGallery && "footage",
+    "stack",
+  ].filter(Boolean);
+  const chapterNumber = (chapter: string) =>
+    String(chapters.indexOf(chapter) + 1).padStart(2, "0");
   const links = [
     project.liveUrl && {
       label: "Visit the live product",
@@ -143,7 +153,7 @@ export default function ProjectView({ projectId }: { projectId: string }) {
         project.mediaNote && (
           <div className="mm-frame">
             <p className="mm-cs-redacted">
-              <span aria-hidden="true">No footage</span>
+              <span aria-hidden="true">{headings.media ?? "No footage"}</span>
               {project.mediaNote}
             </p>
           </div>
@@ -154,7 +164,7 @@ export default function ProjectView({ projectId }: { projectId: string }) {
         <section className="mm-section mm-cs-block" aria-labelledby="cs-brief">
           <div className="mm-frame mm-cs-split">
             <p className="mm-label">
-              <span>01</span> The brief
+              <span>{chapterNumber("brief")}</span> {headings.brief}
             </p>
             <motion.p id="cs-brief" className="mm-cs-brief" {...reveal}>
               {project.challenge}
@@ -171,9 +181,9 @@ export default function ProjectView({ projectId }: { projectId: string }) {
           <div className="mm-frame">
             <header className="mm-cs-split">
               <p className="mm-label">
-                <span>02</span> What I built
+                <span>{chapterNumber("build")}</span> {headings.build}
               </p>
-              <h2 id="cs-build">The decisions that made it work.</h2>
+              <h2 id="cs-build">{headings.buildTitle}</h2>
             </header>
 
             <ol className="mm-cs-steps">
@@ -191,7 +201,7 @@ export default function ProjectView({ projectId }: { projectId: string }) {
         </section>
       )}
 
-      {supportingImages.length > 0 && (
+      {hasGallery && (
         <section
           className="mm-section mm-cs-block"
           aria-labelledby="cs-gallery"
@@ -199,9 +209,12 @@ export default function ProjectView({ projectId }: { projectId: string }) {
           <div className="mm-frame">
             <header className="mm-cs-split">
               <p className="mm-label">
-                <span>03</span> Footage
+                <span>{chapterNumber("footage")}</span>{" "}
+                {headings.footage ?? "Footage"}
               </p>
-              <h2 id="cs-gallery">Inside the product.</h2>
+              <h2 id="cs-gallery">
+                {headings.footageTitle ?? "Inside the product."}
+              </h2>
             </header>
 
             <div className="mm-cs-gallery">
@@ -241,8 +254,7 @@ export default function ProjectView({ projectId }: { projectId: string }) {
       <section className="mm-section mm-cs-block" aria-labelledby="cs-stack">
         <div className="mm-frame mm-cs-split">
           <p className="mm-label" id="cs-stack">
-            <span>{supportingImages.length > 0 ? "04" : "03"}</span> Tools and
-            systems
+            <span>{chapterNumber("stack")}</span> {headings.stack}
           </p>
           <ul className="mm-cs-stack">
             {project.stack.map((technology) => (

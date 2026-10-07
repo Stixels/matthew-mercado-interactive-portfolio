@@ -17,6 +17,17 @@ export type ProjectMetric = {
   label: string;
 };
 
+/** Per-case wording for the case page's section labels and headings. */
+export type CaseHeadings = {
+  brief: string;
+  build: string;
+  buildTitle: string;
+  footage?: string;
+  footageTitle?: string;
+  stack: string;
+  media?: string;
+};
+
 export type ScreenshotDetail = {
   label: string;
   description: string;
@@ -40,6 +51,7 @@ export type PortfolioProject = {
   metrics?: ProjectMetric[];
   /** Short proof chips shown on the homepage case card. */
   outcomes?: string[];
+  headings: CaseHeadings;
   /** Shown when a case has no screenshots to explain why. */
   mediaNote?: string;
   liveUrl?: string;

@@ -201,7 +201,7 @@ export default function HeroRoom() {
         dragging = true;
         navigator.vibrate?.(12);
         aim(touchStart.x, touchStart.y);
-      }, 280);
+      }, 450);
     };
 
     const handleTouchMove = (event: TouchEvent) => {
@@ -212,7 +212,7 @@ export default function HeroRoom() {
         aim(touch.clientX, touch.clientY);
       } else if (
         Math.hypot(touch.clientX - touchStart.x, touch.clientY - touchStart.y) >
-        10
+        8
       ) {
         window.clearTimeout(holdTimer);
       }

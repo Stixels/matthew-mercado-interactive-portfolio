@@ -13,13 +13,15 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5.5rem;
+  /* iOS Safari ignores overflow-x on body alone, so clip at the root too. */
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
   font-family: var(--font-sans);
   font-weight: 500;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 ::selection {
@@ -335,6 +337,8 @@ body {
 /* -------------------------------------------------------------------------- */
 
 .room-hero {
+  /* Swipes here only scroll the page up and down. */
+  touch-action: pan-y pinch-zoom;
   --room-beam: 150px;
   --light-x: 72%;
   --light-y: 50%;

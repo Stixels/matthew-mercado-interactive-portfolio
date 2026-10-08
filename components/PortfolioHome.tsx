@@ -25,7 +25,7 @@ const proof = [
   "7,600+ live games",
   "99.95% uptime",
   "3 of 4 production MCP servers",
-  "Months of uploads → self-serve",
+  "Months of data uploads → minutes",
   "App-breaking edits → under 1 s",
   "−90% analyst task time",
   "2× conversion",

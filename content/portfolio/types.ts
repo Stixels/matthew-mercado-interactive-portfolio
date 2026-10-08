@@ -63,6 +63,8 @@ export type PortfolioProject = {
   overview: string;
   /** The situation the work answered, told in a few sentences. */
   challenge?: string;
+  /** A second, smaller paragraph under the brief. */
+  challengeDetail?: string;
   /** Headline numbers shown on the case page. */
   metrics?: ProjectMetric[];
   /** Short proof chips shown on the homepage case card. */

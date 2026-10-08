@@ -30,9 +30,9 @@ const clues = [
   },
   {
     id: "speed",
-    label: "100,000+ entity datasets",
-    value: "Months → self-serve",
-    note: "bulk ingest, sub-second edits",
+    label: "Bulk data ingestion",
+    value: "Months → minutes",
+    note: "100,000+ entities, no scripts",
   },
   {
     id: "workflow",

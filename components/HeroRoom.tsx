@@ -31,8 +31,8 @@ const clues = [
   {
     id: "speed",
     label: "100,000+ entity datasets",
-    value: "7 min → under 1",
-    note: "batched writes, tuned queries",
+    value: "Months → self-serve",
+    note: "bulk ingest, sub-second edits",
   },
   {
     id: "workflow",

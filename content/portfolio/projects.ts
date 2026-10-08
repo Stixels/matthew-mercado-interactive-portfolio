@@ -32,37 +32,6 @@ export const portfolioProjects: PortfolioProject[] = [
       footageTitle: "The game master's view.",
       stack: "Under the hood",
     },
-    features: [
-      {
-        kind: "flow",
-        label: "Outage drill",
-        title: "What happens when the Wi-Fi drops.",
-        intro:
-          "Venue internet fails at the worst moments. The room is designed so players never notice.",
-        steps: [
-          {
-            name: "Prepare",
-            detail:
-              "Opening a room caches its current revision, the app shell, a signed offline access grant, and every audio, image, and video file.",
-          },
-          {
-            name: "Keep playing",
-            detail:
-              "The dashboard and the players' Live View keep the clock, clues, and media running from IndexedDB with no connection at all.",
-          },
-          {
-            name: "Queue",
-            detail:
-              "Each finished game lands in a durable outbox with an idempotency key, so it survives a refresh or a reboot.",
-          },
-          {
-            name: "Sync once",
-            detail:
-              "When the connection returns, the outbox drains. No game is lost, and none is counted twice.",
-          },
-        ],
-      },
-    ],
     challenge:
       "An escape room runs on a 60-minute clock with players inside who are counting on it. Most venues juggle a timer app, a clue screen, and paper notes, and a dropped Wi-Fi connection can stall a live game. I had run rooms since 2017, so I built the tool I wanted at the game master's desk.",
     metrics: [
@@ -106,6 +75,11 @@ export const portfolioProjects: PortfolioProject[] = [
         title: "One dashboard for the live game",
         content:
           "Game masters run the clock, ordered puzzles, clues, audio, images, video, and the synchronized player-facing Live View from one screen. Automations fire from solved puzzles, clock events, or a game master's command, and every action is timestamped in the session log for review afterward.",
+      },
+      {
+        title: "Games that survive an outage",
+        content:
+          "Venue internet fails at the worst moments, so every room is built to run without it. Opening a room caches everything it needs, from media to a signed offline grant. The clock, clues and players' screen keep going with no connection, and finished games wait in a durable queue that syncs exactly once when the network returns.",
       },
       {
         title: "An AI assistant that earned the job",
@@ -203,37 +177,6 @@ export const portfolioProjects: PortfolioProject[] = [
       footageTitle: "From signature to follow-up.",
       stack: "Stack",
     },
-    features: [
-      {
-        kind: "flow",
-        label: "Record lifecycle",
-        title: "One signature, start to finish.",
-        intro:
-          "A waiver is a legal record first and a marketing relationship second. The system keeps the two apart.",
-        steps: [
-          {
-            name: "Publish",
-            detail:
-              "The operator publishes a waiver, and that version locks so it can never change under a signature.",
-          },
-          {
-            name: "Sign",
-            detail:
-              "Every participant signs from a link, QR code, embed, or kiosk, including minors, before they arrive.",
-          },
-          {
-            name: "Freeze",
-            detail:
-              "The submission captures signer details, answers, signature, and booking context in an immutable audit trail.",
-          },
-          {
-            name: "Follow up",
-            detail:
-              "Signers who opted in sync to Mailchimp, and scheduled emails bring them back for another visit.",
-          },
-        ],
-      },
-    ],
     challenge:
       "At Escape This Frederick, I built a waiver app that captured every guest for remarketing, and other venues wanted the same thing. Waiver Director rebuilds it as a multi-tenant product, where each business's legal records have to stay exact and isolated from every other business.",
     outcomes: ["Multi-tenant SaaS", "Immutable signed records"],
@@ -272,6 +215,11 @@ export const portfolioProjects: PortfolioProject[] = [
       },
     ],
     sections: [
+      {
+        title: "Legal record first",
+        content:
+          "A waiver is a legal record first and a marketing relationship second, and the system keeps the two apart. Each published version locks so it can't change under a signature, every participant signs before they arrive, minors included, and each submission is frozen in an immutable audit trail. Only signers who opt in sync to Mailchimp for follow-up emails.",
+      },
       {
         title: "Isolation by default",
         content:

@@ -25,7 +25,8 @@ const proof = [
   "7,600+ live games",
   "99.95% uptime",
   "3 of 4 production MCP servers",
-  "7 min → under 1 min",
+  "Months of data uploads → minutes",
+  "App-breaking edits → under 1 s",
   "−90% analyst task time",
   "2× conversion",
   "Lighthouse 52 → 97",
@@ -71,7 +72,7 @@ const experience = [
     role: "Technical Lead",
     company: "U.S. Department of Defense",
     summary:
-      "Architected a self-service ingestion platform for 100,000+ entity datasets, cut 10,000-entity processing from 7 minutes to under 1, and made builds 6× faster with CI/CD and GitOps. Earned a division performance award.",
+      "Architected a self-service platform for bulk-loading 100,000+ entity datasets, replacing months of manual uploads and one-off scripts. Cut parsing from 7 minutes to under 1, turned dataset-wide edits that used to crash the app into sub-second updates, and made builds 6× faster with CI/CD and GitOps. Earned a division performance award.",
   },
   {
     period: "Aug 2024 — Jan 2025",

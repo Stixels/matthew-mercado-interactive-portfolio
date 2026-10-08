@@ -173,16 +173,9 @@ export default function ProjectView({ projectId }: { projectId: string }) {
             <p className="mm-label">
               <span>{chapterNumber("brief")}</span> {headings.brief}
             </p>
-            <div>
-              <motion.p id="cs-brief" className="mm-cs-brief" {...reveal}>
-                {project.challenge}
-              </motion.p>
-              {project.challengeDetail && (
-                <motion.p className="mm-cs-brief-detail" {...reveal}>
-                  {project.challengeDetail}
-                </motion.p>
-              )}
-            </div>
+            <motion.p id="cs-brief" className="mm-cs-brief" {...reveal}>
+              {project.challenge}
+            </motion.p>
           </div>
         </section>
       )}

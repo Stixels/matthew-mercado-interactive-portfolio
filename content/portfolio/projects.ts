@@ -34,8 +34,6 @@ export const portfolioProjects: PortfolioProject[] = [
     },
     challenge:
       "An escape room runs on a 60-minute clock with players inside who are counting on it. Most venues juggle a timer app, a clue screen, and paper notes, and a dropped Wi-Fi connection can stall a live game. I had run rooms since 2017, so I built the tool I wanted at the game master's desk.",
-    challengeDetail:
-      "Venue internet fails at the worst moments, so every room is built to run without it. Opening a room caches everything it needs, from media to a signed offline grant. The clock, clues and players' screen keep going with no connection, and finished games wait in a durable queue that syncs exactly once when the network returns.",
     metrics: [
       { value: "7,600+", label: "Live games run on the platform" },
       { value: "132,000+", label: "Game actions logged" },
@@ -77,6 +75,11 @@ export const portfolioProjects: PortfolioProject[] = [
         title: "One dashboard for the live game",
         content:
           "Game masters run the clock, ordered puzzles, clues, audio, images, video, and the synchronized player-facing Live View from one screen. Automations fire from solved puzzles, clock events, or a game master's command, and every action is timestamped in the session log for review afterward.",
+      },
+      {
+        title: "Games that survive an outage",
+        content:
+          "Venue internet fails at the worst moments, so every room is built to run without it. Opening a room caches everything it needs, from media to a signed offline grant. The clock, clues and players' screen keep going with no connection, and finished games wait in a durable queue that syncs exactly once when the network returns.",
       },
       {
         title: "An AI assistant that earned the job",
@@ -176,8 +179,6 @@ export const portfolioProjects: PortfolioProject[] = [
     },
     challenge:
       "At Escape This Frederick, I built a waiver app that captured every guest for remarketing, and other venues wanted the same thing. Waiver Director rebuilds it as a multi-tenant product, where each business's legal records have to stay exact and isolated from every other business.",
-    challengeDetail:
-      "A waiver is a legal record first and a marketing relationship second, and the system keeps the two apart. Each published version locks so it can't change under a signature, every participant signs before they arrive, minors included, and each submission is frozen in an immutable audit trail. Only signers who opt in sync to Mailchimp for follow-up emails.",
     outcomes: ["Multi-tenant SaaS", "Immutable signed records"],
     liveUrl: "https://www.waiverdirector.com/",
     seoKeywords: [
@@ -214,6 +215,11 @@ export const portfolioProjects: PortfolioProject[] = [
       },
     ],
     sections: [
+      {
+        title: "Legal record first",
+        content:
+          "A waiver is a legal record first and a marketing relationship second, and the system keeps the two apart. Each published version locks so it can't change under a signature, every participant signs before they arrive, minors included, and each submission is frozen in an immutable audit trail. Only signers who opt in sync to Mailchimp for follow-up emails.",
+      },
       {
         title: "Isolation by default",
         content:

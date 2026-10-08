@@ -2212,15 +2212,6 @@ header.mm-cs-split {
   text-wrap: pretty;
 }
 
-.mm-cs-brief-detail {
-  max-width: 62ch;
-  margin: 2rem 0 0;
-  color: var(--mm-muted);
-  font-size: clamp(1rem, 1.25vw, 1.15rem);
-  line-height: 1.65;
-  text-wrap: pretty;
-}
-
 .mm-cs-steps {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

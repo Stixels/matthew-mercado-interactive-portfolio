@@ -202,6 +202,8 @@ export const portfolioProjects: PortfolioProject[] = [
       brief: "Origin story",
       build: "Design decisions",
       buildTitle: "Safe for every business on it.",
+      films: "Launch trailer",
+      filmsTitle: "Every guest signed before they arrive.",
       footage: "Product tour",
       footageTitle: "From signature to follow-up.",
       stack: "Stack",
@@ -260,6 +262,16 @@ export const portfolioProjects: PortfolioProject[] = [
           "An LLM audits operator-written waivers and emails and returns structured feedback with a reviewable diff. It speeds up review, while the operator stays responsible for the final language.",
       },
     ],
+    films: [
+      {
+        title: "The launch trailer",
+        description:
+          "From eight guests booked with one unsigned to every signature in before arrival: the builder, phone signing, booking coverage and timed follow-ups.",
+        src: "/films/waiver-director-launch-trailer.mp4",
+        poster: "/films/waiver-director-launch-trailer.jpg",
+        duration: "0:53",
+      },
+    ],
   },
   {
     id: "wicket",
@@ -291,8 +303,6 @@ export const portfolioProjects: PortfolioProject[] = [
       buildTitle: "One message in, the right answer out.",
       films: "Launch trailer",
       filmsTitle: "One report, start to finish.",
-      footage: "Stills",
-      footageTitle: "Close the loop.",
       stack: "Built with",
     },
     challenge:
@@ -309,28 +319,6 @@ export const portfolioProjects: PortfolioProject[] = [
       "Discord bot",
       "LLM tool calling",
       "LLM evaluation",
-    ],
-    screenshots: [
-      "/screenshots/wicket-trailer-answered.webp",
-      "/screenshots/wicket-trailer-one-ticket.webp",
-      "/screenshots/wicket-trailer-heard-back.webp",
-    ],
-    screenshotDetails: [
-      {
-        label: "Answers what it can",
-        description:
-          "A question answered from the product's own docs, with a docs fix suggested when the guide is out of date.",
-      },
-      {
-        label: "One ticket, not twelve",
-        description:
-          "A bug goes to the tracker with the page, browser, version and console error, and repeat reports land on the same ticket.",
-      },
-      {
-        label: "Everyone hears back",
-        description:
-          "When the fix ships, every person who reported it hears about it in the chat they started.",
-      },
     ],
     films: [
       {

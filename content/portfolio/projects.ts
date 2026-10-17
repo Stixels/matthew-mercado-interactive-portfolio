@@ -30,16 +30,18 @@ export const portfolioProjects: PortfolioProject[] = [
       buildTitle: "Built for the countdown.",
       footage: "Live from the venue",
       footageTitle: "The game master's view.",
+      films: "Launch films",
+      filmsTitle: "Press play on a Saturday night.",
       stack: "Under the hood",
     },
     challenge:
       "An escape room runs on a 60-minute clock with players inside who are counting on it. Most venues juggle a timer app, a clue screen, and paper notes, and a dropped Wi-Fi connection can stall a live game. I had run rooms since 2017, so I built the tool I wanted at the game master's desk.",
     metrics: [
-      { value: "7,600+", label: "Live games run on the platform" },
-      { value: "132,000+", label: "Game actions logged" },
+      { value: "7,900+", label: "Live games run on the platform" },
+      { value: "142,000+", label: "Game actions logged" },
       { value: "99.95%", label: "Uptime over the trailing 12 months" },
     ],
-    outcomes: ["7,600+ live games", "99.95% uptime", "Offline-first rooms"],
+    outcomes: ["7,900+ live games", "99.95% uptime", "Offline-first rooms"],
     liveUrl: "https://www.escapedirector.com/",
     docsUrl: "https://docs.escapedirector.com/",
     seoKeywords: [
@@ -50,7 +52,9 @@ export const portfolioProjects: PortfolioProject[] = [
       "Arduino SDK",
     ],
     screenshots: [
-      "/screenshots/escape-director-home.png",
+      "/screenshots/escape-director-home-2026.webp",
+      "/screenshots/escape-director-story-clues.webp",
+      "/screenshots/escape-director-story-escape.webp",
       "/screenshots/escape-director-all-rooms.webp",
       "/screenshots/escape-director-analytics.webp",
     ],
@@ -58,6 +62,16 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         label: "Escape Director",
         description: "The public product site.",
+      },
+      {
+        label: "One game, told by the clock",
+        description:
+          "The homepage follows a single Saturday-night game. As you scroll, the room clock counts down and each feature shows up at the moment a game master would reach for it.",
+      },
+      {
+        label: "They escape",
+        description:
+          "Stopping the clock records the result, the time and the clues used, and the lobby leaderboard updates on its own.",
       },
       {
         label: "Every room at a glance",
@@ -90,6 +104,29 @@ export const portfolioProjects: PortfolioProject[] = [
         title: "Props that talk to the game",
         content:
           "An open-source, MIT-licensed Arduino SDK gives physical props state, command, and completion APIs with automatic pairing and reconnection, so a solved puzzle shows up on the dashboard instantly.",
+      },
+      {
+        title: "A launch told in sixty minutes",
+        content:
+          "I rebuilt the public site around one game: scroll and the room clock runs from the door closing to the record on the lobby wall. I also built the launch films below in Remotion, animated in code and edited to the beat of the music. The short silent loops on the homepage come from the same footage.",
+      },
+    ],
+    films: [
+      {
+        title: "The launch film",
+        description:
+          "Every feature in one cut, from the first clue to the lobby leaderboard, including the moment the internet drops and the game keeps going.",
+        src: "/films/escape-director-launch-film.mp4",
+        poster: "/films/escape-director-launch-film.jpg",
+        duration: "1:39",
+      },
+      {
+        title: "One night",
+        description:
+          "A shorter story cut: five friends, one room, and the game master who gets them out.",
+        src: "/films/escape-director-one-night.mp4",
+        poster: "/films/escape-director-one-night.jpg",
+        duration: "1:00",
       },
     ],
   },
@@ -229,6 +266,91 @@ export const portfolioProjects: PortfolioProject[] = [
         title: "AI review, human decision",
         content:
           "An LLM audits operator-written waivers and emails and returns structured feedback with a reviewable diff. It speeds up review, while the operator stays responsible for the final language.",
+      },
+    ],
+  },
+  {
+    id: "wicket",
+    title: "Wicket",
+    seoTitle: "Wicket",
+    seoDescription:
+      "Case study for Wicket, a drop-in AI help and feedback chat: one script tag, answers from a product's docs and the user's own data, Discord as the team inbox, and bug reports that close the loop with everyone who sent them.",
+    hubSubtitle: "AI SUPPORT AGENT",
+    status: "ACTIVE",
+    role: "Creator & Lead Software Engineer",
+    timeline: "2026 – Present",
+    stack: [
+      "TypeScript",
+      "Node.js",
+      "Hono",
+      "SQLite",
+      "Drizzle ORM",
+      "Vercel AI SDK",
+      "Claude",
+      "discord.js",
+      "React",
+      "Railway",
+    ],
+    overview:
+      "A help and feedback chat that drops into any web app with one script tag. An AI assistant answers from the product's docs, and every conversation lands in the team's Discord, where a reply goes straight back to the person in the app. I built it to be Escape Director's support chat.",
+    headings: {
+      brief: "Why build it",
+      build: "How it works",
+      buildTitle: "One message in, the right answer out.",
+      footage: "In the chat",
+      footageTitle: "Answers that show their work.",
+      stack: "Built with",
+    },
+    challenge:
+      "Support for a small software company usually means a help desk priced per seat, a chatbot that can't see the product, and bug reports that disappear once someone replies. I wanted customers to get an answer in seconds from our own docs, reach a person in one tap, and hear back when the thing they reported is fixed, all from tools the team already has open.",
+    metrics: [
+      { value: "1", label: "Script tag to add it to an app" },
+      { value: "27", label: "Real-world questions in its model test set" },
+      { value: "24 KB", label: "Widget size, gzipped" },
+    ],
+    outcomes: ["One script tag", "Answers with sources"],
+    seoKeywords: [
+      "AI support agent",
+      "customer support chat",
+      "Discord bot",
+      "LLM tool calling",
+      "LLM evaluation",
+    ],
+    screenshots: [
+      "/screenshots/wicket-escape-director.webp",
+      "/screenshots/wicket-answers.webp",
+    ],
+    screenshotDetails: [
+      {
+        label: "Escape Director support",
+        description: "Wicket as the support chat on the Escape Director site.",
+      },
+      {
+        label: "Answers with sources",
+        description:
+          "Left, a docs answer that links the exact guide. Right, an answer from the person's own analytics, with the numbers behind it under How we got this (demo data).",
+      },
+    ],
+    sections: [
+      {
+        title: "Answers from the docs, with receipts",
+        content:
+          "Wicket indexes a Markdown docs repo or any docs site's sitemap into SQLite full-text search and links the exact section it used. Through app tools, the assistant can also read the signed-in person's own data from the product's backend, checked against their token on every call, and it shows the numbers behind each answer.",
+      },
+      {
+        title: "Discord is the inbox",
+        content:
+          "Each conversation becomes a private forum post in the team's Discord. A reply there, or in the web dashboard, reaches the person in the app live. When someone asks for a person, gets frustrated, or the docs don't cover it, the assistant hands off and pings the team.",
+      },
+      {
+        title: "Everyone hears back",
+        content:
+          "The assistant files bugs and ideas in Linear or GitHub Issues, adds repeat reports to the ticket that already exists, and tells every reporter when it's fixed or planned, in the chat or by email if they've gone.",
+      },
+      {
+        title: "Cheap and safe to run",
+        content:
+          "It's one Node process with SQLite. The widget renders in a shadow DOM so it can't break the host app, identity comes from short-lived signed tokens, and every person has a monthly AI budget. Models are compared with an eval harness I wrote that scores replies without an AI judge.",
       },
     ],
   },

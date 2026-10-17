@@ -12,6 +12,7 @@ const caseIds = [
   "escape-director",
   "ai-agent-platform",
   "waiver-director",
+  "wicket",
   "web-design",
   "hardware",
 ] as const;
@@ -22,7 +23,7 @@ const cases = caseIds
 
 const proof = [
   "9 years shipping",
-  "7,600+ live games",
+  "7,900+ live games",
   "99.95% uptime",
   "3 of 4 production MCP servers",
   "Months of data uploads → minutes",

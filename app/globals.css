@@ -1351,6 +1351,26 @@ body {
   display: grid;
 }
 
+/* An odd card out gets the whole last row, laid out side by side. */
+@media (min-width: 761px) {
+  .mm-case-grid > div:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .mm-case-grid > div:last-child:nth-child(odd) .mm-case {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .mm-case-grid > div:last-child:nth-child(odd) .mm-case-media {
+    border-right: 1px solid var(--mm-line);
+    border-bottom: 0;
+  }
+
+  .mm-case-grid > div:last-child:nth-child(odd) .mm-case-body {
+    align-content: center;
+  }
+}
+
 /* About ------------------------------------------------------------------ */
 
 .mm-about {
@@ -2164,6 +2184,21 @@ body {
 .mm-cs-gallery {
   display: grid;
   gap: clamp(3rem, 6vw, 5rem);
+}
+
+.mm-cs-films {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+  gap: clamp(2.5rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.mm-cs-film-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--mm-line-strong);
+  background: #000;
+  box-shadow: var(--mm-shadow);
 }
 
 /* App screenshots are wide desktop captures. */

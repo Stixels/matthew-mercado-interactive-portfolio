@@ -2,6 +2,7 @@ export type ProjectId =
   | "escape-director"
   | "ai-agent-platform"
   | "waiver-director"
+  | "wicket"
   | "web-design"
   | "hardware"
   | "portfolio";
@@ -25,6 +26,8 @@ export type CaseHeadings = {
   footageTitle?: string;
   stack: string;
   media?: string;
+  films?: string;
+  filmsTitle?: string;
 };
 
 type FeatureBase = {
@@ -47,6 +50,16 @@ export type CaseFeature =
 export type ScreenshotDetail = {
   label: string;
   description: string;
+};
+
+/** A launch film or trailer, played only when the visitor presses play. */
+export type ProjectFilm = {
+  title: string;
+  description: string;
+  src: string;
+  poster: string;
+  /** Running time shown on the card, like "1:39". */
+  duration: string;
 };
 
 export type PortfolioProject = {
@@ -79,4 +92,5 @@ export type PortfolioProject = {
   seoKeywords?: string[];
   screenshots?: string[];
   screenshotDetails?: ScreenshotDetail[];
+  films?: ProjectFilm[];
 };

@@ -30,7 +30,7 @@ export const portfolioProjects: PortfolioProject[] = [
       buildTitle: "Built for the countdown.",
       footage: "Live from the venue",
       footageTitle: "The game master's view.",
-      films: "Launch films",
+      films: "Launch film",
       filmsTitle: "Press play on a Saturday night.",
       stack: "Under the hood",
     },
@@ -81,7 +81,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         label: "Analytics",
         description:
-          "A dashboard operators arrange themselves, with success rates and game master activity per room, and Ask Analytics a click away for plain-language questions.",
+          "Cards for one room, rooms side by side, or game masters compared, with Ask Analytics beside them to answer plain-language questions and show the calculation behind each answer.",
       },
     ],
     sections: [
@@ -108,7 +108,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         title: "A launch told in sixty minutes",
         content:
-          "I rebuilt the public site around one game: scroll and the room clock runs from the door closing to the record on the lobby wall. I also built the launch films below in Remotion, animated in code and edited to the beat of the music. The short silent loops on the homepage come from the same footage.",
+          "I rebuilt the public site around one game: scroll and the room clock runs from the door closing to the record on the lobby wall. I also built the launch film below in Remotion, animated in code and edited to the beat of the music. The short silent loops on the homepage come from the same footage.",
       },
     ],
     films: [
@@ -119,14 +119,6 @@ export const portfolioProjects: PortfolioProject[] = [
         src: "/films/escape-director-launch-film.mp4",
         poster: "/films/escape-director-launch-film.jpg",
         duration: "1:39",
-      },
-      {
-        title: "One night",
-        description:
-          "A shorter story cut: five friends, one room, and the game master who gets them out.",
-        src: "/films/escape-director-one-night.mp4",
-        poster: "/films/escape-director-one-night.jpg",
-        duration: "1:00",
       },
     ],
   },
@@ -292,13 +284,15 @@ export const portfolioProjects: PortfolioProject[] = [
       "Railway",
     ],
     overview:
-      "A help and feedback chat that drops into any web app with one script tag. An AI assistant answers from the product's docs, and every conversation lands in the team's Discord, where a reply goes straight back to the person in the app. I built it to be Escape Director's support chat.",
+      "A help and feedback chat that drops into any web app with one script tag. An AI assistant answers from the product's docs, and every conversation lands in the team's Discord, where a reply goes straight back to the person in the app.",
     headings: {
       brief: "Why build it",
       build: "How it works",
       buildTitle: "One message in, the right answer out.",
-      footage: "In the chat",
-      footageTitle: "Answers that show their work.",
+      films: "Launch trailer",
+      filmsTitle: "One report, start to finish.",
+      footage: "Stills",
+      footageTitle: "Close the loop.",
       stack: "Built with",
     },
     challenge:
@@ -317,18 +311,34 @@ export const portfolioProjects: PortfolioProject[] = [
       "LLM evaluation",
     ],
     screenshots: [
-      "/screenshots/wicket-escape-director.webp",
-      "/screenshots/wicket-answers.webp",
+      "/screenshots/wicket-trailer-docs.webp",
+      "/screenshots/wicket-trailer-ticket.webp",
+      "/screenshots/wicket-trailer-shipped.webp",
     ],
     screenshotDetails: [
       {
-        label: "Escape Director support",
-        description: "Wicket as the support chat on the Escape Director site.",
+        label: "Answers what it can",
+        description: "A question answered from the product's own docs.",
       },
       {
-        label: "Answers with sources",
+        label: "Files what it can't",
         description:
-          "Left, a docs answer that links the exact guide. Right, an answer from the person's own analytics, with the numbers behind it under How we got this (demo data).",
+          "A bug goes to the tracker with the page, app version, console errors and a screenshot, and repeat reports land on the same ticket.",
+      },
+      {
+        label: "Everyone hears back",
+        description:
+          "When the fix ships, every person who reported it hears about it in the chat they started.",
+      },
+    ],
+    films: [
+      {
+        title: "The launch trailer",
+        description:
+          "One bug report on a desk under a lamp: answered from the docs, filed, counted, shipped, and sent back to everyone who reported it. It has no sound.",
+        src: "/films/wicket-launch-trailer.mp4",
+        poster: "/films/wicket-launch-trailer.jpg",
+        duration: "1:13",
       },
     ],
     sections: [

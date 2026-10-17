@@ -289,10 +289,6 @@ export const portfolioProjects: PortfolioProject[] = [
       brief: "Why build it",
       build: "How it works",
       buildTitle: "One message in, the right answer out.",
-      films: "Launch trailer",
-      filmsTitle: "One report, start to finish.",
-      footage: "Stills",
-      footageTitle: "Close the loop.",
       stack: "Built with",
     },
     challenge:
@@ -309,37 +305,6 @@ export const portfolioProjects: PortfolioProject[] = [
       "Discord bot",
       "LLM tool calling",
       "LLM evaluation",
-    ],
-    screenshots: [
-      "/screenshots/wicket-trailer-docs.webp",
-      "/screenshots/wicket-trailer-ticket.webp",
-      "/screenshots/wicket-trailer-shipped.webp",
-    ],
-    screenshotDetails: [
-      {
-        label: "Answers what it can",
-        description: "A question answered from the product's own docs.",
-      },
-      {
-        label: "Files what it can't",
-        description:
-          "A bug goes to the tracker with the page, app version, console errors and a screenshot, and repeat reports land on the same ticket.",
-      },
-      {
-        label: "Everyone hears back",
-        description:
-          "When the fix ships, every person who reported it hears about it in the chat they started.",
-      },
-    ],
-    films: [
-      {
-        title: "The launch trailer",
-        description:
-          "One bug report on a desk under a lamp: answered from the docs, filed, counted, shipped, and sent back to everyone who reported it. It has no sound.",
-        src: "/films/wicket-launch-trailer.mp4",
-        poster: "/films/wicket-launch-trailer.jpg",
-        duration: "1:13",
-      },
     ],
     sections: [
       {

@@ -296,13 +296,15 @@ export const portfolioProjects: PortfolioProject[] = [
       "Railway",
     ],
     overview:
-      "A help and feedback chat that drops into any web app with one script tag. An AI assistant answers from the product's docs, and every conversation lands in the team's Discord, where a reply goes straight back to the person in the app.",
+      "A help and feedback chat that drops into any web app with one script tag. An AI assistant answers from the product's docs, and every conversation lands in the team's Discord, where a reply goes straight back to the person in the app. It's free and open source under the MIT license.",
     headings: {
       brief: "Why build it",
       build: "How it works",
       buildTitle: "One message in, the right answer out.",
       films: "Launch trailer",
       filmsTitle: "One report, start to finish.",
+      footage: "The site",
+      footageTitle: "Close every loop.",
       stack: "Built with",
     },
     challenge:
@@ -312,13 +314,41 @@ export const portfolioProjects: PortfolioProject[] = [
       { value: "27", label: "Real-world questions in its model test set" },
       { value: "24 KB", label: "Widget size, gzipped" },
     ],
-    outcomes: ["One script tag", "Answers with sources"],
+    outcomes: ["One script tag", "Open source"],
     seoKeywords: [
       "AI support agent",
       "customer support chat",
       "Discord bot",
       "LLM tool calling",
       "LLM evaluation",
+    ],
+    liveUrl: "https://wicket-production-6296.up.railway.app/",
+    links: [
+      {
+        label: "View the code on GitHub",
+        url: "https://github.com/Stixels/wicket",
+      },
+    ],
+    screenshots: [
+      "/screenshots/wicket-site-hero.webp",
+      "/screenshots/wicket-site-demo.webp",
+      "/screenshots/wicket-site-hear-back.webp",
+    ],
+    screenshotDetails: [
+      {
+        label: "The support chat that closes the loop",
+        description: "The marketing site I built for Wicket.",
+      },
+      {
+        label: "Logs the bug",
+        description:
+          "A scripted demo on the site: the assistant files the bug with the page, version and console error, then tells the reporter when the fix ships.",
+      },
+      {
+        label: "Nobody's report disappears",
+        description:
+          "Repeat reports join the ticket that already exists, and everyone who reported it hears back.",
+      },
     ],
     films: [
       {

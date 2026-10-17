@@ -31,7 +31,7 @@ export const portfolioProjects: PortfolioProject[] = [
       footage: "Live from the venue",
       footageTitle: "The game master's view.",
       films: "Launch film",
-      filmsTitle: "Press play on a Saturday night.",
+      filmsTitle: "A Saturday night, start to finish.",
       stack: "Under the hood",
     },
     challenge:
@@ -289,6 +289,10 @@ export const portfolioProjects: PortfolioProject[] = [
       brief: "Why build it",
       build: "How it works",
       buildTitle: "One message in, the right answer out.",
+      films: "Launch trailer",
+      filmsTitle: "One report, start to finish.",
+      footage: "Stills",
+      footageTitle: "Close the loop.",
       stack: "Built with",
     },
     challenge:
@@ -305,6 +309,38 @@ export const portfolioProjects: PortfolioProject[] = [
       "Discord bot",
       "LLM tool calling",
       "LLM evaluation",
+    ],
+    screenshots: [
+      "/screenshots/wicket-trailer-answered.webp",
+      "/screenshots/wicket-trailer-one-ticket.webp",
+      "/screenshots/wicket-trailer-heard-back.webp",
+    ],
+    screenshotDetails: [
+      {
+        label: "Answers what it can",
+        description:
+          "A question answered from the product's own docs, with a docs fix suggested when the guide is out of date.",
+      },
+      {
+        label: "One ticket, not twelve",
+        description:
+          "A bug goes to the tracker with the page, browser, version and console error, and repeat reports land on the same ticket.",
+      },
+      {
+        label: "Everyone hears back",
+        description:
+          "When the fix ships, every person who reported it hears about it in the chat they started.",
+      },
+    ],
+    films: [
+      {
+        title: "The launch trailer",
+        description:
+          "One bug report, told in type: answered from the docs, filed, counted, shipped, and sent back to everyone who reported it.",
+        src: "/films/wicket-launch-trailer.mp4",
+        poster: "/films/wicket-launch-trailer.jpg",
+        duration: "1:06",
+      },
     ],
     sections: [
       {

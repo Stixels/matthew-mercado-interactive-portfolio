@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { getProjectById, portfolioProjects } from "@/content/portfolio";
 import CaseFeatureSection from "@/components/CaseFeatureSection";
+import { FilmVideo } from "@/components/FilmVideo";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -241,14 +242,10 @@ export default function ProjectView({ projectId }: { projectId: string }) {
                     <span>{film.duration}</span>
                   </span>
                   {/* Nothing loads or plays until the visitor presses play. */}
-                  <video
-                    className="mm-cs-film-video"
+                  <FilmVideo
                     src={film.src}
                     poster={film.poster}
-                    controls
-                    playsInline
-                    preload="none"
-                    aria-label={`${film.title}, ${film.duration}`}
+                    label={`${film.title}, ${film.duration}`}
                   />
                   <figcaption>
                     <strong>{film.title}</strong> {film.description}

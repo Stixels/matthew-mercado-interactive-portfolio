@@ -10,9 +10,9 @@ import { RESUME_URL } from "@/lib/site";
 
 const caseIds = [
   "escape-director",
+  "wicket",
   "ai-agent-platform",
   "waiver-director",
-  "wicket",
   "web-design",
   "hardware",
 ] as const;
@@ -224,9 +224,9 @@ export default function PortfolioHome() {
 
           <div className="mm-case-grid">
             {rest.map((project, index) => {
-              // An odd card out takes the whole last row, laid out like the
-              // featured card so it doesn't read as half empty.
-              const wide = rest.length % 2 === 1 && index === rest.length - 1;
+              // With an odd count, the first card takes a whole row, laid out
+              // like the featured card, so the smaller cards pair up below it.
+              const wide = rest.length % 2 === 1 && index === 0;
               return (
                 <motion.div
                   key={project.id}

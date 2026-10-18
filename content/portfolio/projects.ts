@@ -123,6 +123,116 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
+    id: "wicket",
+    title: "Wicket",
+    seoTitle: "Wicket",
+    seoDescription:
+      "Case study for Wicket, a drop-in AI help and feedback chat: one script tag, answers from a product's docs and the user's own data, Discord as the team inbox, and bug reports that close the loop with everyone who sent them.",
+    hubSubtitle: "AI SUPPORT AGENT",
+    status: "ACTIVE",
+    role: "Creator & Lead Software Engineer",
+    timeline: "2026 – Present",
+    stack: [
+      "TypeScript",
+      "Node.js",
+      "Hono",
+      "SQLite",
+      "Drizzle ORM",
+      "Vercel AI SDK",
+      "Claude",
+      "discord.js",
+      "React",
+      "Railway",
+    ],
+    overview:
+      "A help and feedback chat that drops into any web app with one script tag. An AI assistant answers from the product's docs, and every conversation lands in the team's Discord, where a reply goes straight back to the person in the app. It's free and open source under the MIT license.",
+    headings: {
+      brief: "Why build it",
+      build: "How it works",
+      buildTitle: "One message in, the right answer out.",
+      films: "Launch trailer",
+      filmsTitle: "One report, start to finish.",
+      footage: "The site",
+      footageTitle: "Close every loop.",
+      stack: "Built with",
+    },
+    challenge:
+      "Support for a small software company usually means a help desk priced per seat, a chatbot that can't see the product, and bug reports that disappear once someone replies. I wanted customers to get an answer in seconds from our own docs, reach a person in one tap, and hear back when the thing they reported is fixed, all from tools the team already has open.",
+    metrics: [
+      { value: "1", label: "Script tag to add it to an app" },
+      { value: "27", label: "Real-world questions in its model test set" },
+      { value: "24 KB", label: "Widget size, gzipped" },
+    ],
+    outcomes: ["One script tag", "Open source"],
+    seoKeywords: [
+      "AI support agent",
+      "customer support chat",
+      "Discord bot",
+      "LLM tool calling",
+      "LLM evaluation",
+    ],
+    liveUrl: "https://wicket-production-6296.up.railway.app/",
+    links: [
+      {
+        label: "View the code on GitHub",
+        url: "https://github.com/Stixels/wicket",
+      },
+    ],
+    screenshots: [
+      "/screenshots/wicket-site-hero.webp",
+      "/screenshots/wicket-site-demo.webp",
+      "/screenshots/wicket-site-hear-back.webp",
+    ],
+    screenshotDetails: [
+      {
+        label: "The support chat that closes the loop",
+        description: "The marketing site I built for Wicket.",
+      },
+      {
+        label: "Logs the bug",
+        description:
+          "A scripted demo on the site: the assistant files the bug with the page, version and console error, then tells the reporter when the fix ships.",
+      },
+      {
+        label: "Nobody's report disappears",
+        description:
+          "Repeat reports join the ticket that already exists, and everyone who reported it hears back.",
+      },
+    ],
+    films: [
+      {
+        title: "The launch trailer",
+        description:
+          "One bug report, told in type: answered from the docs, filed, counted, shipped, and sent back to everyone who reported it.",
+        src: "/films/wicket-launch-trailer.mp4",
+        poster: "/films/wicket-launch-trailer.jpg",
+        duration: "1:06",
+      },
+    ],
+    sections: [
+      {
+        title: "Answers from the docs, with receipts",
+        content:
+          "Wicket indexes a Markdown docs repo or any docs site's sitemap into SQLite full-text search and links the exact section it used. Through app tools, the assistant can also read the signed-in person's own data from the product's backend, checked against their token on every call, and it shows the numbers behind each answer.",
+      },
+      {
+        title: "Discord is the inbox",
+        content:
+          "Each conversation becomes a private forum post in the team's Discord. A reply there, or in the web dashboard, reaches the person in the app live. When someone asks for a person, gets frustrated, or the docs don't cover it, the assistant hands off and pings the team.",
+      },
+      {
+        title: "Everyone hears back",
+        content:
+          "The assistant files bugs and ideas in Linear or GitHub Issues, adds repeat reports to the ticket that already exists, and tells every reporter when it's fixed or planned, in the chat or by email if they've gone.",
+      },
+      {
+        title: "Cheap and safe to run",
+        content:
+          "It's one Node process with SQLite. The widget renders in a shadow DOM so it can't break the host app, identity comes from short-lived signed tokens, and every person has a monthly AI budget. Models are compared with an eval harness I wrote that scores replies without an AI judge.",
+      },
+    ],
+  },
+  {
     id: "ai-agent-platform",
     title: "Enterprise AI Agent Tooling",
     hubTitle: "AI Agent Tooling",
@@ -276,116 +386,6 @@ export const portfolioProjects: PortfolioProject[] = [
         src: "/films/waiver-director-launch-trailer.mp4",
         poster: "/films/waiver-director-launch-trailer.jpg",
         duration: "0:53",
-      },
-    ],
-  },
-  {
-    id: "wicket",
-    title: "Wicket",
-    seoTitle: "Wicket",
-    seoDescription:
-      "Case study for Wicket, a drop-in AI help and feedback chat: one script tag, answers from a product's docs and the user's own data, Discord as the team inbox, and bug reports that close the loop with everyone who sent them.",
-    hubSubtitle: "AI SUPPORT AGENT",
-    status: "ACTIVE",
-    role: "Creator & Lead Software Engineer",
-    timeline: "2026 – Present",
-    stack: [
-      "TypeScript",
-      "Node.js",
-      "Hono",
-      "SQLite",
-      "Drizzle ORM",
-      "Vercel AI SDK",
-      "Claude",
-      "discord.js",
-      "React",
-      "Railway",
-    ],
-    overview:
-      "A help and feedback chat that drops into any web app with one script tag. An AI assistant answers from the product's docs, and every conversation lands in the team's Discord, where a reply goes straight back to the person in the app. It's free and open source under the MIT license.",
-    headings: {
-      brief: "Why build it",
-      build: "How it works",
-      buildTitle: "One message in, the right answer out.",
-      films: "Launch trailer",
-      filmsTitle: "One report, start to finish.",
-      footage: "The site",
-      footageTitle: "Close every loop.",
-      stack: "Built with",
-    },
-    challenge:
-      "Support for a small software company usually means a help desk priced per seat, a chatbot that can't see the product, and bug reports that disappear once someone replies. I wanted customers to get an answer in seconds from our own docs, reach a person in one tap, and hear back when the thing they reported is fixed, all from tools the team already has open.",
-    metrics: [
-      { value: "1", label: "Script tag to add it to an app" },
-      { value: "27", label: "Real-world questions in its model test set" },
-      { value: "24 KB", label: "Widget size, gzipped" },
-    ],
-    outcomes: ["One script tag", "Open source"],
-    seoKeywords: [
-      "AI support agent",
-      "customer support chat",
-      "Discord bot",
-      "LLM tool calling",
-      "LLM evaluation",
-    ],
-    liveUrl: "https://wicket-production-6296.up.railway.app/",
-    links: [
-      {
-        label: "View the code on GitHub",
-        url: "https://github.com/Stixels/wicket",
-      },
-    ],
-    screenshots: [
-      "/screenshots/wicket-site-hero.webp",
-      "/screenshots/wicket-site-demo.webp",
-      "/screenshots/wicket-site-hear-back.webp",
-    ],
-    screenshotDetails: [
-      {
-        label: "The support chat that closes the loop",
-        description: "The marketing site I built for Wicket.",
-      },
-      {
-        label: "Logs the bug",
-        description:
-          "A scripted demo on the site: the assistant files the bug with the page, version and console error, then tells the reporter when the fix ships.",
-      },
-      {
-        label: "Nobody's report disappears",
-        description:
-          "Repeat reports join the ticket that already exists, and everyone who reported it hears back.",
-      },
-    ],
-    films: [
-      {
-        title: "The launch trailer",
-        description:
-          "One bug report, told in type: answered from the docs, filed, counted, shipped, and sent back to everyone who reported it.",
-        src: "/films/wicket-launch-trailer.mp4",
-        poster: "/films/wicket-launch-trailer.jpg",
-        duration: "1:06",
-      },
-    ],
-    sections: [
-      {
-        title: "Answers from the docs, with receipts",
-        content:
-          "Wicket indexes a Markdown docs repo or any docs site's sitemap into SQLite full-text search and links the exact section it used. Through app tools, the assistant can also read the signed-in person's own data from the product's backend, checked against their token on every call, and it shows the numbers behind each answer.",
-      },
-      {
-        title: "Discord is the inbox",
-        content:
-          "Each conversation becomes a private forum post in the team's Discord. A reply there, or in the web dashboard, reaches the person in the app live. When someone asks for a person, gets frustrated, or the docs don't cover it, the assistant hands off and pings the team.",
-      },
-      {
-        title: "Everyone hears back",
-        content:
-          "The assistant files bugs and ideas in Linear or GitHub Issues, adds repeat reports to the ticket that already exists, and tells every reporter when it's fixed or planned, in the chat or by email if they've gone.",
-      },
-      {
-        title: "Cheap and safe to run",
-        content:
-          "It's one Node process with SQLite. The widget renders in a shadow DOM so it can't break the host app, identity comes from short-lived signed tokens, and every person has a monthly AI budget. Models are compared with an eval harness I wrote that scores replies without an AI judge.",
       },
     ],
   },

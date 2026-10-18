@@ -1351,7 +1351,7 @@ body {
   display: grid;
 }
 
-/* An odd card out gets the whole last row, styled like the featured card. */
+/* A wide card spans the whole row, styled like the featured card. */
 .mm-case-grid > div:has(> .mm-case-wide) {
   grid-column: 1 / -1;
 }

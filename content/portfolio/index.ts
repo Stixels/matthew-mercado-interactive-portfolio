@@ -3,6 +3,7 @@ export type {
   CaseHeadings,
   PortfolioProject,
   ProjectId,
+  ProjectFilm,
   ProjectMetric,
   ProjectSection,
 } from "./types";

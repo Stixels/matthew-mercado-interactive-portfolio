@@ -30,16 +30,18 @@ export const portfolioProjects: PortfolioProject[] = [
       buildTitle: "Built for the countdown.",
       footage: "Live from the venue",
       footageTitle: "The game master's view.",
+      films: "Launch film",
+      filmsTitle: "A Saturday night, start to finish.",
       stack: "Under the hood",
     },
     challenge:
       "An escape room runs on a 60-minute clock with players inside who are counting on it. Most venues juggle a timer app, a clue screen, and paper notes, and a dropped Wi-Fi connection can stall a live game. I had run rooms since 2017, so I built the tool I wanted at the game master's desk.",
     metrics: [
-      { value: "7,600+", label: "Live games run on the platform" },
-      { value: "132,000+", label: "Game actions logged" },
+      { value: "7,900+", label: "Live games run on the platform" },
+      { value: "142,000+", label: "Game actions logged" },
       { value: "99.95%", label: "Uptime over the trailing 12 months" },
     ],
-    outcomes: ["7,600+ live games", "99.95% uptime", "Offline-first rooms"],
+    outcomes: ["7,900+ live games", "99.95% uptime", "Offline-first rooms"],
     liveUrl: "https://www.escapedirector.com/",
     docsUrl: "https://docs.escapedirector.com/",
     seoKeywords: [
@@ -50,7 +52,9 @@ export const portfolioProjects: PortfolioProject[] = [
       "Arduino SDK",
     ],
     screenshots: [
-      "/screenshots/escape-director-home.png",
+      "/screenshots/escape-director-home-2026.webp",
+      "/screenshots/escape-director-story-clues.webp",
+      "/screenshots/escape-director-story-escape.webp",
       "/screenshots/escape-director-all-rooms.webp",
       "/screenshots/escape-director-analytics.webp",
     ],
@@ -60,6 +64,16 @@ export const portfolioProjects: PortfolioProject[] = [
         description: "The public product site.",
       },
       {
+        label: "One game, told by the clock",
+        description:
+          "The homepage follows a single Saturday-night game. As you scroll, the room clock counts down and each feature shows up at the moment a game master would reach for it.",
+      },
+      {
+        label: "They escape",
+        description:
+          "Stopping the clock records the result, the time and the clues used, and the lobby leaderboard updates on its own.",
+      },
+      {
         label: "Every room at a glance",
         description:
           "Owners run unlimited rooms from one browser app, each with its own duration, clue allowance, content, and live state.",
@@ -67,7 +81,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         label: "Analytics",
         description:
-          "A dashboard operators arrange themselves, with success rates and game master activity per room, and Ask Analytics a click away for plain-language questions.",
+          "Cards for one room, rooms side by side, or game masters compared, with Ask Analytics beside them to answer plain-language questions and show the calculation behind each answer.",
       },
     ],
     sections: [
@@ -90,6 +104,131 @@ export const portfolioProjects: PortfolioProject[] = [
         title: "Props that talk to the game",
         content:
           "An open-source, MIT-licensed Arduino SDK gives physical props state, command, and completion APIs with automatic pairing and reconnection, so a solved puzzle shows up on the dashboard instantly.",
+      },
+      {
+        title: "A launch told in sixty minutes",
+        content:
+          "I rebuilt the public site around one game: scroll and the room clock runs from the door closing to the record on the lobby wall. I also built the launch film below in Remotion, animated in code and edited to the beat of the music. The short silent loops on the homepage come from the same footage.",
+      },
+    ],
+    films: [
+      {
+        title: "The launch film",
+        description:
+          "Every feature in one cut, from the first clue to the lobby leaderboard, including the moment the internet drops and the game keeps going.",
+        src: "/films/escape-director-launch-film.mp4",
+        poster: "/films/escape-director-launch-film.jpg",
+        duration: "1:39",
+      },
+    ],
+  },
+  {
+    id: "wicket",
+    title: "Wicket",
+    seoTitle: "Wicket",
+    seoDescription:
+      "Case study for Wicket, a drop-in AI help and feedback chat: one script tag, answers from a product's docs and the user's own data, Discord as the team inbox, and bug reports that close the loop with everyone who sent them.",
+    hubSubtitle: "AI SUPPORT AGENT",
+    status: "ACTIVE",
+    role: "Creator & Lead Software Engineer",
+    timeline: "2026 – Present",
+    stack: [
+      "TypeScript",
+      "Node.js",
+      "Hono",
+      "SQLite",
+      "Drizzle ORM",
+      "Vercel AI SDK",
+      "Claude",
+      "discord.js",
+      "React",
+      "Railway",
+    ],
+    overview:
+      "A help and feedback chat that drops into any web app with one script tag. An AI assistant answers from the product's docs, and every conversation lands in the team's Discord, where a reply goes straight back to the person in the app. It's free and open source under the MIT license.",
+    headings: {
+      brief: "Why build it",
+      build: "How it works",
+      buildTitle: "One message in, the right answer out.",
+      films: "Launch trailer",
+      filmsTitle: "One report, start to finish.",
+      footage: "The site",
+      footageTitle: "Close every loop.",
+      stack: "Built with",
+    },
+    challenge:
+      "Support for a small software company usually means a help desk priced per seat, a chatbot that can't see the product, and bug reports that disappear once someone replies. I wanted customers to get an answer in seconds from our own docs, reach a person in one tap, and hear back when the thing they reported is fixed, all from tools the team already has open.",
+    metrics: [
+      { value: "1", label: "Script tag to add it to an app" },
+      { value: "27", label: "Real-world questions in its model test set" },
+      { value: "24 KB", label: "Widget size, gzipped" },
+    ],
+    outcomes: ["One script tag", "Open source"],
+    seoKeywords: [
+      "AI support agent",
+      "customer support chat",
+      "Discord bot",
+      "LLM tool calling",
+      "LLM evaluation",
+    ],
+    liveUrl: "https://wicket-production-6296.up.railway.app/",
+    links: [
+      {
+        label: "View the code on GitHub",
+        url: "https://github.com/Stixels/wicket",
+      },
+    ],
+    screenshots: [
+      "/screenshots/wicket-site-hero.webp",
+      "/screenshots/wicket-site-demo.webp",
+      "/screenshots/wicket-site-hear-back.webp",
+    ],
+    screenshotDetails: [
+      {
+        label: "The support chat that closes the loop",
+        description: "The marketing site I built for Wicket.",
+      },
+      {
+        label: "Logs the bug",
+        description:
+          "A scripted demo on the site: the assistant files the bug with the page, version and console error, then tells the reporter when the fix ships.",
+      },
+      {
+        label: "Nobody's report disappears",
+        description:
+          "Repeat reports join the ticket that already exists, and everyone who reported it hears back.",
+      },
+    ],
+    films: [
+      {
+        title: "The launch trailer",
+        description:
+          "One bug report, told in type: answered from the docs, filed, counted, shipped, and sent back to everyone who reported it.",
+        src: "/films/wicket-launch-trailer.mp4",
+        poster: "/films/wicket-launch-trailer.jpg",
+        duration: "1:06",
+      },
+    ],
+    sections: [
+      {
+        title: "Answers from the docs, with receipts",
+        content:
+          "Wicket indexes a Markdown docs repo or any docs site's sitemap into SQLite full-text search and links the exact section it used. Through app tools, the assistant can also read the signed-in person's own data from the product's backend, checked against their token on every call, and it shows the numbers behind each answer.",
+      },
+      {
+        title: "Discord is the inbox",
+        content:
+          "Each conversation becomes a private forum post in the team's Discord. A reply there, or in the web dashboard, reaches the person in the app live. When someone asks for a person, gets frustrated, or the docs don't cover it, the assistant hands off and pings the team.",
+      },
+      {
+        title: "Everyone hears back",
+        content:
+          "The assistant files bugs and ideas in Linear or GitHub Issues, adds repeat reports to the ticket that already exists, and tells every reporter when it's fixed or planned, in the chat or by email if they've gone.",
+      },
+      {
+        title: "Cheap and safe to run",
+        content:
+          "It's one Node process with SQLite. The widget renders in a shadow DOM so it can't break the host app, identity comes from short-lived signed tokens, and every person has a monthly AI budget. Models are compared with an eval harness I wrote that scores replies without an AI judge.",
       },
     ],
   },
@@ -168,19 +307,27 @@ export const portfolioProjects: PortfolioProject[] = [
     timeline: "2026 – Present",
     stack: ["SvelteKit", "TypeScript", "Convex", "Clerk", "Stripe", "Resend"],
     overview:
-      "A guest CRM that starts with the waiver. Experience businesses collect a signature from every participant before they arrive, not just the person who booked, and turn those signers into relationships they can follow up with.",
+      "A guest CRM that starts with the waiver. Experience businesses collect a signature from every participant before they arrive, not just the person who booked, and turn those signers into relationships they can follow up with. It's open source under the MIT license.",
     headings: {
       brief: "Origin story",
       build: "Design decisions",
       buildTitle: "Safe for every business on it.",
+      films: "Launch trailer",
+      filmsTitle: "Every guest signed before they arrive.",
       footage: "Product tour",
       footageTitle: "From signature to follow-up.",
       stack: "Stack",
     },
     challenge:
       "At Escape This Frederick, I built a waiver app that captured every guest for remarketing, and other venues wanted the same thing. Waiver Director rebuilds it as a multi-tenant product, where each business's legal records have to stay exact and isolated from every other business.",
-    outcomes: ["Multi-tenant SaaS", "Immutable signed records"],
+    outcomes: ["Multi-tenant SaaS", "Immutable signed records", "Open source"],
     liveUrl: "https://www.waiverdirector.com/",
+    links: [
+      {
+        label: "View the code on GitHub",
+        url: "https://github.com/Stixels/waiver-director",
+      },
+    ],
     seoKeywords: [
       "waiver software",
       "guest CRM",
@@ -229,6 +376,16 @@ export const portfolioProjects: PortfolioProject[] = [
         title: "AI review, human decision",
         content:
           "An LLM audits operator-written waivers and emails and returns structured feedback with a reviewable diff. It speeds up review, while the operator stays responsible for the final language.",
+      },
+    ],
+    films: [
+      {
+        title: "The launch trailer",
+        description:
+          "From eight guests booked with one unsigned to every signature in before arrival: the builder, phone signing, booking coverage and timed follow-ups.",
+        src: "/films/waiver-director-launch-trailer.mp4",
+        poster: "/films/waiver-director-launch-trailer.jpg",
+        duration: "0:53",
       },
     ],
   },
@@ -382,11 +539,21 @@ export const portfolioProjects: PortfolioProject[] = [
     status: "RESTRICTED",
     role: "Puzzle Engineer & Hardware Developer",
     timeline: "2017 – Present",
-    stack: ["Arduino", "C++", "Raspberry Pi", "Python", "PLCs", "Sensors"],
+    stack: [
+      "Arduino",
+      "C++",
+      "MQTT",
+      "Raspberry Pi",
+      "Python",
+      "PLCs",
+      "Sensors",
+    ],
     overview:
-      "Puzzles and room systems for award-winning escape rooms, from the first sketch to the final relay. Custom electronics turn what players do with their hands into sound, video, light, and open doors.",
+      "Puzzles and room systems for award-winning escape rooms, from the first sketch to the final relay. Custom electronics turn what players do with their hands into sound, video, light, and open doors, and an open-source device SDK lets any venue connect its own Arduino props to Escape Director.",
     headings: {
       brief: "Design constraints",
+      build: "The device SDK",
+      buildTitle: "Keep your puzzle code. Add the Room.",
       stack: "Parts bin",
       media: "Classified by design",
     },
@@ -425,7 +592,30 @@ export const portfolioProjects: PortfolioProject[] = [
       { value: "0", label: "Manual resets needed between games" },
       { value: "MIT", label: "Open-source device SDK" },
     ],
-    outcomes: ["Arduino · Pi · PLCs", "No manual resets"],
+    outcomes: ["Open-source SDK", "No manual resets"],
+    links: [
+      {
+        label: "View the device SDK on GitHub",
+        url: "https://github.com/directorhq/escape-director-device-sdk",
+      },
+    ],
+    sections: [
+      {
+        title: "Your sketch, now part of the game",
+        content:
+          "The Escape Director device SDK is an MIT-licensed Arduino library. A builder keeps their own puzzle logic and declares beside it what the Room should see: each prop's signals, commands and state, and what counts as solved. The SDK handles Wi-Fi, pairing, reconnecting and stable IDs, and the prop shows up on the game master's dashboard with its controls.",
+      },
+      {
+        title: "Built for a live room",
+        content:
+          "Games keep running when the network doesn't. Inputs are sampled by the SDK, so a lever pulled during a reconnect still counts, timed outputs like a five-second door release finish on time, and stale signals from an earlier game are dropped. Test mode lets staff safely try every prop before players arrive.",
+      },
+      {
+        title: "Open to any board",
+        content:
+          "Adapters for the Arduino UNO R4 WiFi and GIGA R1 WiFi ship with it, other boards need only a small adapter, and anything else can speak its documented MQTT protocol directly. It even includes a brief for AI coding agents, so a builder can hand over their sketch and get it connected without rewriting it.",
+      },
+    ],
     mediaNote:
       "These systems live inside working rooms, so the details stay hidden to keep the puzzles fun.",
     seoKeywords: [

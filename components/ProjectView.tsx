@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { getProjectById, portfolioProjects } from "@/content/portfolio";
 import CaseFeatureSection from "@/components/CaseFeatureSection";
+import { FilmVideo } from "@/components/FilmVideo";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -25,10 +26,12 @@ export default function ProjectView({ projectId }: { projectId: string }) {
   const { headings } = project;
   const hasGallery = supportingImages.length > 0;
   const features = project.features ?? [];
+  const films = project.films ?? [];
   const chapters = [
     project.challenge && "brief",
     ...features.map((_, index) => `feature-${index}`),
     project.sections?.length && "build",
+    films.length > 0 && "films",
     hasGallery && "footage",
     "stack",
   ].filter(Boolean);
@@ -212,6 +215,44 @@ export default function ProjectView({ projectId }: { projectId: string }) {
                 </motion.li>
               ))}
             </ol>
+          </div>
+        </section>
+      )}
+
+      {films.length > 0 && (
+        <section className={chapterClass("films")} aria-labelledby="cs-films">
+          <div className="mm-frame">
+            <header className="mm-cs-split">
+              <p className="mm-label">
+                <span>{chapterNumber("films")}</span>{" "}
+                {headings.films ?? "Films"}
+              </p>
+              <h2 id="cs-films">{headings.filmsTitle ?? "Watch it run."}</h2>
+            </header>
+
+            <div className="mm-cs-films">
+              {films.map((film) => (
+                <motion.figure
+                  key={film.src}
+                  className="mm-cs-shot mm-cs-film"
+                  {...reveal}
+                >
+                  <span className="mm-cs-shot-bar" aria-hidden="true">
+                    <span>REC</span>
+                    <span>{film.duration}</span>
+                  </span>
+                  {/* Nothing loads or plays until the visitor presses play. */}
+                  <FilmVideo
+                    src={film.src}
+                    poster={film.poster}
+                    label={`${film.title}, ${film.duration}`}
+                  />
+                  <figcaption>
+                    <strong>{film.title}</strong> {film.description}
+                  </figcaption>
+                </motion.figure>
+              ))}
+            </div>
           </div>
         </section>
       )}

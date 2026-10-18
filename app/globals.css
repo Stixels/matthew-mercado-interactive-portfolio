@@ -1351,6 +1351,23 @@ body {
   display: grid;
 }
 
+/* A wide card spans the whole row, styled like the featured card. */
+.mm-case-grid > div:has(> .mm-case-wide) {
+  grid-column: 1 / -1;
+}
+
+.mm-case-wide {
+  margin-bottom: 0;
+}
+
+.mm-case-wide .mm-case-media {
+  min-height: 380px;
+}
+
+.mm-case-wide .mm-case-body strong {
+  font-size: clamp(2rem, 3.2vw, 3.2rem);
+}
+
 /* About ------------------------------------------------------------------ */
 
 .mm-about {
@@ -2164,6 +2181,21 @@ body {
 .mm-cs-gallery {
   display: grid;
   gap: clamp(3rem, 6vw, 5rem);
+}
+
+.mm-cs-films {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+  gap: clamp(2.5rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.mm-cs-film-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--mm-line-strong);
+  background: #000;
+  box-shadow: var(--mm-shadow);
 }
 
 /* App screenshots are wide desktop captures. */

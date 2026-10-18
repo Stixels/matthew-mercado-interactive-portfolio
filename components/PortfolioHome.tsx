@@ -10,6 +10,7 @@ import { RESUME_URL } from "@/lib/site";
 
 const caseIds = [
   "escape-director",
+  "wicket",
   "ai-agent-platform",
   "waiver-director",
   "web-design",
@@ -22,7 +23,7 @@ const cases = caseIds
 
 const proof = [
   "9 years shipping",
-  "7,600+ live games",
+  "7,900+ live games",
   "99.95% uptime",
   "3 of 4 production MCP servers",
   "Months of data uploads → minutes",
@@ -222,49 +223,78 @@ export default function PortfolioHome() {
           )}
 
           <div className="mm-case-grid">
-            {rest.map((project, index) => (
-              <motion.div
-                key={project.id}
-                {...reveal}
-                transition={
-                  reducedMotion
-                    ? undefined
-                    : { duration: 0.7, ease, delay: (index % 2) * 0.08 }
-                }
-              >
-                <Link href={`/projects/${project.id}`} className="mm-case">
-                  <span className="mm-case-media">
-                    {project.screenshots?.[0] ? (
-                      <Image
-                        src={project.screenshots[0]}
-                        alt={`${project.title} preview`}
-                        fill
-                        sizes="(max-width: 900px) 92vw, 44vw"
-                        className="object-cover object-top"
-                      />
-                    ) : (
-                      <span className="mm-case-blueprint" aria-hidden="true">
-                        {project.stack.slice(0, 3).join(" · ")}
+            {rest.map((project, index) => {
+              // With an odd count, the first card takes a whole row, laid out
+              // like the featured card, so the smaller cards pair up below it.
+              const wide = rest.length % 2 === 1 && index === 0;
+              return (
+                <motion.div
+                  key={project.id}
+                  {...reveal}
+                  transition={
+                    reducedMotion
+                      ? undefined
+                      : { duration: 0.7, ease, delay: (index % 2) * 0.08 }
+                  }
+                >
+                  <Link
+                    href={`/projects/${project.id}`}
+                    className={
+                      wide ? "mm-case mm-case-featured mm-case-wide" : "mm-case"
+                    }
+                  >
+                    <span className="mm-case-media">
+                      {project.screenshots?.[0] ? (
+                        <Image
+                          src={project.screenshots[0]}
+                          alt={`${project.title} preview`}
+                          fill
+                          sizes={
+                            wide
+                              ? "(max-width: 900px) 92vw, 58vw"
+                              : "(max-width: 900px) 92vw, 44vw"
+                          }
+                          className="object-cover object-top"
+                        />
+                      ) : (
+                        <span className="mm-case-blueprint" aria-hidden="true">
+                          {project.stack.slice(0, 3).join(" · ")}
+                        </span>
+                      )}
+                      <span className="mm-case-scan" aria-hidden="true" />
+                    </span>
+                    <span className="mm-case-body">
+                      <span className="mm-case-meta">
+                        Case {String(index + 2).padStart(2, "0")} ·{" "}
+                        {project.hubSubtitle}
                       </span>
+                      <strong>{project.hubTitle ?? project.title}</strong>
+                      {wide && (
+                        <span className="mm-case-overview">
+                          {project.overview}
+                        </span>
+                      )}
+                      <span className="mm-case-outcomes">
+                        {project.outcomes?.map((outcome) => (
+                          <span key={outcome}>{outcome}</span>
+                        ))}
+                      </span>
+                      {wide && (
+                        <span className="mm-case-open">
+                          Open case file <ArrowUpRight aria-hidden="true" />
+                        </span>
+                      )}
+                    </span>
+                    {!wide && (
+                      <ArrowUpRight
+                        className="mm-case-arrow"
+                        aria-hidden="true"
+                      />
                     )}
-                    <span className="mm-case-scan" aria-hidden="true" />
-                  </span>
-                  <span className="mm-case-body">
-                    <span className="mm-case-meta">
-                      Case {String(index + 2).padStart(2, "0")} ·{" "}
-                      {project.hubSubtitle}
-                    </span>
-                    <strong>{project.hubTitle ?? project.title}</strong>
-                    <span className="mm-case-outcomes">
-                      {project.outcomes?.map((outcome) => (
-                        <span key={outcome}>{outcome}</span>
-                      ))}
-                    </span>
-                  </span>
-                  <ArrowUpRight className="mm-case-arrow" aria-hidden="true" />
-                </Link>
-              </motion.div>
-            ))}
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>

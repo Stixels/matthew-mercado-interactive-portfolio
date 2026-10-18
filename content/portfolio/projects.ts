@@ -197,7 +197,7 @@ export const portfolioProjects: PortfolioProject[] = [
     timeline: "2026 – Present",
     stack: ["SvelteKit", "TypeScript", "Convex", "Clerk", "Stripe", "Resend"],
     overview:
-      "A guest CRM that starts with the waiver. Experience businesses collect a signature from every participant before they arrive, not just the person who booked, and turn those signers into relationships they can follow up with.",
+      "A guest CRM that starts with the waiver. Experience businesses collect a signature from every participant before they arrive, not just the person who booked, and turn those signers into relationships they can follow up with. It's open source under the MIT license.",
     headings: {
       brief: "Origin story",
       build: "Design decisions",
@@ -212,6 +212,12 @@ export const portfolioProjects: PortfolioProject[] = [
       "At Escape This Frederick, I built a waiver app that captured every guest for remarketing, and other venues wanted the same thing. Waiver Director rebuilds it as a multi-tenant product, where each business's legal records have to stay exact and isolated from every other business.",
     outcomes: ["Multi-tenant SaaS", "Immutable signed records"],
     liveUrl: "https://www.waiverdirector.com/",
+    links: [
+      {
+        label: "View the code on GitHub",
+        url: "https://github.com/Stixels/waiver-director",
+      },
+    ],
     seoKeywords: [
       "waiver software",
       "guest CRM",
@@ -533,11 +539,21 @@ export const portfolioProjects: PortfolioProject[] = [
     status: "RESTRICTED",
     role: "Puzzle Engineer & Hardware Developer",
     timeline: "2017 – Present",
-    stack: ["Arduino", "C++", "Raspberry Pi", "Python", "PLCs", "Sensors"],
+    stack: [
+      "Arduino",
+      "C++",
+      "MQTT",
+      "Raspberry Pi",
+      "Python",
+      "PLCs",
+      "Sensors",
+    ],
     overview:
-      "Puzzles and room systems for award-winning escape rooms, from the first sketch to the final relay. Custom electronics turn what players do with their hands into sound, video, light, and open doors.",
+      "Puzzles and room systems for award-winning escape rooms, from the first sketch to the final relay. Custom electronics turn what players do with their hands into sound, video, light, and open doors, and an open-source device SDK lets any venue connect its own Arduino props to Escape Director.",
     headings: {
       brief: "Design constraints",
+      build: "The device SDK",
+      buildTitle: "Keep your puzzle code. Add the Room.",
       stack: "Parts bin",
       media: "Classified by design",
     },
@@ -576,7 +592,30 @@ export const portfolioProjects: PortfolioProject[] = [
       { value: "0", label: "Manual resets needed between games" },
       { value: "MIT", label: "Open-source device SDK" },
     ],
-    outcomes: ["Arduino · Pi · PLCs", "No manual resets"],
+    outcomes: ["Open-source SDK", "No manual resets"],
+    links: [
+      {
+        label: "View the device SDK on GitHub",
+        url: "https://github.com/directorhq/escape-director-device-sdk",
+      },
+    ],
+    sections: [
+      {
+        title: "Your sketch, now part of the game",
+        content:
+          "The Escape Director device SDK is an MIT-licensed Arduino library. A builder keeps their own puzzle logic and declares beside it what the Room should see: each prop's signals, commands and state, and what counts as solved. The SDK handles Wi-Fi, pairing, reconnecting and stable IDs, and the prop shows up on the game master's dashboard with its controls.",
+      },
+      {
+        title: "Built for a live room",
+        content:
+          "Games keep running when the network doesn't. Inputs are sampled by the SDK, so a lever pulled during a reconnect still counts, timed outputs like a five-second door release finish on time, and stale signals from an earlier game are dropped. Test mode lets staff safely try every prop before players arrive.",
+      },
+      {
+        title: "Open to any board",
+        content:
+          "Adapters for the Arduino UNO R4 WiFi and GIGA R1 WiFi ship with it, other boards need only a small adapter, and anything else can speak its documented MQTT protocol directly. It even includes a brief for AI coding agents, so a builder can hand over their sketch and get it connected without rewriting it.",
+      },
+    ],
     mediaNote:
       "These systems live inside working rooms, so the details stay hidden to keep the puzzles fun.",
     seoKeywords: [

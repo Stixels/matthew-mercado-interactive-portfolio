@@ -210,7 +210,7 @@ export const portfolioProjects: PortfolioProject[] = [
     },
     challenge:
       "At Escape This Frederick, I built a waiver app that captured every guest for remarketing, and other venues wanted the same thing. Waiver Director rebuilds it as a multi-tenant product, where each business's legal records have to stay exact and isolated from every other business.",
-    outcomes: ["Multi-tenant SaaS", "Immutable signed records"],
+    outcomes: ["Multi-tenant SaaS", "Immutable signed records", "Open source"],
     liveUrl: "https://www.waiverdirector.com/",
     links: [
       {

@@ -223,49 +223,78 @@ export default function PortfolioHome() {
           )}
 
           <div className="mm-case-grid">
-            {rest.map((project, index) => (
-              <motion.div
-                key={project.id}
-                {...reveal}
-                transition={
-                  reducedMotion
-                    ? undefined
-                    : { duration: 0.7, ease, delay: (index % 2) * 0.08 }
-                }
-              >
-                <Link href={`/projects/${project.id}`} className="mm-case">
-                  <span className="mm-case-media">
-                    {project.screenshots?.[0] ? (
-                      <Image
-                        src={project.screenshots[0]}
-                        alt={`${project.title} preview`}
-                        fill
-                        sizes="(max-width: 900px) 92vw, 44vw"
-                        className="object-cover object-top"
-                      />
-                    ) : (
-                      <span className="mm-case-blueprint" aria-hidden="true">
-                        {project.stack.slice(0, 3).join(" · ")}
+            {rest.map((project, index) => {
+              // An odd card out takes the whole last row, laid out like the
+              // featured card so it doesn't read as half empty.
+              const wide = rest.length % 2 === 1 && index === rest.length - 1;
+              return (
+                <motion.div
+                  key={project.id}
+                  {...reveal}
+                  transition={
+                    reducedMotion
+                      ? undefined
+                      : { duration: 0.7, ease, delay: (index % 2) * 0.08 }
+                  }
+                >
+                  <Link
+                    href={`/projects/${project.id}`}
+                    className={
+                      wide ? "mm-case mm-case-featured mm-case-wide" : "mm-case"
+                    }
+                  >
+                    <span className="mm-case-media">
+                      {project.screenshots?.[0] ? (
+                        <Image
+                          src={project.screenshots[0]}
+                          alt={`${project.title} preview`}
+                          fill
+                          sizes={
+                            wide
+                              ? "(max-width: 900px) 92vw, 58vw"
+                              : "(max-width: 900px) 92vw, 44vw"
+                          }
+                          className="object-cover object-top"
+                        />
+                      ) : (
+                        <span className="mm-case-blueprint" aria-hidden="true">
+                          {project.stack.slice(0, 3).join(" · ")}
+                        </span>
+                      )}
+                      <span className="mm-case-scan" aria-hidden="true" />
+                    </span>
+                    <span className="mm-case-body">
+                      <span className="mm-case-meta">
+                        Case {String(index + 2).padStart(2, "0")} ·{" "}
+                        {project.hubSubtitle}
                       </span>
+                      <strong>{project.hubTitle ?? project.title}</strong>
+                      {wide && (
+                        <span className="mm-case-overview">
+                          {project.overview}
+                        </span>
+                      )}
+                      <span className="mm-case-outcomes">
+                        {project.outcomes?.map((outcome) => (
+                          <span key={outcome}>{outcome}</span>
+                        ))}
+                      </span>
+                      {wide && (
+                        <span className="mm-case-open">
+                          Open case file <ArrowUpRight aria-hidden="true" />
+                        </span>
+                      )}
+                    </span>
+                    {!wide && (
+                      <ArrowUpRight
+                        className="mm-case-arrow"
+                        aria-hidden="true"
+                      />
                     )}
-                    <span className="mm-case-scan" aria-hidden="true" />
-                  </span>
-                  <span className="mm-case-body">
-                    <span className="mm-case-meta">
-                      Case {String(index + 2).padStart(2, "0")} ·{" "}
-                      {project.hubSubtitle}
-                    </span>
-                    <strong>{project.hubTitle ?? project.title}</strong>
-                    <span className="mm-case-outcomes">
-                      {project.outcomes?.map((outcome) => (
-                        <span key={outcome}>{outcome}</span>
-                      ))}
-                    </span>
-                  </span>
-                  <ArrowUpRight className="mm-case-arrow" aria-hidden="true" />
-                </Link>
-              </motion.div>
-            ))}
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>

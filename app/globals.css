@@ -1351,24 +1351,21 @@ body {
   display: grid;
 }
 
-/* An odd card out gets the whole last row, laid out side by side. */
-@media (min-width: 761px) {
-  .mm-case-grid > div:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-  }
+/* An odd card out gets the whole last row, styled like the featured card. */
+.mm-case-grid > div:has(> .mm-case-wide) {
+  grid-column: 1 / -1;
+}
 
-  .mm-case-grid > div:last-child:nth-child(odd) .mm-case {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
+.mm-case-wide {
+  margin-bottom: 0;
+}
 
-  .mm-case-grid > div:last-child:nth-child(odd) .mm-case-media {
-    border-right: 1px solid var(--mm-line);
-    border-bottom: 0;
-  }
+.mm-case-wide .mm-case-media {
+  min-height: 380px;
+}
 
-  .mm-case-grid > div:last-child:nth-child(odd) .mm-case-body {
-    align-content: center;
-  }
+.mm-case-wide .mm-case-body strong {
+  font-size: clamp(2rem, 3.2vw, 3.2rem);
 }
 
 /* About ------------------------------------------------------------------ */

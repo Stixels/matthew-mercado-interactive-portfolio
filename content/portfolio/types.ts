@@ -3,6 +3,7 @@ export type ProjectId =
   | "ai-agent-platform"
   | "waiver-director"
   | "wicket"
+  | "yomibench"
   | "web-design"
   | "hardware"
   | "portfolio";

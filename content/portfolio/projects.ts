@@ -233,6 +233,139 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
+    id: "yomibench",
+    title: "YomiBench",
+    seoTitle: "YomiBench",
+    seoDescription:
+      "Case study for YomiBench, an open-source bot arena and training harness for Your Only Move Is HUSTLE: HustleBot solves each simultaneous turn as a payoff table, learns from self-play, and is promoted only when it beats the previous best in a pre-registered test.",
+    hubSubtitle: "SELF-PLAY ML",
+    status: "ACTIVE",
+    role: "Creator",
+    timeline: "2026 – Present",
+    stack: [
+      "Python",
+      "PyTorch",
+      "Rust",
+      "GDScript",
+      "NumPy",
+      "GitHub Pages",
+    ],
+    overview:
+      "An open-source bot arena and training harness for the fighting game Your Only Move Is HUSTLE, made with its developer's permission. Its bot, HustleBot, previews every pair of moves, solves the turn like a small game of rock-paper-scissors, and learns to judge positions from games against itself. Anyone can play it from the game's own menu.",
+    headings: {
+      brief: "Why build it",
+      build: "How it learns",
+      buildTitle: "Preview, solve, play itself, learn, prove it.",
+      footage: "The site",
+      footageTitle: "Every generation, on the record.",
+      stack: "Built with",
+    },
+    challenge:
+      "In Your Only Move Is HUSTLE both players lock in a move without seeing the other's, so every turn is a guessing game and the best play is a mix, not a single move. That makes it a great testbed for game-theory search plus learning, the AlphaZero recipe, on a game nobody had built it for. I also wanted every claimed improvement to be honest: a new bot only counts if it wins a test whose rules were fixed before any game.",
+    metrics: [
+      { value: "14", label: "HustleBot generations promoted" },
+      { value: "62%", label: "Latest generation's score against the one before" },
+      { value: "30–130×", label: "Rust solver speedup, bit-identical" },
+    ],
+    outcomes: ["Self-play training", "Playable in-game"],
+    features: [
+      {
+        kind: "flow",
+        label: "Training loop",
+        title: "One generation, start to finish.",
+        steps: [
+          {
+            name: "Preview",
+            detail:
+              "For each pair of candidate moves, the game engine plays the turn out and reports the position after it.",
+          },
+          {
+            name: "Solve",
+            detail:
+              "The bot scores those positions into a payoff table and solves it with regret matching and a double oracle for a mixed strategy.",
+          },
+          {
+            name: "Self-play",
+            detail:
+              "The current best plays itself, recording every position, candidate set and solved strategy.",
+          },
+          {
+            name: "Learn",
+            detail:
+              "A small PyTorch value net learns to predict who wins from a position, checked on a held-out slice of games.",
+          },
+          {
+            name: "Gate",
+            detail:
+              "The new net plays the current best in seat-swapped pairs with a pre-registered, staged test. Only a clear win promotes it.",
+          },
+        ],
+      },
+    ],
+    seoKeywords: [
+      "self-play reinforcement learning",
+      "game theory",
+      "regret matching",
+      "AlphaZero",
+      "game AI",
+    ],
+    liveUrl: "https://stixels.github.io/yomibench/",
+    links: [
+      {
+        label: "View the code on GitHub",
+        url: "https://github.com/Stixels/yomibench",
+      },
+      {
+        label: "Play against HustleBot",
+        url: "https://stixels.github.io/yomibench/play/",
+      },
+    ],
+    screenshots: [
+      "/screenshots/yomibench-arena.webp",
+      "/screenshots/yomibench-lab.webp",
+      "/screenshots/yomibench-generation.webp",
+    ],
+    screenshotDetails: [
+      {
+        label: "The Arena",
+        description:
+          "The leaderboard, with a showcase match between the two top-rated bots replayed in the real game.",
+      },
+      {
+        label: "The Lab",
+        description:
+          "HustleBot's training story, generation by generation. The page rebuilds itself on every promotion.",
+      },
+      {
+        label: "A generation's record",
+        description:
+          "Each generation gets its own page: rating with a confidence interval, its promotion test, and results by matchup.",
+      },
+    ],
+    sections: [
+      {
+        title: "The real game as an engine",
+        content:
+          "A GDScript mod turns headless copies of the player's own Steam install into engine servers that speak a JSON-lines protocol, with batched previews and rollouts. Nothing from the game is in the repo, and a toy engine lets anyone run the whole harness without it.",
+      },
+      {
+        title: "Search plus learning",
+        content:
+          "Each turn's moves have continuous aims and timings, so the bot builds a finite candidate set from the game's own action panel, previews the pairs, and solves the payoff table. A Rust build of the solver's inner loop is 30 to 130 times faster and gives bit-identical answers.",
+      },
+      {
+        title: "Honest promotion",
+        content:
+          "Every generation must beat the current best in a staged, seat-swapped test with 95% confidence intervals and a per-matchup floor, decided by rules written before the first game. Ratings come from a Bradley–Terry fit over every published result.",
+      },
+      {
+        title: "Play it, or beat it",
+        content:
+          "A Windows mod adds Multiplayer (vs bot) to the game's menu, and it refuses online lobbies. The Arena takes outside submissions under one fixed thinking budget, so a rating measures the net, not the hardware behind it.",
+      },
+    ],
+  },
+  {
     id: "ai-agent-platform",
     title: "Enterprise AI Agent Tooling",
     hubTitle: "AI Agent Tooling",

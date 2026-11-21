@@ -11,6 +11,7 @@ import { RESUME_URL } from "@/lib/site";
 const caseIds = [
   "escape-director",
   "wicket",
+  "yomibench",
   "ai-agent-platform",
   "waiver-director",
   "web-design",

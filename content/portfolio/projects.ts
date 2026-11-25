@@ -263,8 +263,8 @@ export const portfolioProjects: PortfolioProject[] = [
     challenge:
       "In Your Only Move Is HUSTLE both players lock in a move without seeing the other's, so every turn is a guessing game and the best play is a mix, not a single move. That makes it a great testbed for game-theory search plus learning, the AlphaZero recipe, on a game nobody had built it for. I also wanted every claimed improvement to be honest: a new bot only counts if it wins a test whose rules were fixed before any game.",
     metrics: [
-      { value: "14", label: "HustleBot generations promoted" },
-      { value: "62%", label: "Latest generation's score against the one before" },
+      { value: "16", label: "HustleBot generations promoted" },
+      { value: "54%", label: "Latest generation's score against the one before" },
       { value: "30–130×", label: "Rust solver speedup, bit-identical" },
     ],
     outcomes: ["Self-play training", "Playable in-game"],
@@ -329,7 +329,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         label: "The Arena",
         description:
-          "The leaderboard, with a showcase match between the two top-rated bots replayed in the real game.",
+          "The current best HustleBot, with a showcase match against the generation before it, replayed in the real game.",
       },
       {
         label: "The Lab",
@@ -339,7 +339,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         label: "A generation's record",
         description:
-          "Each generation gets its own page: rating with a confidence interval, its promotion test, and results by matchup.",
+          "Each generation gets its own page: rating with a confidence interval, its promotion test, and its standout games from that test.",
       },
     ],
     sections: [

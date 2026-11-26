@@ -237,37 +237,55 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "YomiBench",
     seoTitle: "YomiBench",
     seoDescription:
-      "Case study for YomiBench, an open-source bot arena and training harness for Your Only Move Is HUSTLE: HustleBot solves each simultaneous turn as a payoff table, learns from self-play, and is promoted only when it beats the previous best in a pre-registered test.",
-    hubSubtitle: "SELF-PLAY ML",
+      "Case study for YomiBench, an open-source bot arena, self-play RL harness, and bit-exact Rust simulator for Your Only Move Is HUSTLE: HustleBot solves simultaneous turns with game theory, trains across 812,000+ self-play games, and runs live inside the game.",
+    hubSubtitle: "SELF-PLAY ML & RUST SIM",
     status: "ACTIVE",
     role: "Creator",
     timeline: "2026 – Present",
     stack: [
-      "Python",
-      "PyTorch",
       "Rust",
-      "GDScript",
+      "Python",
+      "PyO3",
+      "PyTorch",
       "NumPy",
+      "GDScript",
       "GitHub Pages",
     ],
     overview:
-      "An open-source bot arena and training harness for the fighting game Your Only Move Is HUSTLE, made with its developer's permission. Its bot, HustleBot, previews every pair of moves, solves the turn like a small game of rock-paper-scissors, and learns to judge positions from games against itself. Anyone can play it from the game's own menu.",
+      "An open-source bot arena, self-play training harness, and in-game AI mod for the fighting game Your Only Move Is HUSTLE, built with the developer's permission. HustleBot previews every pair of moves, solves each simultaneous turn as a payoff table, and learns from 812,000+ self-play games powered by a bit-exact Rust rewrite of the game's simulation. Anyone can play the trained bot straight from the game's own menu.",
     headings: {
       brief: "Why build it",
-      build: "How it learns",
-      buildTitle: "Preview, solve, play itself, learn, prove it.",
+      build: "Inside the system",
+      buildTitle: "From game-theory search to a bit-exact Rust engine.",
       footage: "The site",
       footageTitle: "Every generation, on the record.",
       stack: "Built with",
     },
     challenge:
-      "In Your Only Move Is HUSTLE both players lock in a move without seeing the other's, so every turn is a guessing game and the best play is a mix, not a single move. That makes it a great testbed for game-theory search plus learning, the AlphaZero recipe, on a game nobody had built it for. I also wanted every claimed improvement to be honest: a new bot only counts if it wins a test whose rules were fixed before any game.",
+      "In Your Only Move Is HUSTLE both players lock in a move without seeing the other's, so every turn is a guessing game and optimal play is a mix, not a single move. That makes it an ideal testbed for game-theory search plus learning—the AlphaZero recipe—with strict, pre-registered promotion tests. The catch was speed: previewing turns through headless Godot took ~12.5 ms each (~3 hours for 100 games), making large-scale self-play impractical until I rewrote the simulation core in deterministic, bit-exact Rust.",
     metrics: [
-      { value: "16", label: "HustleBot generations promoted" },
-      { value: "54%", label: "Latest generation's score against the one before" },
-      { value: "30–130×", label: "Rust solver speedup, bit-identical" },
+      {
+        value: "1,800×",
+        label: "Peak Rust preview speedup over Godot (240×+ single-thread)",
+      },
+      {
+        value: "12.45M",
+        label: "Simulation ticks verified bit-exact against the real game",
+      },
+      {
+        value: "812,000+",
+        label: "Self-play games generated across 20 generations",
+      },
+      {
+        value: "432 KB",
+        label: "Trained value net running live in-game on CPU",
+      },
     ],
-    outcomes: ["Self-play training", "Playable in-game"],
+    outcomes: [
+      "1,800× Rust simulator",
+      "812k+ self-play games",
+      "Playable in-game",
+    ],
     features: [
       {
         kind: "flow",
@@ -277,7 +295,7 @@ export const portfolioProjects: PortfolioProject[] = [
           {
             name: "Preview",
             detail:
-              "For each pair of candidate moves, the game engine plays the turn out and reports the position after it.",
+              "For each pair of candidate moves, the simulator plays the turn out in parallel and returns the resulting game state.",
           },
           {
             name: "Solve",
@@ -287,12 +305,12 @@ export const portfolioProjects: PortfolioProject[] = [
           {
             name: "Self-play",
             detail:
-              "The current best plays itself, recording every position, candidate set and solved strategy.",
+              "A 4-machine fleet plays the current best against itself, recording every position, candidate set and solved strategy.",
           },
           {
             name: "Learn",
             detail:
-              "A small PyTorch value net learns to predict who wins from a position, checked on a held-out slice of games.",
+              "A compact PyTorch value net trains on 17.5M+ positions to predict who wins from a state, checked on a held-out slice.",
           },
           {
             name: "Gate",
@@ -301,12 +319,43 @@ export const portfolioProjects: PortfolioProject[] = [
           },
         ],
       },
+      {
+        kind: "compare",
+        label: "The engine rewrite",
+        title: "Why self-play needed a native simulator.",
+        intro:
+          "Headless Godot proved the loop worked, but IPC and scene-copy overhead capped throughput. Hand-porting the simulation to Rust (kept private with the developer's permission) unlocked 50,000+ games a day on home hardware while staying bit-exact with the real game.",
+        rows: [
+          {
+            measure: "12-tick state preview",
+            before: "12.5 ms in headless Godot",
+            after: "7–53 µs in Rust",
+          },
+          {
+            measure: "100 full value-net games",
+            before: "~3 hours on one Godot server",
+            after: "~2.7 min on 4-node fleet",
+          },
+          {
+            measure: "Preview-vs-step fidelity",
+            before: "~99.0% (Godot copy drift)",
+            after: "100% bit-exact",
+          },
+          {
+            measure: "Live fleet throughput",
+            before: "Serial single-engine search",
+            after: "1.47B previews / hr",
+          },
+        ],
+      },
     ],
     seoKeywords: [
       "self-play reinforcement learning",
+      "Rust game simulator",
       "game theory",
       "regret matching",
       "AlphaZero",
+      "PyO3",
       "game AI",
     ],
     liveUrl: "https://stixels.github.io/yomibench/",
@@ -346,22 +395,32 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         title: "The real game as an engine",
         content:
-          "A GDScript mod turns headless copies of the player's own Steam install into engine servers that speak a JSON-lines protocol, with batched previews and rollouts. Nothing from the game is in the repo, and a toy engine lets anyone run the whole harness without it.",
+          "An open-source GDScript mod turns headless copies of the player's own Steam install into engine servers speaking a JSON-lines protocol with batched previews and rollouts. Nothing from the game lives in the public repo, and a toy engine lets anyone run the harness without it.",
       },
       {
         title: "Search plus learning",
         content:
-          "Each turn's moves have continuous aims and timings, so the bot builds a finite candidate set from the game's own action panel, previews the pairs, and solves the payoff table. A Rust build of the solver's inner loop is 30 to 130 times faster and gives bit-identical answers.",
+          "Each turn's moves have continuous aims and timings, so the bot builds a finite candidate set from the game's action panel, previews the pairs, and solves the payoff table with regret matching and a double oracle. A Rust build of the solver's inner loop is 30–130× faster with bit-identical answers.",
+      },
+      {
+        title: "A bit-exact Rust simulator",
+        content:
+          "To scale self-play, I hand-ported the simulation into ~43,000 lines of deterministic Rust (private, with the developer's permission) with PyO3/NumPy batch bindings and fused Rust neural-net inference. It reproduces fixed-point math, RNG, and engine quirks with zero divergences across 12.45M ticks, 1.04M turns, and 5,427 matches across all five characters, while cutting heap allocations by 88.6%.",
+      },
+      {
+        title: "Fleet-scale self-play on home hardware",
+        content:
+          "Four heterogeneous consumer machines (desktops, Mac, mini-PC) run parallel batch workers sustaining ~2,180 full games/hour and ~1.47B simulated previews/hour (~407k/sec). Each GPU training run fits a compact value net on 17.5M+ positions across 20 generations and 812,000+ self-play games.",
       },
       {
         title: "Honest promotion",
         content:
-          "Every generation must beat the current best in a staged, seat-swapped test with 95% confidence intervals and a per-matchup floor, decided by rules written before the first game. Ratings come from a Bradley–Terry fit over every published result.",
+          "Every generation must beat the current best in a staged, seat-swapped test with 95% confidence intervals and a per-matchup floor, decided by rules fixed before the first game. Public ratings come from a Bradley–Terry fit over every published result.",
       },
       {
         title: "Play it, or beat it",
         content:
-          "A Windows mod adds Multiplayer (vs bot) to the game's menu, and it refuses online lobbies. The Arena takes outside submissions under one fixed thinking budget, so a rating measures the net, not the hardware behind it.",
+          "Trained models export to a ~432 KB CPU-runnable checkpoint and drop straight into the real game via a Windows mod that adds Multiplayer (vs bot) while refusing online lobbies. The Arena also accepts outside submissions under one fixed thinking budget, so ratings measure the bot rather than the hardware.",
       },
     ],
   },
